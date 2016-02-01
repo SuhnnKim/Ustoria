@@ -1,0 +1,101 @@
+<!-- the start level can be onne of the defined levels or the string #random for random selection -->
+<game title="" author="" start-level=''>
+	<!-- Definition of a level and the frames in it -->
+	<level id="" name="" first-row='' >
+		<!-- One row in a level.  If flowing it can cover several rows. random-from will select one of several frame sequences for the row.-->
+		<row id='' name='' layout='fixed | flow' next-row='' first-sequence-name='' random-from='' >
+			<!-- All of frame sequences of a given level of difficulty. -->
+			<frame-difficulty-level id='' diffficulty='' >
+				<!-- A sequence of frames in a row -->
+				<frame-sequence id="" name=''>
+					<!-- Simple 2D graphic frame -->
+					<frame id='' name='' caption='' graphic='' />
+					<!-- 2D or 3D frame where user can interact with the game.
+					scene-actions is a comma separated list of actions to perform
+					when the scene is loaded -->
+					<decision-frame id=''  name='' caption='' scene-id='' scene-actions=''>
+						<!-- What to do when the frame ends with a result -->
+						<on-scene-result result='' score='' >
+							<next-frame-sequence sequence-id=''/>
+							<random-frame-sequence>
+								<frame-ref frame-id='' />
+								<frame-ref frame-id='' />
+							</random-frame-sequence>
+							<next-scene scene-id=''/>
+							<random-scene>
+								<scene-ref scene-id='' />
+								<scene-ref scene-id='' />
+							</random-scene>
+
+						</on-scene-result>
+					</decision-frame>
+				</frame-sequence>
+			</frame-diffficulty-level>
+		</row>
+	</level>
+	<!-- Definition of objects and actions in 2D or 3D scene -->
+	<scene id='' name='' dimensions='2|3'>
+		<object id='' name=''>
+			<on-click action-id='' />
+			<on-approach object-id='' distance='' action-id='' />
+			<on-collision object-id='' action-id='' />
+			<on-pickup object-id='' action-id='' />
+			<on-drop object-id='' action-id='' />
+			<on-touch object-id='' action-id='' />			
+		</object>
+		<action-dialog dialog-id='' />
+		<action-scene-change scene-id='' />
+		<action-invoke method='' param=''/>
+		<action-audio audio='' />
+		<action-menu menu-id='' />
+		<action-start-animation animation='' looping='' object-id=''/>
+		<action-stop-animation animation='' object-id=''/>
+		<!-- this moves an object in the scene.  It can go to an absolute or relative location or it can go to another objject
+		in the scene.  Only one of these options can be specified.  You can stop it a certain distance from the destination
+		if desired.  The speed indicates how fast it will move. The finish action is another action which will be invoked 
+		whhen the object reaches its destination -->
+		<action-move-to object-id='' location='x,y,z' relative='' destination-object-id='' stop-diatance='' speed='' finish-action-id='' />
+		<!-- This rotates the object to an absolute orientation or to point towards another objject -->
+		<action-rotate-to object-id='' location='x,y,z' relative='' destination-object-id=''  stop-diatance='' speed='' finish-action-id='' />
+	</scene>
+	
+	<!-- A popup menu of choices the player can make -->
+	<menu id='' title='' name='' >
+		<menu-item id='' title='' action-id='' />
+	</menu>
+	
+	<!-- Diagloue between player and an object in a scene The answer to a question is always nested within the question.
+	Another question can be nested within an answer and that question will be asked after the answer is given. A question
+	after another question at the same level in the tree forms a sequence of questions that will be asked in turn.
+	Difficulty indicates the level of difficulty the game is being played at.  Only questions and answers of a difficulty
+	matching the difficulty of the current game will be used.text-value is used to resolve text-id at load time so we do not
+	need text resolution at run-time. -->
+	<dialogue id='' name='' >
+		<question id='' text-id='' text-value='' audio='' action-id=''>
+			<answer id='' text-id='' text-value='' audio='' action-id='' difficulty=''>
+				<question id='' text-id='' text-value='' audio='' action-id=''>
+					<answer id='' text-id='' text-value='' audio='' action-id=''>
+					<random-answer id='' difficulty=''>
+						<answer id='' text-id='' text-value='' audio='' action-id=''>
+						<answer id='' text-id='' text-value='' audio='' action-id=''>
+					</random-answer>
+
+				</question>
+			</answer>
+		</question>
+		<question-choice id='' difficulty=''>
+			<question id='' text-id='' text-value='' audio='' action-id=''>
+				<answer id='' text-id='' text-value='' audio='' action-id=''>
+				</answer>
+			</choice>
+			<question id='' text-id='' text-value='' audio='' action-id=''>
+				<answer id='' text-id='' text-value='' audio='' action-id=''>
+				</answer>
+			</choice>
+		</question-choice>
+	</dialogue>
+	<text-definitions>
+		<textdef id=''  value='' />
+		<textdef id=''  value='' />
+	</text-definitions>
+</game>
