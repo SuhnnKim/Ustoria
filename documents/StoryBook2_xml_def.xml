@@ -1,0 +1,230 @@
+<story name='id_string' title='display_string' author='display_string' >
+
+	<global-variables>
+		<variable name='firstScene' type='string' initlize-to='initial_value' />
+	</global-variables>
+	
+	<attribute-definitions>
+		<attribute-definition id='id_string' name='disp_string' type='data_type' max-values='int_value'>
+			<allowed-attribute-value id='id_string' value='value_string' />
+		</attribute-definition>
+	</attribute-definitions>
+	
+	<relationship-definitions>
+		<relationship-definition id='id_string' name='disp_name'>
+			Textual description of relationship.
+		</relationship-definition>
+	</relationship-definitions>
+	
+	<summary>
+		<summary-section id='id_string' name='disp_name'>
+			Text describing what happens in this portion of the story.
+			This can be plain text or could be marked up using one of the
+			common markup languages to provide formatting. Each summary
+			section could contain one or more paragraphs. There can be
+			multiple summary sections in the story, each of which describes
+			one logical section of the story.
+		</summary-section>
+	</summary>
+	
+	<layout-definitions>
+		<layout-definition id='id_string' name='disp_name' type='flow | scroll | full | windowed'>
+			<flow-options scene-size='int_val' 
+				caption-position='above |below|none'
+				navigation-position='TL|TC|TR|BL|BC|BR|none'
+				page-number-position='TL|TC|TR|BL|BC|BR|none' />
+			<scroll-options scene-size='int_val' 
+				caption-position='above |below|none'
+				navigation-position='TL|TC|TR|BL|BC|BR|none'
+				page-number-position='TL|TC|TR|BL|BC|BR|none'
+				scroll-direction='SCROLL_DOWN|SCROLL_UP|SCROLL_LEFT|SCROLL_RIGHT' />
+			<full-options caption-position='above |below|none'
+				navigation-position='TL|TC|TR|BL|BC|BR|none'
+				page-number-position='TL|TC|TR|BL|BC|BR|none' />
+			<windowed-options >
+				<frameset cols='0.2, 0.8' >
+					<frameset rows='0.33,*'>
+						<frame id='id_string' name='disp_string' src_scene='scene_id' src_var='qualIdent' />
+						<frame id='id_string' name='disp_string' src_scene='scene_id' src_var='qualIdent' />
+					</frameset>
+					<frame id='id_string' name='disp_string' src_scene='scene_id' src_var='qualIdent' />
+				</frameset>
+			</windowed-options>
+		</layout-definition>
+	</layout-definitions>
+	
+	<script-definitions>
+		<script-definition id='id_string' name='disp_name'>
+			<move-object ... />
+			<rotate-object ... />
+			<force ... />
+			<play-animation ... />
+			<stop-animation ... />
+			<play-sound ... />
+			<stop-sound ... />
+			<terminate ... />
+			<intersect ... />
+			<set-variable ... />
+			<get-variable ... />
+			<compare-variable ... >
+				<true-block>
+					<block  ... >
+					</block>
+				</true-block>
+				<false-block>
+					<block  ... >
+					</block>
+				</true-block>
+			</compare-variable>	
+			<select-operation ... >
+				<case value='value_string'>
+					<block  ... >
+					</block>
+				</case>
+				<case value='value_string'>
+					<block  ... >
+					</block>
+				</case>
+			</select-operation>
+			<perform-script .../>
+			<show-menu .../>
+			<start-dialog ... />
+		</script-definition>
+	</script-definitions>
+	
+	<role-definitions>
+		<role-definition id='id_string' name='disp_string' >
+			<role-description>
+				textual description of the role.
+			</role-decription>
+			<relationships>
+				<relationship-ref id='id_string' reference='relationship-id'>
+					<related-to id='id_string' char-ref='character_id' />
+					<related-to id='id_string' role-ref='role_id' />
+				</relationship-ref>
+			</relationships>
+			<played-by>
+				<character-ref id='id_string' char_ref='character_id' />
+			</played-by>
+			<attribute-list>
+				<attribute attribute-ref='attrib_id' value='val_string' />
+			</attribute-list>
+		</role-definition>
+	</role-definitions>
+	
+	<character-definitions>
+		<character-definition id='id_string' name='disp_string' >
+			<character-description>
+				A textual description of the character.
+			</character-description>
+			<images>
+				<image-def id='id_string' name='disp_name' source='file_name' />
+				<preferred-image image-ref='image_id' />
+			</immages>
+			<models>
+				<model-def id='id_string' name='disp_name' source='file_name' />
+				<preferred-model model-ref='model_id' />
+			</models>
+			<relationships>
+				<relationship-ref id='id_string' reference='relationship-id'>
+					<related-to id='id_string' char-ref='character_id' />
+					<related-to id='id_string' role-ref='role_id' />
+				</relationship-ref>
+			</relationships>
+			<attribute-list>
+				<attribute attribute-ref='attrib_id' value='val_string' />
+			</attribute-list>
+		</character-definition>
+	</character-definitions>
+	
+	<scene-definitions>
+		<scene-definition id='id_string' name='disp_string'>
+			<roles-in-scene>
+				<role-ref id='id_string' role='role_id' />
+			</roles-in-scene>
+			<characters-in-scene>
+				<character-ref id='id_string' character='character_id' />
+			</characters-in-scene>
+			<graphic img='image_name' color='#RGBA' ht='int' wd='int' />
+			<scene-impl scene-name='scene-name' />
+			<caption>
+				Optional text to use as a caption.
+			</caption>
+			<object-list>
+				<object id='id_string' name='disp_name' >
+					<description>
+						Documentation describing object in scene.
+					</description>
+					<initial-position x='int' y='int' z='int' />
+					<summary-links>
+						<link id='id_string' summary-ref='summary_sec_id' />
+					</summary-links>
+					<event-listeners>
+						<on-click id='id_string' action='script_id' /> 
+					</event-listeners>
+				</object>
+			</object-list>
+			<callout-list>
+				<callout id='id_string' name='disp_name' x='int' y='int' ht='int' wd='int'
+					relative-to='object_id' bg-color='#RGBA' fg-color='#RGBA' 
+					font-name='string' font-size='int' scrolling='bool' >
+					<speaker source='object_id' />
+				</callout>
+			</callout-list>
+			<event-listeners>
+				<on-click script-id='' />
+				<on-approach object-id='' distance='' script-id='' />
+				<on-collision object-id='' script-id='' />
+				<on-pickup object-id='' script-id='' />
+				<on-drop object-id='' script-id='' />
+				<on-create object-id='' script-id='' />
+				<on-destroy object-id='' script-id='' />
+				<on-move object-id='' script-id='' />
+				<on-stop object-id='' script-id='' />
+			</event-listeners>
+			<dialog-definitions>
+				<dialogue id='' name='' speaker='object_id'>
+					<statement id='' audio='' action-id='' speaker='object_id' display-in='callout_id|frame_id'>
+						<text-value>This is what will be said.</text-value>
+					</statement>
+					<question id=''  audio='' action-id='' speaker='object_id'  display-in='callout_id|frame_id'>
+						<text-value>This is what will be asked.</text-value>
+						<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'  display-in='callout_id|frame_id'>
+							<text-value>This is the reply.</text-value>
+							<question id='' text-id='' text-value='' audio='' action-id=''>
+								<text-value>This is what will be asked.</text-value>
+								<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'>
+									<text-value>This is the reply.</text-value>
+								</answer>
+								<answer-choice id='' based-on-variable='var_name' random='bool'>
+									<answer id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
+									</answer>
+									<answer id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
+									</answer>
+								</random-answer>
+
+							</question>
+						</answer>
+					</question>
+					<question-choice id='' based-on-variable='var_name' random='bool' based-on-menu='menu_id' >
+						<question id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
+							<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'>
+							</answer>
+						</choice>
+						<question id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
+							<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'>
+							</answer>
+						</choice>
+					</question-choice>
+				</dialogue>
+			</dialog-definitions>
+			
+			<scene-variables>
+				<variable name='nextScene' type='string' initlize-to='initial_value' />
+			</scene-variables>
+			
+		</scene-definition>
+	</scene-definitions>
+	
+	
+</story>
