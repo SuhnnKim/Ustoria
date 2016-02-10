@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style type="text/css">
+		table { border-collapse:separate; border-spacing: 2px; }
+		/*.row-gap:before{content: " ";min-height: 20px;}*/
+		.plus-gap{margin-bottom: 20px;}
+		.big-logo{
+			background-image: url('img/writing-logo.png'); 
+			height: 300px;
+			background-size: contain; 
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header col-lg-3">
+      <a class="navbar-brand" href="#" ><h1>Hey, Writer!</h1></a>
+    </div>
+    
+		<table class="nav navbar-nav navbar-right col-lg-5	" >
+			<tr>
+				<td><label for="email-login">Email:</label></td>
+				<td><label for="password-login">Password:</label></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="email" id="email-login" name="email-login" class="form-control"></td>
+				<td><input type="password" id="password-login" name="password-login" class="form-control"></td>
+				<td><button class="btn btn-primary">Login</button></td>
+			</tr>
+			<tr>
+				<td><label><input type="checkbox" name="keep-login" >Keep me logged in</label></td>
+				<td><a href="#">Forgot your password?</a></td>
+				<td></td>
+			</tr>
+		</table>
+  </div>
+</nav>
+
+
+<div class="container">
+	<div class="col-lg-6 big-logo"></div>
+	<div class="col-lg-6">
+		<h1>Sign Up</h1>
+		<div class="row hey">
+			<div class="col-lg-6 plus-gap"><input type="text" name="fname" placeholder="First Name" class="form-control"></div>
+			<div class="col-lg-6 plus-gap"><input type="text" name="lname" placeholder="Last Name" class="form-control"></div>
+			<div class="col-lg-12 plus-gap"><input type="email" name="email-signup" placeholder="Your Email" class="form-control"></div>
+			<div class="col-lg-12 plus-gap"><input type="password" name="password-signup" placeholder="New Password" class="form-control"></div>
+			<div class="col-lg-12 plus-gap"><button class="btn btn-primary">Sign Up</button></div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/angular.js"></script>
+</body>
+</html>
