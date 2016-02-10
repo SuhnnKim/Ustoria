@@ -57,14 +57,17 @@
 
   var scences = [
   	{
+      id:1,
   		title: 'scence 1',
   		content: 'qqqqqqqqqqqqqqqqqqqq',
   	},
   	{
+      id:2,
   		title: 'scence 2',
   		content: 'wwwwwwwwwwwwwwwwwwww',
   	},
   	{
+      id:3,
   		title: 'scence 3',
   		content: 'eeeeeeeeeeeeeeeeeeee',
   	},
