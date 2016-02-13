@@ -16,37 +16,37 @@
         this.hidden = !this.hidden;
       }
     };
-  })
-  .directive('expandable', function() {
-    return {
-      link: function(scope, el) {
-        function atBottom() {
-          return el.css('position') === 'absolute';
-        }
-        function expand(expanded) {
-          if (atBottom()) {
-            el.css('bottom', expanded ? 0 : margin);
-            el.css('margin-left', 0);
-          }
-          else {
-            el.css('bottom', 'auto');
-            el.css('margin-left', expanded ? 0 : margin);
-          }
-        }
-        var margin = parseInt(el.css('margin-left')) || parseInt(el.css('bottom'));
-
-        scope.$watch('sidebar.hidden', expand);
-
-        var oldResize = window.onresize || angular.noop;
-        window.onresize = function() {
-          if (window.DeviceOrientationEvent) {
-            expand(scope.sidebar.hidden);
-          }
-          oldResize();
-        };
-      }
-    };
   });
+  // .directive('expandable', function() {
+  //   return {
+  //     link: function(scope, el) {
+  //       function atBottom() {
+  //         return el.css('position') === 'absolute';
+  //       }
+  //       function expand(expanded) {
+  //         if (atBottom()) {
+  //           el.css('bottom', expanded ? 0 : margin);
+  //           el.css('margin-left', 0);
+  //         }
+  //         else {
+  //           el.css('bottom', 'auto');
+  //           el.css('margin-left', expanded ? 0 : margin);
+  //         }
+  //       }
+  //       var margin = parseInt(el.css('margin-left')) || parseInt(el.css('bottom'));
+
+  //       scope.$watch('sidebar.hidden', expand);
+
+  //       var oldResize = window.onresize || angular.noop;
+  //       window.onresize = function() {
+  //         if (window.DeviceOrientationEvent) {
+  //           expand(scope.sidebar.hidden);
+  //         }
+  //         oldResize();
+  //       };
+  //     }
+  //   };
+  // });
 
 
   ////////////////////////
@@ -89,13 +89,47 @@
   });
 
   dragula([document.querySelector('#timeline-panel')], {
-	  removeOnSpill: true
+	  removeOnSpill: true,
 	});
 
   
-  $(document).ready(function(){
-    $('#timeline-panel [data-toggle="tooltip"]').tooltip();   
+  jQuery(document).ready(function(){
+    jQuery('#timeline-panel [data-toggle="tooltip"]').tooltip();   
 	});
 
   ///////////////////////
 })();
+jQuery(window).resize(function () {
+  jQuery('html').css('height', jQuery(window).height());
+  jQuery('body').css('height', jQuery(window).height());
+  jQuery('#content').css('height', jQuery(window).height());
+  jQuery('#scence-panel').css('height', jQuery(window).height() * 0.75);
+  jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
+
+  jQuery('#sidebar').css('width', jQuery(window).width() * 0.2);
+  jQuery('#content').css('width', jQuery(window).width() * 0.8-2);
+
+  jQuery('#content').css('margin-left', jQuery(window).width() * 0.2+5);
+  jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
+
+  jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
+
+  jQuery('#hide-sidebar').css({
+
+    'top': jQuery(window).height() * 0.5,
+    'left':jQuery(window).width() * 0.2-20,
+
+  });
+
+    
+});
+jQuery(function(){ 
+  jQuery(window).resize();
+  jQuery('#hide-sidebar').click(function(event) {
+    jQuery('#content').css('width', jQuery(window).width());
+    jQuery('#content').css('margin-left', 0);
+  });
+  jQuery('#show-sidebar').click(function(event) {
+    jQuery(window).resize();
+  });
+});
