@@ -1,10 +1,10 @@
 #timeline-panel{
 	background-color: #333;
-	width: 100%;
+	width: inherit;
 	height: 150px;
 	/*position: absolute;*/
 	bottom: 0;
-	overflow-x:scroll;
+	overflow-x:auto;
 	float:left;
   white-space:nowrap;
 }

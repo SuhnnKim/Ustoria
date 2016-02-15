@@ -17,6 +17,41 @@
 	</relationship-definitions>
 	
 	<summary>
+		<summary-sequence>
+			</summary-reference summary-id='id_string' />
+			</summary-reference summary-id='id_string' />
+			<branch-list>
+				<branch >
+					<based-on>
+						You shoot the villain
+					</based-on>
+					</summary-reference summary-id='id_string' />
+				</branch>
+				<branch>
+					<based-on>
+						The villain lives!
+					</based-on>
+					</summary-reference summary-id='id_string' />
+					</summary-reference summary-id='id_string' />
+					<branch-list>
+						<branch >
+							<based-on>
+								The villain shoots you
+							</based-on>
+							</summary-reference summary-id='id_string' />
+						</branch>
+						<branch>
+							<based-on>
+								You are still alive
+							</based-on>
+							</summary-reference summary-id='id_string' />
+							</summary-reference summary-id='id_string' />
+
+						</branch>
+					</branch-list>
+				</branch>
+			</branch-list>
+		</summary-sequence>
 		<summary-section id='id_string' name='disp_name'>
 			Text describing what happens in this portion of the story.
 			This can be plain text or could be marked up using one of the
