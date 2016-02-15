@@ -107,9 +107,9 @@ jQuery(window).resize(function () {
   jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
 
   jQuery('#sidebar').css('width', jQuery(window).width() * 0.2);
-  jQuery('#content').css('width', jQuery(window).width() * 0.8-2);
+  jQuery('#content').css('width', jQuery(window).width() * 0.8);
 
-  jQuery('#content').css('margin-left', jQuery(window).width() * 0.2+5);
+  jQuery('#content').css('margin-left', jQuery(window).width() * 0.2);
   jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
