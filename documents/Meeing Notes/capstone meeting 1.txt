@@ -1,0 +1,49 @@
+learning outcomes - learn individually and also as a team
+
+action items -
+ 1. role assignment
+ architectural design - datastrucutres, db schema to store in back end, concurrency, locking.
+
+ 2.Roles:
+ team leader - prannoy (business analysts)
+ project coordination - diana
+ testing-diana
+ designer UI- zipheng
+ programming, architecture design and schema - wei and prannoy
+ dan - sponsor 
+ 
+desktop application
+design and business analyses - 1 person
+ program - unit testing required
+ test - build a test plan, to be signed off by dan
+ friday 2.20 15th jan  next meeting at M100
+ send a meeting appointment using google calendar to everyone including rob.
+
+contact information - best way to reach people
+dan - email and cell
+suhn -email
+rob - email
+zhipeng - email
+prannoy - email
+wei - email
+diana - email
+
+skypenames:
+prannoytank23,
+zhipeng_zeng
+liuwei.lvvl@gmail.com
+dan- dan.at.160
+robert.robson66
+dianaalexander55
+
+all interviews to be done over skype in the first week of meeting.
+
+decisions:-
+set up on git [virtual git]
+set up security on database, git set up - prannoy
+unit testing will be automated
+continuous integration, integrate testing, regression testing
+
+language - java
+database - sql
+allow capability to run offline
