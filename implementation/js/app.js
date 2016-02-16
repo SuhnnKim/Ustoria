@@ -99,6 +99,13 @@
 
   ///////////////////////
 })();
+
+
+var width2 = jQuery(window).width() * 0.2;
+var width8 = jQuery(window).width() * 0.8;
+var width15 = jQuery(window).width() * 0.15;
+
+
 jQuery(window).resize(function () {
   jQuery('html').css('height', jQuery(window).height());
   jQuery('body').css('height', jQuery(window).height());
@@ -106,12 +113,12 @@ jQuery(window).resize(function () {
   jQuery('#scence-panel').css('height', jQuery(window).height() * 0.75);
   jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
 
-  jQuery('#sidebar').css('height', jQuery(window).height()-70);
+  jQuery('#sidebar').css('height', jQuery(window).height()-118);
 
-  jQuery('#sidebar').css('width', jQuery(window).width() * 0.2);
-  jQuery('#content').css('width', jQuery(window).width() * 0.8);
+  jQuery('#sidebar').css('width', width2);
+  jQuery('#content').css('width', width8);
 
-  jQuery('#content').css('margin-left', jQuery(window).width() * 0.2);
+  jQuery('#content').css('margin-left', width2);
   jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
@@ -119,7 +126,7 @@ jQuery(window).resize(function () {
   jQuery('#hide-sidebar').css({
 
     'top': jQuery(window).height() * 0.5,
-    'left':jQuery(window).width() * 0.2-20,
+    'left':width2-20,
 
   });
   jQuery('#link-playground').css({
@@ -128,9 +135,19 @@ jQuery(window).resize(function () {
     'left':0,
     'width': jQuery('#sidebar').width(),
   });
+  jQuery('#link-add-category').css({
 
-    
+    'bottom': jQuery('#link-playground').height()*2.5,
+
+  });
+  
+  
+
 });
+
+
+
+
 jQuery(function(){ 
   jQuery(window).resize();
   jQuery('#hide-sidebar').click(function(event) {
@@ -140,4 +157,11 @@ jQuery(function(){
   jQuery('#show-sidebar').click(function(event) {
     jQuery(window).resize();
   });
+
+  jQuery("#link-add-category").hover(function(ev){
+    jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
+    jQuery('#add-category-text').stop().fadeToggle();
+  });
+  
+
 });

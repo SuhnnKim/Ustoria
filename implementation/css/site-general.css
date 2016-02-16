@@ -1,3 +1,6 @@
+body{
+	background-color: #e6e6e6;
+}
 #link-playground{
 	padding: 20px;
 	color:white;
@@ -9,4 +12,36 @@
 }
 #link-playground:link,#link-playground:visited,#link-playground:hover,#link-playground:active{
 	text-decoration: none;
+}
+#link-add-category{
+	/*padding: 10px;*/
+	color:white;
+	background-color: #999;
+	position: fixed;
+	font-size: 15px;
+	border-radius: 0 10px 10px 0;
+	z-index: 50;
+	margin: 0 auto;
+	width: 40px;
+	height: 35px;
+	white-space: nowrap;
+	line-height: 35px;
+}
+#link-add-category:link, #link-add-category:visited, #link-add-category:hover, #link-add-category:active{
+	text-decoration: none;
+}
+.glyphicon{
+	margin: 0;
+	padding: 0;
+}
+.floating-left{
+	float: left;
+}
+#add-sign{
+	margin: 10px 5px 10px 10px;
+}
+#add-category-text{
+	display: none;
+	margin: 0;
+	padding: 0;
 }
