@@ -1,6 +1,10 @@
 body{
 	background-color: #e6e6e6;
 }
+.navbar{
+	margin-bottom: 0;
+	background-color: #e6e6e6;
+}
 #link-playground{
 	padding: 20px;
 	color:white;
@@ -44,4 +48,7 @@ body{
 	display: none;
 	margin: 0;
 	padding: 0;
+}
+#searchbar{
+	margin:15px;
 }
