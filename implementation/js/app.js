@@ -113,7 +113,7 @@ jQuery(window).resize(function () {
   jQuery('#scence-panel').css('height', jQuery(window).height() * 0.75);
   jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
 
-  jQuery('#sidebar').css('height', jQuery(window).height()-118);
+  jQuery('#sidebar').css('height', jQuery(window).height()-123);
 
   jQuery('#sidebar').css('width', width2);
   jQuery('#content').css('width', width8);

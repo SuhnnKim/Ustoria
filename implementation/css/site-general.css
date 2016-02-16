@@ -1,14 +1,23 @@
 body{
-	background-color: #e6e6e6;
+	background-color: #66b3ff;
 }
 .navbar{
 	margin-bottom: 0;
-	background-color: #e6e6e6;
+	background-color: #66b3ff;
+	color:white;
+	border:none;
+	border-radius: 0;
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
+	color:white;
+}
+.dropdown-menu > li > a{
+	color: #262425;
 }
 #link-playground{
 	padding: 20px;
 	color:white;
-	background-color: #999;
+	background-color: #e14b3b;
 	position: fixed;
 	text-align: center;
 	font-size: 22px;
@@ -20,7 +29,7 @@ body{
 #link-add-category{
 	/*padding: 10px;*/
 	color:white;
-	background-color: #999;
+	background-color: #ff8533;
 	position: fixed;
 	font-size: 15px;
 	border-radius: 0 10px 10px 0;

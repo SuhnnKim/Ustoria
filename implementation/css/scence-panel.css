@@ -1,19 +1,33 @@
 #scence-panel{
 	width: inherit;
 	height: 480px;
-	background-color: #777;
+	background-color: #fff;
 }
 
+#scence-panel>.scence>.panel-heading{
+  width: 100px;
+  color: white;
+  background-color: #333333;
+  border:none;
+  padding: 0;
+  text-align: center;
+}
+#scence-panel>.scence>.panel-body{
+  background-color: #333333;
+  color: white;
+  height: 100%;
+}
 
-#scence-panel .scence{
+#scence-panel>.panel{
   margin: 10px 5px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   transition: opacity 0.4s ease-in-out;
   height: 300px;
   width: 300px;
   display:inline-block;
   vertical-align: middle;
   white-space:normal;
+  border:none;
 }
 #scence-panel .scence {
   cursor: move;
