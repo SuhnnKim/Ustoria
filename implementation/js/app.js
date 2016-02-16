@@ -106,6 +106,8 @@ jQuery(window).resize(function () {
   jQuery('#scence-panel').css('height', jQuery(window).height() * 0.75);
   jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
 
+  jQuery('#sidebar').css('height', jQuery(window).height()-70);
+
   jQuery('#sidebar').css('width', jQuery(window).width() * 0.2);
   jQuery('#content').css('width', jQuery(window).width() * 0.8);
 
@@ -119,6 +121,12 @@ jQuery(window).resize(function () {
     'top': jQuery(window).height() * 0.5,
     'left':jQuery(window).width() * 0.2-20,
 
+  });
+  jQuery('#link-playground').css({
+
+    'bottom': 0,
+    'left':0,
+    'width': jQuery('#sidebar').width(),
   });
 
     

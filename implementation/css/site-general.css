@@ -1,0 +1,12 @@
+#link-playground{
+	padding: 20px;
+	color:white;
+	background-color: #999;
+	position: fixed;
+	text-align: center;
+	font-size: 22px;
+	z-index: 99;
+}
+#link-playground:link,#link-playground:visited,#link-playground:hover,#link-playground:active{
+	text-decoration: none;
+}
