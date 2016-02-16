@@ -1,5 +1,5 @@
 body{
-	background-color: #66b3ff;
+	background-color: #e6e6e6;
 }
 .navbar{
 	margin-bottom: 0;
@@ -60,4 +60,19 @@ body{
 }
 #searchbar{
 	margin:15px;
+}
+#control-panel{
+	background-color: #e6e6e6;
+	height: 50px;
+	padding: 5px;
+}
+.ctrl-btn{
+	padding: 10px;
+	border:1px black solid;
+	margin-right: 15px;
+	color: black;
+}
+.ctrl-btn:link,.ctrl-btn.visited,.ctrl-btn:hover,.ctrl-btn:active{
+	text-decoration: none;
+	color: black;
 }

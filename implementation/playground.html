@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/dragula.css">
 	<link rel="stylesheet" href="css/sidebar.css">
-	<link rel="stylesheet" href="css/scence-panel.css">
+	<link rel="stylesheet" href="css/scene-panel.css">
 	<link rel="stylesheet" href="css/timeline-panel.css">
 	<link rel="stylesheet" href="css/site-general.css">
 	<link rel="stylesheet" href="css/searchbar.css">
@@ -81,15 +81,21 @@
 
 
 
-	<div class="" id="content" expandable ng-controller="ScencePanelController as scencePanel">
-		<div id="scence-panel" >
-			<!-- loop scences -->
-				<div ng-repeat="scence in scencePanel.scences" class="scence panel panel-success" data-toggle="tooltip" title="{{scence.title}}">
-		            <div class="panel-heading scence-title">
-		              {{ scence.title }}
+	<div class="" id="content" expandable ng-controller="scenePanelController as scenePanel">
+		<div id="control-panel">
+			<a class="ctrl-btn pull-left" id="new-scene" href="#">Create a new scene</a>
+			<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
+			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
+			<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
+		</div>
+		<div id="scene-panel" >
+			<!-- loop scenes -->
+				<div ng-repeat="scene in scenePanel.scenes" class="scene panel panel-success" data-toggle="tooltip" title="{{scene.title}}">
+		            <div class="panel-heading scene-title">
+		              {{ scene.title }}
 		            </div>
 		            <div class="panel-body">
-		              {{ scence.content }}
+		              {{ scene.content }}
 		            </div>
 		        </div>
 		</div>

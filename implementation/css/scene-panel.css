@@ -1,10 +1,10 @@
-#scence-panel{
+#scene-panel{
 	width: inherit;
 	height: 480px;
 	background-color: #fff;
 }
 
-#scence-panel>.scence>.panel-heading{
+#scene-panel>.scene>.panel-heading{
   width: 100px;
   color: white;
   background-color: #333333;
@@ -12,13 +12,13 @@
   padding: 0;
   text-align: center;
 }
-#scence-panel>.scence>.panel-body{
+#scene-panel>.scene>.panel-body{
   background-color: #333333;
   color: white;
   height: 100%;
 }
 
-#scence-panel>.panel{
+#scene-panel>.panel{
   margin: 10px 5px;
   background-color: #fff;
   transition: opacity 0.4s ease-in-out;
@@ -29,7 +29,7 @@
   white-space:normal;
   border:none;
 }
-#scence-panel .scence {
+#scene-panel .scene {
   cursor: move;
   cursor: grab;
   cursor: -moz-grab;

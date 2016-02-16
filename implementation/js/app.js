@@ -3,8 +3,8 @@
 
 	var app = angular.module('playground', [ ]);
 
-	app.controller('ScencePanelController', function(){
-  	this.scences = scences;
+	app.controller('scenePanelController', function(){
+  	this.scenes = scenes;
   });
 
 
@@ -55,20 +55,20 @@
   
 
 
-  var scences = [
+  var scenes = [
   	{
       id:1,
-  		title: 'scence 1',
+  		title: 'scene 1',
   		content: 'qqqqqqqqqqqqqqqqqqqq',
   	},
   	{
       id:2,
-  		title: 'scence 2',
+  		title: 'scene 2',
   		content: 'wwwwwwwwwwwwwwwwwwww',
   	},
   	{
       id:3,
-  		title: 'scence 3',
+  		title: 'scene 3',
   		content: 'eeeeeeeeeeeeeeeeeeee',
   	},
 
@@ -77,14 +77,14 @@
   ///////////////////////
 
 
-  dragula([document.querySelector('#scence-panel'), document.querySelector('#timeline-panel')], {
+  dragula([document.querySelector('#scene-panel'), document.querySelector('#timeline-panel')], {
     copy: function (el, source) {
-      return source === document.querySelector('#scence-panel');
+      return source === document.querySelector('#scene-panel');
     },
     accepts: function (el, target) {
     	// remove panel-body in timeline-panel
     	angular.element( document.querySelector( '#timeline-panel .panel-body' ) ).remove();
-      return target !== document.querySelector('#scence-panel');
+      return target !== document.querySelector('#scene-panel');
     }
   });
 
@@ -109,11 +109,12 @@ var width15 = jQuery(window).width() * 0.15;
 jQuery(window).resize(function () {
   jQuery('html').css('height', jQuery(window).height());
   jQuery('body').css('height', jQuery(window).height());
-  jQuery('#content').css('height', jQuery(window).height());
-  jQuery('#scence-panel').css('height', jQuery(window).height() * 0.75);
-  jQuery('#timeline-panel').css('height', jQuery(window).height() * 0.25);
+  jQuery('#content').css('height', jQuery(window).height()-100);
 
-  jQuery('#sidebar').css('height', jQuery(window).height()-123);
+  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.7);
+  jQuery('#timeline-panel').css('height', jQuery('#content').height() * 0.3);
+
+  jQuery('#sidebar').css('height', jQuery(window).height()-170);
 
   jQuery('#sidebar').css('width', width2);
   jQuery('#content').css('width', width8);
