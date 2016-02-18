@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Character</title>
+	<style type="text/css">
+	[ng\:cloak], [ng-cloak], .ng-cloak{
+		display: none;
+	}
+	</style>
+	<link rel="stylesheet" href="css/init.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/dragula.css">
+	<link rel="stylesheet" href="css/sidebar.css">
+	<link rel="stylesheet" href="css/scene-panel.css">
+	<link rel="stylesheet" href="css/timeline-panel.css">
+	<link rel="stylesheet" href="css/site-general.css">
+	<link rel="stylesheet" href="css/searchbar.css">
+	<link rel="stylesheet" href="css/character-panel.css">
+</head>
+
+<body ng-app="playground" ng-controller="MainController" ng-cloak>
+
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">Ustoria</a>
+	    </div>
+		<!-- <a href="#">My Projects</a> -->
+	    <ul class="nav navbar-nav navbar-right">
+
+	      <li class="dropdown">
+	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Username
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">My Stories</a></li>
+	          <li><a href="#">Profile</a></li>
+	          <li><a href="#">Log Out</a></li>
+	        </ul>
+	      </li>
+
+	    </ul>
+	    <form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>
+	  </div>
+	</nav>
+
+	<div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
+		</span><span class="glyphicon glyphicon-menu-right"></span>
+	</div>
+	<div id="sidebar" ng-hide="sidebar.hidden">
+		<div id="hide-sidebar" ng-click="sidebar.toggle()">
+			<span class="glyphicon glyphicon-menu-left"></span>
+		</div>
+		<div class="inner">
+			<div id='cssmenu'>
+				<ul>
+				   <li class='active' ><a style="border-bottom: dashed; 2px white;" href='index.html'>Home</a></li>
+				   <li class='has-sub'><a href='#'>Characters</a>
+				      <ul>
+				         <li><a href='#'>Diana</a></li>
+				         <li><a href='#'>Prannoy</a></li>
+				         <li><a href='#'>Zhipeng</a></li>
+				         <li><a href='#'>Wei</a></li>
+				         <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+								 <li><a href='#'>Wei</a></li>
+				      </ul>
+				   </li>
+				   <li class='has-sub'><a href='#'>Locations</a>
+				      <ul>
+				         <li><a href='#'>Humber College</a></li>
+
+
+				         <!-- <li><a href='#'>Location</a></li> -->
+				      </ul>
+				   </li>
+				   <li><a href='#'>Summary</a></li>
+				</ul>
+			</div>
+			<div><a id="link-add-category" href="#"><span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span><span id="add-category-text">Add Category</span></a></div>
+			<div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>
+
+		</div>
+	</div>
+
+
+
+	<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
+		<div id="control-panel">
+			<a class="ctrl-btn pull-left" id="new-character" href="#">Create a new character</a>
+			<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
+			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
+			<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
+		</div>
+		<div id="character-panel">
+			<form id="character-form">
+				<div class="row" id="row1">
+					<img src="#" class="col-sm-3" alt="Image" height="240" width="240">
+					<div class="col-sm-8">
+						<label class="radio-inline">
+							<input type="text" class="form-control" id="name" placeholder="Name"/>
+						</label>
+						<label class="radio-inline">
+							Model:
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="model" value="2D">2D</input>
+						</label>
+						<label class="radio-inline">
+							<input type="radio" name="model" value="3D">3D</input>
+						</label>
+					</div>
+					<div class="col-sm-8">
+						<textarea class="form-control" rows="8" id="desc" placeholder="Description"></textarea>
+					</div>
+				</div>
+				<div class="row" id="row2">
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<li class="list-group-item">relationship1</li>
+						</ul>
+						<button type="button" class="btn btn-primary btn-block">Add+</button>
+					</div>
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<li class="list-group-item">relationship1</li>
+						</ul>
+						<button type="button" class="btn btn-primary btn-block">Add+</button></div>
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<li class="list-group-item">relationship1</li>
+						</ul>
+						<button type="button" class="btn btn-primary btn-block">Add+</button></div>
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<li class="list-group-item">relationship1</li>
+						</ul>
+						<button type="button" class="btn btn-primary btn-block">Add+</button>
+					</div>
+						<div class="col-sm-1">Add</div>
+				</div>
+			</form>
+
+			<div id="character-list">
+				<img src="" alt="character1" class="img-thumbnail" width="80" height="80" />
+				<img src="" alt="character2" class="img-thumbnail" width="80" height="80" />
+			</div>
+			
+			</div>
+
+
+		</div>
+
+		<div id="timeline-panel"></div>
+	</div>
+
+<script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+
+	// deal with the conflict between jquery and angular (global variable "$")
+	// after this, need to use jQuery instead of "$" for jquery's function
+	$.noConflict();
+
+	///// for sidebar menu's animation
+	jQuery('#cssmenu li.active').addClass('open').children('ul').show();
+	jQuery('#cssmenu li.has-sub>a').on('click', function(){
+		jQuery(this).removeAttr('href');
+		var element = jQuery(this).parent('li');
+		if (element.hasClass('open')) {
+			element.removeClass('open');
+			element.find('li').removeClass('open');
+			element.find('ul').slideUp(200);
+		}
+		else {
+			element.addClass('open');
+			element.children('ul').slideDown(200);
+			// element.siblings('li').children('ul').slideUp(200);
+			// element.siblings('li').removeClass('open');
+			element.siblings('li').find('li').removeClass('open');
+			// element.siblings('li').find('ul').slideUp(200);
+		}
+	});
+	///////
+</script>
+
+<script type="text/javascript" src="js/angular.js"></script>
+<script type="text/javascript" src="js/dragula.js"></script>
+<script type="text/javascript" src="js/apptest.js"></script>
+
+</body>
+</html>
