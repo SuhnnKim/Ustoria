@@ -18,34 +18,34 @@
 	
 	<summary>
 		<summary-sequence>
-			</summary-reference summary-id='id_string' />
-			</summary-reference summary-id='id_string' />
+			<summary-reference summary-id='id_string' />
+			<summary-reference summary-id='id_string' />
 			<branch-list>
 				<branch >
 					<based-on>
 						You shoot the villain
 					</based-on>
-					</summary-reference summary-id='id_string' />
+					<summary-reference summary-id='id_string' />
 				</branch>
 				<branch>
 					<based-on>
 						The villain lives!
 					</based-on>
-					</summary-reference summary-id='id_string' />
-					</summary-reference summary-id='id_string' />
+					<summary-reference summary-id='id_string' />
+					<summary-reference summary-id='id_string' />
 					<branch-list>
 						<branch >
 							<based-on>
 								The villain shoots you
 							</based-on>
-							</summary-reference summary-id='id_string' />
+							<summary-reference summary-id='id_string' />
 						</branch>
 						<branch>
 							<based-on>
 								You are still alive
 							</based-on>
-							</summary-reference summary-id='id_string' />
-							</summary-reference summary-id='id_string' />
+							<summary-reference summary-id='id_string' />
+							<summary-reference summary-id='id_string' />
 
 						</branch>
 					</branch-list>
@@ -90,40 +90,40 @@
 	
 	<script-definitions>
 		<script-definition id='id_string' name='disp_name'>
-			<move-object ... />
-			<rotate-object ... />
-			<force ... />
-			<play-animation ... />
-			<stop-animation ... />
-			<play-sound ... />
-			<stop-sound ... />
-			<terminate ... />
-			<intersect ... />
-			<set-variable ... />
-			<get-variable ... />
-			<compare-variable ... >
+			<move-object  />
+			<rotate-object />
+			<force />
+			<play-animation  />
+			<stop-animation  />
+			<play-sound />
+			<stop-sound />
+			<terminate  />
+			<intersect  />
+			<set-variable  />
+			<get-variable  />
+			<compare-variable  >
 				<true-block>
-					<block  ... >
+					<block   >
 					</block>
 				</true-block>
 				<false-block>
-					<block  ... >
+					<block   >
 					</block>
-				</true-block>
+				</false-block>
 			</compare-variable>	
-			<select-operation ... >
+			<select-operation  >
 				<case value='value_string'>
-					<block  ... >
+					<block  >
 					</block>
 				</case>
-				<case value='value_string'>
-					<block  ... >
+				<case value='vamlue_string'>
+					<block  >
 					</block>
 				</case>
 			</select-operation>
-			<perform-script .../>
-			<show-menu .../>
-			<start-dialog ... />
+			<perform-script />
+			<show-menu />
+			<start-dialog  />
 		</script-definition>
 	</script-definitions>
 	
@@ -131,7 +131,7 @@
 		<role-definition id='id_string' name='disp_string' >
 			<role-description>
 				textual description of the role.
-			</role-decription>
+			</role-description>
 			<relationships>
 				<relationship-ref id='id_string' reference='relationship-id'>
 					<related-to id='id_string' char-ref='character_id' />
@@ -145,6 +145,8 @@
 				<attribute attribute-ref='attrib_id' value='val_string' />
 			</attribute-list>
 		</role-definition>
+
+		
 	</role-definitions>
 	
 	<character-definitions>
@@ -155,7 +157,7 @@
 			<images>
 				<image-def id='id_string' name='disp_name' source='file_name' />
 				<preferred-image image-ref='image_id' />
-			</immages>
+			</images>
 			<models>
 				<model-def id='id_string' name='disp_name' source='file_name' />
 				<preferred-model model-ref='model_id' />
@@ -236,7 +238,7 @@
 									</answer>
 									<answer id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
 									</answer>
-								</random-answer>
+								</answer-choice>
 
 							</question>
 						</answer>
@@ -245,11 +247,11 @@
 						<question id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
 							<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'>
 							</answer>
-						</choice>
+						</question>
 						<question id='' text-id='' text-value='' audio='' action-id='' select-on-value='' speaker='object_id'>
 							<answer id='' text-id='' text-value='' audio='' action-id='' speaker='object_id'>
 							</answer>
-						</choice>
+						</question>
 					</question-choice>
 				</dialogue>
 			</dialog-definitions>
