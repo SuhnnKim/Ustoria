@@ -5,6 +5,7 @@
 	/*position: absolute;*/
 	bottom: 0;
 	overflow-x:auto;
+  overflow-y:hidden;
 	float:left;
   white-space:nowrap;
 }
