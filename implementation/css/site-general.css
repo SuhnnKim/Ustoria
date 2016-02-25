@@ -1,9 +1,9 @@
 body{
-	background-color: #e6e6e6;
+	background-color: #5672b6;
 }
 .navbar{
 	margin-bottom: 0;
-	background-color: #66b3ff;
+	background-color: #5672b6;
 	color:white;
 	border:none;
 	border-radius: 0;
@@ -98,8 +98,7 @@ body{
     -webkit-box-sizing: border-box;
 }
 
-#timeline-panel>div{
-	/*display: inline-block;*/
+/*#timeline-panel>div{
 	background-color: black;
 	color:white;
 	width: 100px;
@@ -107,4 +106,4 @@ body{
 	height: inherit;
 	float: left;
 	border: none;
-}
+}*/

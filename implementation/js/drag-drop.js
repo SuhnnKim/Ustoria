@@ -31,11 +31,11 @@ jQuery(function(){
 
 	var removeIntent = false;
 
-	jQuery("#timeline-panel").sortable({
+	jQuery("#timeline").sortable({
 		opacity: 0.5,
-		items: "> div",
+		// items: "> li",
 	    over: function (event, ui) {
-	    	ui.helper.width(100); 
+	    	// ui.helper.width(100); 
             removeIntent = false;
         },
         out: function () {
@@ -63,14 +63,15 @@ jQuery(function(){
 	    // start: function( event, ui ) {
      //        clone = jQuery(ui.item[0].outerHTML).clone();
      //    },
-        // placeholder: {
-        //     element: function(clone, ui) {
-        //         return jQuery('<li class="scene_title_placeholder">'+clone[0].innerHTML+'</li>');
-        //     },
-        //     update: function() {
-        //         return;
-        //     }
-        // },
+     //    placeholder: {
+     //        element: function(clone, ui) {
+     //            return jQuery('<li class="scene_title_placeholder">'+clone[0].innerHTML+'</li>');
+                
+     //        },
+     //        update: function() {
+     //            return;
+     //        }
+     //    },
         distance: 1,
         delay: 10,
 	});

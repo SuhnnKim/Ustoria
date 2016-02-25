@@ -10,7 +10,7 @@
 	z-index: 2;
 	/*overflow-y: auto;
 	overflow-x: hidden;*/
-	background-color: #e6e6e6;
+	background-color: #5672b6;
 
 }
 
@@ -81,7 +81,7 @@
   box-sizing: border-box;
 }
 #cssmenu {
-  width: 200px;
+  width: 150px;
   font-family: Raleway, sans-serif;
   color: #262425;
   margin:auto;
@@ -100,10 +100,10 @@
   padding: 16px 22px;
   cursor: pointer;
   z-index: 2;
-  font-size: 16px;
+  /*font-size: 16px;*/
   text-decoration: none;
-  color: #fff;
-  background: #bbbbbc;
+  color: #000;
+  background: #e6e6e6;
   -webkit-transition: color 1s ease;
   -o-transition: color 1s ease;
   transition: color 1s ease;
@@ -120,7 +120,7 @@
   display: block;
   height: 10px;
   width: 2px;
-  background: #ffffff;
+  background: #000;
   content: "";
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
@@ -135,7 +135,7 @@
   display: block;
   width: 10px;
   height: 2px;
-  background: #ffffff;
+  background: #000;
   content: "";
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;

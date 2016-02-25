@@ -103,26 +103,6 @@
 
 
 
- //  dragula([document.querySelector('#scene-panel'), document.querySelector('#timeline-panel')], {
- //    copy: function (el, source) {
- //      return source === document.querySelector('#scene-panel') && el.className === 'scene-title';
- //    },
- //    accepts: function (el, target) {
- //    	// remove panel-body in timeline-panel
- //    	angular.element( document.querySelector( '#timeline-panel .panel-body' ) ).remove();
- //      return target !== document.querySelector('#scene-panel');
- //    },
- //    // moves: function (el, container, handle) {
- //    //   return handle.className === 'scene';
- //    // }
- //  });
-
- //  dragula([document.querySelector('#timeline-panel')], {
-	//   removeOnSpill: true,
-	// });
-
-  
-
   
   jQuery(document).ready(function(){
     jQuery('#timeline-panel [data-toggle="tooltip"]').tooltip();   
@@ -140,25 +120,28 @@ var width15 = jQuery(window).width() * 0.15;
 jQuery(window).resize(function () {
   jQuery('html').css('height', jQuery(window).height());
   jQuery('body').css('height', jQuery(window).height());
-  jQuery('#content').css('height', jQuery(window).height()-100);
 
-  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.7);
-  jQuery('#timeline-panel').css('height', jQuery('#content').height() * 0.25);
+  jQuery('#content').css('height', jQuery(window).height());
 
-  jQuery('#sidebar').css('height', jQuery(window).height()-170);
+  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
+  jQuery('#timeline-panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
 
-  jQuery('#sidebar').css('width', width2);
-  jQuery('#content').css('width', width8);
 
-  jQuery('#content').css('margin-left', width2);
-  jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
+
+  // jQuery('#sidebar').css('height', jQuery(window).height()-170);
+
+  // jQuery('#sidebar').css('width', width2);
+  jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
+
+  jQuery('#content').css('margin-left', jQuery('#sidebar').width());
+  // jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
   jQuery('#hide-sidebar').css({
 
     'top': jQuery(window).height() * 0.5,
-    'left':width2-20,
+    'left':jQuery('#sidebar').width()-20,
 
   });
   jQuery('#link-playground').css({

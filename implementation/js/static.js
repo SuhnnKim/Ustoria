@@ -88,7 +88,7 @@ var makeSceneDroppable = function(){
 var makeSceneTitleDraggable = function(){
   jQuery('.scene>.scene-title').draggable({
     // containment: "document",
-    connectToSortable: "#timeline-panel",
+    connectToSortable: "#timeline",
     helper:function(){
       return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());
     },
