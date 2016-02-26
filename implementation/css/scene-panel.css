@@ -2,6 +2,9 @@
 	width: inherit;
 	height: 480px;
 	background-color: #fff;
+  overflow-x:auto;
+  overflow-y:none;
+
 }
 
 #scene-panel>.scene>.panel-heading{
@@ -19,17 +22,24 @@
 }
 
 #scene-panel>.panel{
-  margin: 10px 5px;
+  /*margin: 10px 5px;*/
   background-color: #fff;
   transition: opacity 0.4s ease-in-out;
-  height: 300px;
-  width: 300px;
+  height: 280px;
+  width: 280px;
   display:inline-block;
   vertical-align: middle;
   white-space:normal;
   border:none;
+  padding: 10px;
+  /*position: absolute;*/
 }
 #scene-panel .scene {
+  
+  z-index: 9999999;
+}
+.panel-heading{
+  z-index: 999;
   cursor: move;
   cursor: grab;
   cursor: -moz-grab;

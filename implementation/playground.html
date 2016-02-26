@@ -8,8 +8,10 @@
 	}
 	</style>
 	<link rel="stylesheet" href="css/init.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/dragula.css">
+	<link rel="stylesheet" href="css/horizontal.css">
+	<link rel="stylesheet" href="css/jsPlumbToolkit-defaults.css">
 	<link rel="stylesheet" href="css/sidebar.css">
 	<link rel="stylesheet" href="css/scene-panel.css">
 	<link rel="stylesheet" href="css/timeline-panel.css">
@@ -52,19 +54,19 @@
 		<div class="inner">
 			<div id='cssmenu'>
 				<ul>
-				   <li class='active' ><a style="border-bottom: dashed; 2px white;" href='index.html'>Home</a></li>
+				   <li class='active' ><a href='index.html'>Home</a></li>
 				   <li class='has-sub'><a href='#'>Characters</a>
-				      <ul>
-				         <li><a href='#'>Diana</a></li>
-				         <li><a href='#'>Prannoy</a></li>
-				         <li><a href='#'>Zhipeng</a></li>
-				         <li><a href='#'>Wei</a></li>
-				         <li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li><li><a href='#'>Wei</a></li>
+				      <ul class="menu_item_list">
+				         <li class="menu_item"><a href='#'>Diana</a></li>
+				         <li class="menu_item"><a href='#'>Prannoy</a></li>
+				         <li class="menu_item"><a href='#'>Zhipeng</a></li>
+				         <li class="menu_item"><a href='#'>Wei</a></li>
+				         
 				      </ul>
 				   </li>
 				   <li class='has-sub'><a href='#'>Locations</a>
-				      <ul>
-				         <li><a href='#'>Humber College</a></li>
+				      <ul class="menu_item_list">
+				         <li class="menu_item"><a href='#'>Humber College</a></li>
 
 
 				         <!-- <li><a href='#'>Location</a></li> -->
@@ -79,39 +81,80 @@
 		</div>
 	</div>
 
+	<div id="myModal" class="modal fade" role="dialog"  ng-controller="addSceneController" ng-init="addSceneController.id_counter = 2" >
+	  <div class="modal-dialog">
 
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Create a scene</h4>
+	      </div>
+	      <div class="modal-body">
+	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title"></input>
+	        <p ng-show="title == ''">{{ error_message }}</p>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="button" class="btn btn-default" id="create_ok" ng-click="addNew(title)">OK</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 
 	<div class="" id="content" expandable ng-controller="scenePanelController as scenePanel">
 		<div id="control-panel">
-			<a class="ctrl-btn pull-left" id="new-scene" href="#">Create a new scene</a>
+			<a class="ctrl-btn pull-left" id="new-scene" href="#" data-toggle="modal" data-target="#myModal">Create a new scene</a>
+
 			<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
 			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
 			<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 		</div>
 		<div id="scene-panel" >
 			<!-- loop scenes -->
-				<div ng-repeat="scene in scenePanel.scenes" class="scene panel panel-success" data-toggle="tooltip" title="{{scene.title}}">
+				<div  style="float: none;"ng-repeat="scene in scenePanel.scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
 		            <div class="panel-heading scene-title">
 		              {{ scene.title }}
 		            </div>
-		            <div class="panel-body">
-		              {{ scene.content }}
-		            </div>
+		            <ul class="panel-body">
+		              <!-- <div class="member" id="member-left" style="top: 100px; position: absolute; margin-right: 10px;  width: 50px;height: 50px;background-color: white;"></div>
+		              <div class="member" id="member-right" style="position: absolute; margin-right: 10px;float: left; width: 50px;height: 50px;background-color: white;"></div> -->
+		            </ul>
 		        </div>
 		</div>
 
 
 
-		<div id="timeline-panel"></div>
+		<div id="timeline-panel" class="wrap">
+			<div class="scrollbar">
+				<div class="handle" style="transform: translateZ(0px) translateX(760px); width: 190px;">
+					<div class="mousearea"></div>
+				</div>
+			</div>
+
+			<div class="frame" id="timeline_wrap" style="overflow: hidden;">
+				<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-4560px); width: 6840px;">
+					<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+					<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+					<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
+					<li>28</li><li>29</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 
 <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+
 <script type="text/javascript">
 	
 	// deal with the conflict between jquery and angular (global variable "$")
 	// after this, need to use jQuery instead of "$" for jquery's function
 	$.noConflict();
+
+
 
 	///// for sidebar menu's animation
 	jQuery('#cssmenu li.active').addClass('open').children('ul').show();
@@ -135,9 +178,18 @@
 	///////
 </script>
 
+
+
 <script type="text/javascript" src="js/angular.js"></script>
-<script type="text/javascript" src="js/dragula.js"></script>
+<script type="text/javascript" src="js/jsPlumb-2.0.7.js"></script>
+<script type="text/javascript" src="js/static.js"></script>
+<script type="text/javascript" src="js/drag-drop.js"></script>
 <script type="text/javascript" src="js/app.js"></script>
+
+<script src="js/ga.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/sly.min.js"></script>
+<script src="js/horizontal.js"></script>
 
 </body>
 </html>
