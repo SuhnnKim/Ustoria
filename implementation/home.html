@@ -89,6 +89,24 @@
 <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
 
+
+<script type="text/javascript">
+
+$('#btnProjectCreate').on('click',function() {
+        $.ajax({
+            url : 'GetUserServlet',
+            data : {
+                userName : $('#userName').val()
+            },
+            success : function(responseText) {
+                $('#ajaxGetUserServletResponse').text(responseText);
+            }
+        });
+    });
+
+
+</script>
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
