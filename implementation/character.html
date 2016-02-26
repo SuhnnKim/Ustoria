@@ -8,14 +8,17 @@
 	}
 	</style>
 	<link rel="stylesheet" href="css/init.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
 	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/dragula.css">
+	<link rel="stylesheet" href="css/horizontal.css">
+	<link rel="stylesheet" href="css/jsPlumbToolkit-defaults.css">
 	<link rel="stylesheet" href="css/sidebar.css">
 	<link rel="stylesheet" href="css/scene-panel.css">
 	<link rel="stylesheet" href="css/timeline-panel.css">
 	<link rel="stylesheet" href="css/site-general.css">
 	<link rel="stylesheet" href="css/searchbar.css">
 	<link rel="stylesheet" href="css/character-panel.css">
+
 </head>
 
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
@@ -54,37 +57,12 @@
 			<div id='cssmenu'>
 				<ul>
 				   <li class='active' ><a style="border-bottom: dashed; 2px white;" href='index.html'>Home</a></li>
-				   <li class='has-sub'><a href='#'>Characters</a>
-				      <ul>
+				   <li  class='has-sub'><a href='#'>Characters</a>
+				      <ul id="saveListLeft">
 				         <li><a href='#'>Diana</a></li>
 				         <li><a href='#'>Prannoy</a></li>
 				         <li><a href='#'>Zhipeng</a></li>
 				         <li><a href='#'>Wei</a></li>
-				         <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
-								 <li><a href='#'>Wei</a></li>
 				      </ul>
 				   </li>
 				   <li class='has-sub'><a href='#'>Locations</a>
@@ -109,14 +87,38 @@
 	<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
 		<div id="control-panel">
 			<a class="ctrl-btn pull-left" id="new-character" href="#">Create a new character</a>
-			<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
-			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
+			<!-- <a class="ctrl-btn pull-left" id="undo" href="#">Undo</a> -->
+			<!-- <a class="ctrl-btn pull-left" id="redo" href="#">Redo</a> -->
 			<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 		</div>
 		<div id="character-panel">
 			<form id="character-form">
 				<div class="row" id="row1">
-					<img src="#" class="col-sm-3" alt="Image" height="240" width="240">
+					<!-- <img src="#" class="col-sm-3" alt="Image" height="240" width="240"> -->
+					<a href="#" id="pop" class="col-sm-3">
+    				<img id="imageresource" src="img/noimage.png" alt="Image" height="240" width="220"/>
+					</a>
+
+					<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				        <h4 class="modal-title" id="myModalLabel">Image Upload</h4>
+				      </div>
+				      <div class="modal-body">
+				        <!-- <img src="" id="imagepreview"> -->
+								<label class="control-label">Select File</label>
+								<input id="input-1" type="file" class="file">
+
+				      </div>
+				      <div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 					<div class="col-sm-8">
 						<label class="radio-inline">
 							<input type="text" class="form-control" id="name" placeholder="Name"/>
@@ -136,47 +138,110 @@
 					</div>
 				</div>
 				<div class="row" id="row2">
+
+					<!-- Relationship list -->
 					<div class="col-sm-2">
 						<ul class="list-group">
-							<li class="list-group-item">relationship1</li>
+							<table id="relationship">
+							</table>
 						</ul>
-						<button type="button" class="btn btn-primary btn-block">Add+</button>
+						<div class="btn-group btn-block dropup">
+							<button id="addRel" type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+								Add+
+							</button>
+							<ul id="relationAddlist" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							  <li><a href="">Attribute1</a></li>
+							  <li><a href="">Attribute2</a></li>
+							  <li><a href="">Attribute3</a></li>
+							  <li class="divider"></li>
+							  <li><a href="">Attribute4</a></li>
+							</ul>
+						</div>
 					</div>
+
+					<!-- Role list -->
 					<div class="col-sm-2">
 						<ul class="list-group">
-							<li class="list-group-item">relationship1</li>
+							<table id="role">
+							</table>
 						</ul>
-						<button type="button" class="btn btn-primary btn-block">Add+</button></div>
-					<div class="col-sm-2">
-						<ul class="list-group">
-							<li class="list-group-item">relationship1</li>
-						</ul>
-						<button type="button" class="btn btn-primary btn-block">Add+</button></div>
-					<div class="col-sm-2">
-						<ul class="list-group">
-							<li class="list-group-item">relationship1</li>
-						</ul>
-						<button type="button" class="btn btn-primary btn-block">Add+</button>
+						<div class="btn-group btn-block dropup">
+							<button id="addRole" type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+								Add+
+							</button>
+							<ul id="roleAddlist" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							  <li><a href="">Attribute1</a></li>
+							  <li><a href="">Attribute2</a></li>
+							  <li><a href="">Attribute3</a></li>
+							  <li class="divider"></li>
+							  <li><a href="">Attribute4</a></li>
+							</ul>
+						</div>
 					</div>
-						<div class="col-sm-1">Add</div>
+
+					<!-- Scene list -->
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<table id="scene">
+							</table>
+						</ul>
+						<div class="btn-group btn-block dropup">
+							<button id="addScene" type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+								Add+
+							</button>
+							<ul id="sceneAddlist" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							  <li><a href="">Attribute1</a></li>
+							  <li><a href="">Attribute2</a></li>
+							  <li><a href="">Attribute3</a></li>
+							  <li class="divider"></li>
+							  <li><a href="">Attribute4</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Attribute list -->
+					<div class="col-sm-2">
+						<ul class="list-group">
+							<table id="att">
+							</table>
+						</ul>
+						<div class="btn-group btn-block dropup">
+							<button id="addAtt" type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+								Add+
+							</button>
+							<ul id="attAddlist" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							  <li><a href="">Attribute1</a></li>
+							  <li><a href="">Attribute2</a></li>
+							  <li><a href="">Attribute3</a></li>
+							  <li class="divider"></li>
+							  <li><a href="">Attribute4</a></li>
+							</ul>
+						</div>
+					</div>
+						<div class="col-sm-1"></div>
 				</div>
 			</form>
 
 			<div id="character-list">
-				<img src="" alt="character1" class="img-thumbnail" width="80" height="80" />
-				<img src="" alt="character2" class="img-thumbnail" width="80" height="80" />
+
 			</div>
-			
+
 			</div>
 
 
 		</div>
 
-		<div id="timeline-panel"></div>
+		<div class="frame" id="timeline_wrap" style="overflow: hidden;">
+				
+			</div>
 	</div>
 
 <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
 <script type="text/javascript">
 
 	// deal with the conflict between jquery and angular (global variable "$")
@@ -208,6 +273,12 @@
 <script type="text/javascript" src="js/angular.js"></script>
 <script type="text/javascript" src="js/dragula.js"></script>
 <script type="text/javascript" src="js/apptest.js"></script>
+<script type="text/javascript" src="js/character.js"></script>
+
+<script src="js/ga.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/sly.min.js"></script>
+<script src="js/horizontal.js"></script>
 
 </body>
 </html>
