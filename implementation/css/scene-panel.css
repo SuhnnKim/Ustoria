@@ -45,3 +45,10 @@
   cursor: -moz-grab;
   cursor: -webkit-grab;
 }
+
+.panel-body{
+  position: inherit;
+  height: 280px;
+  width: 280px;
+  z-index: -1;
+}

@@ -1,8 +1,41 @@
 jQuery(function(){
 
 
-	makeSceneDroppable();
-	makeSceneTitleDraggable();
+	// makeSceneDroppable();
+	// makeSceneTitleDraggable();
+
+	jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
+	jQuery('#timeline').width(jQuery('#content').width());
+
+	var mySlySlider;
+
+	// initialize the timeline scroll animation ( from sly library)
+	(function () {
+		var frame  = jQuery('#timeline_wrap');
+		var slidee = frame.children('ul').eq(0);
+		var wrap   = frame.parent();
+
+		mySlySlider = new Sly(frame, {
+            horizontal: 1,
+			itemNav: 'basic',
+			smart: 1,
+			activateOn: 'click',
+			mouseDragging: 0,
+			touchDragging: 1,
+			releaseSwing: 1,
+			startAt: 0,
+			scrollBar: wrap.find('.scrollbar'),
+			scrollBy: 1,
+			// pagesBar: wrap.find('.pages'),
+			activatePageOn: 'click',
+			speed: 300,
+			elasticBounds: 1,
+			easing: 'easeOutExpo',
+			dragHandle: 1,
+			dynamicHandle: 1,
+			clickBar: 1,
+        }).init();
+	}());
 	
 	
 	jQuery(".menu_item_list").sortable({
@@ -25,11 +58,13 @@ jQuery(function(){
 	        
 	        this.copyHelper = null;
 	    }
+	    
 	});
 
 
 
 	var removeIntent = false;
+	
 
 	jQuery("#timeline").sortable({
 		opacity: 0.5,
@@ -41,39 +76,24 @@ jQuery(function(){
         out: function () {
 
             removeIntent = true;
+
+            
         },
         beforeStop: function (event, ui) {
         	
-        	// ui.item.css('float','left');
             if(removeIntent == true){
-                ui.item.remove();   
+                ui.item.remove();  
+                // reload the timeline slider since item was removed
+                mySlySlider.reload();
             }
         },
         stop:function(event, ui){
         	
         },
-     //    placeholder: {
-	    //     element: function(currentItem) {
-	    //         return jQuery("<li><em>test</em></li>")[0];
-	    //     },
-	    //     update: function(container, p) {
-	    //         return;
-	    //     }
-	    // }
-	    // start: function( event, ui ) {
-     //        clone = jQuery(ui.item[0].outerHTML).clone();
-     //    },
-     //    placeholder: {
-     //        element: function(clone, ui) {
-     //            return jQuery('<li class="scene_title_placeholder">'+clone[0].innerHTML+'</li>');
-                
-     //        },
-     //        update: function() {
-     //            return;
-     //        }
-     //    },
-        distance: 1,
-        delay: 10,
+        update: function (event, ui) {
+        	// reload the timeline slider since item was added
+	        mySlySlider.reload();
+	    },
 	});
 
 
