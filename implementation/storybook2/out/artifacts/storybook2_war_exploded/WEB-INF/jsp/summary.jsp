@@ -7,6 +7,7 @@
 			display: none;
 		}
 
+<<<<<<< HEAD
 		#summary-panel::selection {
 			color: #e14b3b; /* WebKit/Blink Browsers */
 
@@ -19,6 +20,8 @@
 			font-size: 20px;
 
 		}
+=======
+>>>>>>> 6e45aa04cb28fe6190299bd721ae69c011dc259c
 		/*textarea#txtSummary{*/
 			/*width:100%;*/
 
