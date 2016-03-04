@@ -1,0 +1,109 @@
+body{
+	background-color: #5672b6;
+}
+.navbar{
+	margin-bottom: 0;
+	background-color: #5672b6;
+	color:white;
+	border:none;
+	border-radius: 0;
+}
+.navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
+	color:white;
+}
+.dropdown-menu > li > a{
+	color: #262425;
+}
+#link-playground{
+	padding: 20px;
+	color:white;
+	background-color: #e14b3b;
+	position: fixed;
+	text-align: center;
+	font-size: 22px;
+	z-index: 99;
+}
+#link-playground:link,#link-playground:visited,#link-playground:hover,#link-playground:active{
+	text-decoration: none;
+}
+#link-add-category{
+	/*padding: 10px;*/
+	color:white;
+	background-color: #ff8533;
+	position: fixed;
+	font-size: 15px;
+	border-radius: 0 10px 10px 0;
+	z-index: 50;
+	margin: 0 auto;
+	width: 40px;
+	height: 35px;
+	white-space: nowrap;
+	line-height: 35px;
+}
+#link-add-category:link, #link-add-category:visited, #link-add-category:hover, #link-add-category:active{
+	text-decoration: none;
+}
+.glyphicon{
+	margin: 0;
+	padding: 0;
+}
+.floating-left{
+	float: left;
+}
+#add-sign{
+	margin: 10px 5px 10px 10px;
+}
+#add-category-text{
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+#searchbar{
+	margin:15px;
+}
+#control-panel{
+	background-color: #e6e6e6;
+	height: 50px;
+	padding: 5px;
+}
+.ctrl-btn{
+	padding: 10px;
+	border:1px black solid;
+	margin-right: 15px;
+	color: black;
+}
+.ctrl-btn:link,.ctrl-btn.visited,.ctrl-btn:hover,.ctrl-btn:active{
+	text-decoration: none;
+	color: black;
+}
+
+.item-copied{
+	display: block !important;
+	padding: 4px;
+	background-color: white;
+	position: absolute !important;
+	/*float: none !important;*/
+	clear: both !important;
+	z-index: 999;
+}
+.scene_title_helper{
+	background-color: grey;
+	border: 3px dashed white;
+	padding: 5px;
+	display: inline-block;
+	/*width: 100px !important;*/
+	text-align: center;
+	box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+/*#timeline-panel>div{
+	background-color: black;
+	color:white;
+	width: 100px;
+	margin-left: 10px;
+	height: inherit;
+	float: left;
+	border: none;
+}*/

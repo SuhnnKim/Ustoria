@@ -1,0 +1,28 @@
+#timeline-panel{
+	background-color: #66b3ff;
+	width: inherit;
+	height: 150px;
+	/*position: absolute;*/
+	bottom: 0;
+	overflow-x:auto;
+  overflow-y:hidden;
+	float:left;
+  white-space:nowrap;
+}
+
+#timeline-panel .panel-heading{
+	overflow: hidden;
+	white-space:nowrap;
+}
+#timeline div{
+    float: left;
+    width: 100px;
+    height: 100%;
+    margin: 0 1px 0 0;
+    padding: 0;
+    background: #333;
+    color: #ddd;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0;
+}
