@@ -21,6 +21,10 @@ public class Character
   
     private String characterDescription;
 
+    private List<Scene> sceneList;
+
+
+
    // private List<Relationship> relationships;
 
     public String getId ()
@@ -33,7 +37,8 @@ public class Character
         this.id = id;
     }
 
-    
+
+
     public String getName ()
     {
         return name;
