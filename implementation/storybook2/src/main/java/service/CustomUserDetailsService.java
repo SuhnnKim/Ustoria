@@ -2,6 +2,7 @@ package service;
 
 import dao.userDAO;
 import entity.UsersEntity;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,7 +12,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +22,7 @@ import java.util.List;
 /**
  * Created by liuwei on 2016-02-24.
  */
-@Service
+@Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService{
 
     @Autowired
@@ -28,6 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 
 
     @Override
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         UserDetails userDetails = null;
@@ -36,9 +40,12 @@ public class CustomUserDetailsService implements UserDetailsService{
         userDAO userDAO = context.getBean(userDAO.class);
 
 
-        //User is subclass of
-        //userDetails = new User();
-        System.out.print(userDetails.toString());
+        //User class is subclass of UserDetails
+        //not null username, not null password, enable,
+        //accountNonExpired, credentialsNonExpired, accountNonLocked, authorities
+        userDetails = new User("lvvl","111",true,true,true,true,getAuthorities(1));
+        String s = "";
+
 
         return userDetails;
     }
@@ -53,7 +60,9 @@ public class CustomUserDetailsService implements UserDetailsService{
         if (access.compareTo(1) == 0) {
             authList.add(new GrantedAuthorityImpl("ROLE_ADMIN"));
         }
-        //返回权限列表，像管理员账号，zhangsan。返回的authList的值为 :[ROLE_USER, ROLE_ADMIN]，而普通用户返回的值为[ROLE_USER]
+        //return authority list
+        //admin return ROLE_USER and ROLE_ADMIN
+        //user return ROLE_USER
         return authList;
     }
 }

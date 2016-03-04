@@ -8,6 +8,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,9 +26,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by liuwei on 2016-02-22.
- */
+
 @Controller
 public class UserController {
 
@@ -37,13 +37,26 @@ public class UserController {
     @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
 
-        String email = req.getParameter("email-login");;
+        String email = req.getParameter("email-login");
 
         String password = req.getParameter("password-login");
 
         String em = (String)req.getSession().getAttribute("email");
+
+        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+        } else {
+            String username = principal.toString();
+        }
+
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+
         if (em == null)
-            req.getSession().setAttribute("email",email);
+            req.getSession().setAttribute("email",name);
 
         model.addAttribute("email",email);
 
@@ -55,7 +68,7 @@ public class UserController {
     public String SignUp(HttpServletRequest req, Model model){
 
 
-        String fname = req.getParameter("fname");;
+        String fname = req.getParameter("fname");
 
         String lname = req.getParameter("lname");
 
@@ -106,26 +119,11 @@ public class UserController {
             String[] SceneAtts = req.getParameterValues("sceneAtt");
 
             String sidebar = "<li><a href='#'>"+name+"</a></li>";
-            String thumbnail = "<img src='#' alt=''character' class='img-thumbnail' width='80' height='80' />";
+            String thumbnail = "<img src='storybook/resources/img/default-character-image.png' alt=''character' class='img-thumbnail' width='80' height='80' />";
 
             model.addAttribute("sidebar",sidebar);
             model.addAttribute("thumbnail",thumbnail);
-            sidebarList.add(sidebar);
-            thumbnailList.add(thumbnail);
 
-            //sidebarList.set(listNum,sidebar);
-            //thumbnailList.set()
-
-            //sidebarList.set(listNum,sidebar);
-            //thumbnailList.set(listNum,thumbnail);
-
-
-//            String result = "";
-//            for (String s : Realatts){
-//                result += s;
-//            }
-//
-//            result = result;
         }
 
 
@@ -137,19 +135,6 @@ public class UserController {
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
 
-//        listNum++;
-//        String sidebar = "";
-//        String thumbnail = "";
-//
-//        if (sidebarList.get(0) != null){
-//            for (int i=0; i <sidebar.length(); i++){
-//                sidebar += sidebarList.get(i);
-//                //thumbnail += thumbnailList.get(i);
-//            }
-//        }
-//
-//        model.addAttribute("sidebar",sidebar);
-//        model.addAttribute("thumbnail",thumbnail);
 
 
         return "character";
