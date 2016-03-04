@@ -62,5 +62,6 @@
     <orderEntry type="library" exported="" name="commons-dbcp:commons-dbcp:1.4" level="project" />
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:5.1.38" level="project" />
     <orderEntry type="library" exported="" name="javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.11" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
   </component>
 </module>

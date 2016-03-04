@@ -3,7 +3,12 @@ package controller;
 import dao.userDAO;
 import dao.userDAOImpl;
 import entity.UsersEntity;
+import model.Attribute;
+import model.Character;
+import model.Story;
 import org.hibernate.bytecode.buildtime.spi.Logger;
+import org.json.simple.JSONObject;
+import org.springframework.context.annotation.Role;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,8 +28,7 @@ import sun.security.provider.MD5;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -82,12 +86,6 @@ public class UserController {
 
     }
 
-//    @RequestMapping("/summary.form")
-//    public String Summary(HttpServletRequest req, Model model){
-//        String email = (String)req.getSession().getAttribute("email");
-//        model.addAttribute("email",email);
-//        return "summary";
-//    }
 
     @RequestMapping("character.form")
     public String Character(HttpServletRequest req, Model model){
@@ -107,22 +105,86 @@ public class UserController {
     @RequestMapping("/saveCharacter.form")
     public String SaveCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
+
+
+        Story story = (Story)req.getSession().getAttribute("story");
+        if (story == null){
+            req.getSession().setAttribute("story", new Story());
+        }
+        story = (Story)req.getSession().getAttribute("story");
+
         model.addAttribute("email",email);
 
         String save = req.getParameter("save");
         if (save!=null&&save.equals("Save")){
             String name = req.getParameter("name");
             String desc = req.getParameter("desc");
-            String[] Realatts = req.getParameterValues("relaAtt");
+            String[] Relaatts = req.getParameterValues("relaAtt");
             String[] Roleatts = req.getParameterValues("roleAtt");
             String[] Attatts = req.getParameterValues("attAtt");
             String[] SceneAtts = req.getParameterValues("sceneAtt");
+
+            List<Attribute> relationList = new ArrayList<Attribute>();
+            List<Attribute> roleList = new ArrayList<Attribute>();
+            List<Attribute> attList = new ArrayList<Attribute>();
+            List<Attribute> sceneList = new ArrayList<Attribute>();
+
+            if (Relaatts != null){
+                for (String realatt : Relaatts){
+                    Attribute temp = new Attribute();
+                    temp.setName(realatt);
+                    relationList.add(temp);
+                }
+            }
+
+
+            if (Roleatts != null){
+                for (String role : Roleatts){
+                    Attribute temp = new Attribute();
+                    temp.setName(role);
+                    roleList.add(temp);
+                }
+            }
+
+            if (Attatts != null){
+                for (String att : Attatts){
+                    Attribute temp = new Attribute();
+                    temp.setName(att);
+                    attList.add(temp);
+                }
+            }
+
+            if (SceneAtts != null){
+                for (String scene : SceneAtts){
+                    Attribute temp = new Attribute();
+                    temp.setName(scene);
+                    sceneList.add(temp);
+                }
+            }
+
+
+            Map<String, List<Attribute>> attlist = new HashMap<String, List<Attribute>>();
+            attlist.put("relationList",relationList);
+            attlist.put("roleList",roleList);
+            attlist.put("attList",attList);
+            attlist.put("sceneList",sceneList);
+
+
+
 
             String sidebar = "<li><a href='#'>"+name+"</a></li>";
             String thumbnail = "<img src='storybook/resources/img/default-character-image.png' alt=''character' class='img-thumbnail' width='80' height='80' />";
 
             model.addAttribute("sidebar",sidebar);
             model.addAttribute("thumbnail",thumbnail);
+
+            Character character = new Character();
+            character.setName(name);
+            character.setCharacterDescription(desc);
+            character.setAttributeList(attlist);
+
+            
+
 
         }
 
@@ -134,8 +196,6 @@ public class UserController {
     public String NewCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
-
-
 
         return "character";
     }
