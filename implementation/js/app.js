@@ -10,6 +10,7 @@
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         makeSceneDroppable();
         makeSceneTitleDraggable();
+
     });
     
   });
@@ -93,11 +94,6 @@
   		title: 'scene 1',
   		
   	},
-  	// {
-      
-  	// 	title: 'scene 2',
-  		
-  	// },
 
   ];
 
@@ -131,7 +127,6 @@ jQuery(window).resize(function () {
   // jQuery('#sidebar').css('height', jQuery(window).height()-170);
 
   // jQuery('#sidebar').css('width', width2);
-  jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
 
   jQuery('#content').css('margin-left', jQuery('#sidebar').width());
   // jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
