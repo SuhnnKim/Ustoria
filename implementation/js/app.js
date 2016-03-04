@@ -149,18 +149,10 @@
         });
         $scope.missingNewMenuItemError = "";
         jQuery("#addCategoryModal").modal("hide");
-        // sidebarAnimate();
       }else{
         $scope.missingNewMenuItemError = "Please enter a valid name.";
       }
     };
-
-    var loadCount = 0;
-    $scope.$on('$menuItemLoaded', function () {
-        if (loadCount++ === scope.menuItems.children.length - 1) {
-            sidebarAnimate(); // act!
-        }
-    });
 
   });
 
