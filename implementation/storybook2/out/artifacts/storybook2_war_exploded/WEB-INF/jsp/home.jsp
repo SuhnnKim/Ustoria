@@ -3,15 +3,7 @@
 <html>
 <head>
 	<title>Home</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/init.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dragula.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scene-panel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/timeline-panel.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/site-general.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchbar.css">
-
+    <jsp:include page="head.jsp" />
 </head>
 
 <body style="background-color: white;">
@@ -71,33 +63,39 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Please enter the Project Name</h4>
-      </div>
-      <div class="modal-body">
-       <form class="form-inline">
-  <div class="form-group" >
-    <label for="projectName">Name</label>
-    <input type="text" id="projectName" class="form-control" id="projectName" placeholder="Project Name">
-  </div>
- </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnProjectCreate">Create</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Please enter the Project Name</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="#">
+                    <div class="form-group" >
+                        <label for="projectName">Name</label>
+                        <input type="text" class="form-control" id="projectName" placeholder="Project Name">
+                    </div>
+
+                    <div class="form-group" >
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" rows="5" placeholder="Description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="btnProjectCreate">Create</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
+
 
 <script type="text/javascript">
     jQuery("#btnProjectCreate").on("click", function() {
         jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
                 "<td><a href='summary.form' style='color:black;'>"+jQuery("#projectName").val()+"</a></td>" +
-                "<td>Description</td>" +
+                "<td>"+jQuery("#description").val()+"</td>" +
                 "<td>Time</td>" +
                 "</tr>");
 
