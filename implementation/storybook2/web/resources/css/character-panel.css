@@ -71,3 +71,9 @@
 	overflow: scroll;
 	border-style: solid;
 }
+
+#character-form button{
+	-webkit-border-radius:0px;
+	-moz-border-radius:0px;
+	border-radius:0px;
+}

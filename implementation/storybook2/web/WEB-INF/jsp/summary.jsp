@@ -7,6 +7,18 @@
 			display: none;
 		}
 
+		#summary-panel::selection {
+			color: #e14b3b; /* WebKit/Blink Browsers */
+
+			font-size: 20px;
+
+		}
+		#summary-panel::-moz-selection {
+			color: #e14b3b; /* Gecko Browsers */
+
+			font-size: 20px;
+
+		}
 		/*textarea#txtSummary{*/
 			/*width:100%;*/
 
@@ -56,7 +68,9 @@
 		}
 
 	</style>
+
 <jsp:include page="head.jsp" />
+
 </head>
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
 
@@ -218,12 +232,73 @@
 	var selectedText;
 	jQuery('#summary-panel').on('selectstart', function () {
 		jQuery(document).one('mouseup', function() {
+
 			selectedText=this.getSelection();
+
 			jQuery('.text-select').text(selectedText);
 
 
 		});
 	});
+
+	// Summary Section
+
+	jQuery('#btnSummaryNameSave').click(function(){
+
+
+		var summaryName = jQuery('#summaryName').val();
+
+		var summaryText = jQuery('.text-select').text();
+
+
+
+
+		$.ajax({
+			method : "POST",
+			url : 'AddSummarySection',
+			data : {
+				summaryName : summaryName,
+				summaryContent: summaryText
+			},
+			success : function(responseText) {
+				//$('#ajaxGetUserServletResponse').text(responseText);
+
+				jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
+
+
+				var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
+
+				jQuery('#summary-section-list').append(cloneSummaryListItem);
+
+				jQuery('#myModal').modal('hide');
+
+			}
+		});
+	});
+
+
+	// New Summary
+
+	jQuery('#new-summary').click(function(){
+
+
+		var summaryText = jQuery('#summary-panel').text();
+
+		$.ajax({
+			method : "POST",
+			url : 'SaveSummary',
+			data : {
+				summaryData : summaryText
+			},
+			success : function(responseText) {
+				$('#summary-panel').text(" ");
+
+				$('#summary-panel').text(responseText);
+			}
+		});
+	});
+
+
 
 
 
@@ -254,6 +329,16 @@
 
 	});
 
+
+	jQuery('div[contenteditable]').keydown(function(e) {
+		// trap the return key being pressed
+		if (e.keyCode === 13) {
+			// insert 2 br tags (if only one br tag is inserted the cursor won't go to the next line)
+			document.execCommand('insertHTML', false, '<br><br>');
+			// prevent the default behaviour of return key pressed
+			return false;
+		}
+	});
 
 </script>
 

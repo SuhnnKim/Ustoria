@@ -69,12 +69,12 @@ public class UserController {
 
     }
 
-    @RequestMapping("/summary.form")
-    public String Summary(HttpServletRequest req, Model model){
-        String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",email);
-        return "summary";
-    }
+//    @RequestMapping("/summary.form")
+//    public String Summary(HttpServletRequest req, Model model){
+//        String email = (String)req.getSession().getAttribute("email");
+//        model.addAttribute("email",email);
+//        return "summary";
+//    }
 
     @RequestMapping("character.form")
     public String Character(HttpServletRequest req, Model model){
