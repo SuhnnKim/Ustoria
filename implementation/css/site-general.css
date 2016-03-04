@@ -98,12 +98,24 @@ body{
     -webkit-box-sizing: border-box;
 }
 
-/*#timeline-panel>div{
-	background-color: black;
-	color:white;
+.toggle_btn{
+	background-color: white;
+	color: #666;
+	text-align: center;
+}
+.toggle_btn a :hover{
+	color:black;
+}
+.toggle_timeline{
 	width: 100px;
-	margin-left: 10px;
-	height: inherit;
-	float: left;
-	border: none;
-}*/
+	height: 20px;
+	float: right;
+	border-radius: 10px 10px 0 0 ;
+	background-color: #666;
+	color:#fff;
+	z-index: 999;
+}
+#timeline_show{
+	position: absolute;
+	right: 0;
+}
