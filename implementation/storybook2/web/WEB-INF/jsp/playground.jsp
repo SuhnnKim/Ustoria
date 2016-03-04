@@ -7,16 +7,9 @@
 		display: none;
 	}
 	</style>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/init.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/horizontal.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jsPlumbToolkit-defaults.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scene-panel.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/timeline-panel.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/site-general.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchbar.css">
+
+	<jsp:include page="head.jsp" />
+
 </head>
 
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
@@ -91,7 +84,7 @@
 	        <h4 class="modal-title">Create a scene</h4>
 	      </div>
 	      <div class="modal-body">
-	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title"></input>
+	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title" />
 	        <p ng-show="title == ''">{{ error_message }}</p>
 	      </div>
 	      <div class="modal-footer">

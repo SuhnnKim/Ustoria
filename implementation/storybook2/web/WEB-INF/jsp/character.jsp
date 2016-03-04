@@ -7,18 +7,7 @@
 		display: none;
 	}
 	</style>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/init.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/horizontal.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jsPlumbToolkit-defaults.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/sidebar.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/scene-panel.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/timeline-panel.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/site-general.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchbar.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/character-panel.css">
-
+	<jsp:include page="head.jsp" />
 </head>
 
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
@@ -56,7 +45,7 @@
 		<div class="inner">
 			<div id='cssmenu'>
 				<ul>
-				   <li class='active' ><a style="border-bottom: dashed; 2px white;" href='index.jsp'>Home</a></li>
+				   <li class='active' ><a style="border-bottom: dashed 2px white;" href='index.jsp'>Home</a></li>
 				   <li  class='has-sub'><a href='#'>Characters</a>
 				      <ul id="saveListLeft">
 				         <li><a href='#'>Diana</a></li>
