@@ -73,7 +73,7 @@
                 <form method="post" action="#">
                     <div class="form-group" >
                         <label for="projectName">Name</label>
-                        <input type="text" class="form-control" id="projectName" placeholder="Project Name">
+                        <input type="text" class="form-control" required="required" id="projectName" placeholder="Project Name">
                     </div>
 
                     <div class="form-group" >
