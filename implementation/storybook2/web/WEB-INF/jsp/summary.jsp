@@ -300,12 +300,6 @@
 
 
 
-
-
-
-
-
-
 	jQuery('#btnSummaryNameSave').click(function(){
 
 		var summaryName = jQuery('#summaryName').val();

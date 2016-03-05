@@ -1,8 +1,10 @@
 package model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-                 
+
 public class Character
 {
     private String id;
@@ -16,8 +18,10 @@ public class Character
    // private Model preferedModel;
     
    // private Image preferedImage;
-    
-    private List<Attribute> attributeList;
+
+
+
+    private Map<String,List<Attribute>> attributeList;
   
     private String characterDescription;
 
@@ -47,6 +51,14 @@ public class Character
     public void setName (String name)
     {
         this.name = name;
+    }
+
+    public Map<String, List<Attribute>> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(Map<String, List<Attribute>> attributeList) {
+        this.attributeList = attributeList;
     }
 
 //    public List<Model> getModelList() {
@@ -81,13 +93,14 @@ public class Character
 //        this.preferedImage = preferedImage;
 //    }
 
-    public List<Attribute> getAttributeList() {
-        return attributeList;
-    }
-
-    public void setAttributeList(List<Attribute> attributeList) {
-        this.attributeList = attributeList;
-    }
+//    public List<Attribute> getAttributeList() {
+//        return attributeList;
+//    }
+//
+//    public void setAttributeList(String name,List<Attribute> attributeList) {
+//
+//        this.attributeList = attributeList;
+//    }
 
     public String getCharacterDescription ()
     {
@@ -111,6 +124,7 @@ public class Character
         return null;
         //return "ClassPojo [id = "+id+", name = "+name+", character-description = "+characterDescription+", relationships = "+relationships+"]";
     }
+
 }
 			
 			

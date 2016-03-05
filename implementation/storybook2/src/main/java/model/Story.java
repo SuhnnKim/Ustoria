@@ -21,6 +21,14 @@ public class Story {
     
    // private LayoutDefinition layoutDefinition;
 
+    public List<Character> getCharacterList() {
+        return characterList;
+    }
+
+    public void setCharacterList(List<Character> characterList) {
+        this.characterList = characterList;
+    }
+
     private List<Character> characterList;
 
     //private List<Roles> rolesList;
@@ -38,7 +46,7 @@ public class Story {
         //relationshipDefinitions = new ArrayList();
         //sceneList = new LinkedList();
         //rolesList = new ArrayList();
-       // characterList = new ArrayList();
+        characterList = new ArrayList();
     }
 
     public MainSummary getSummary() {
@@ -192,5 +200,9 @@ public class Story {
     public String toString() {
         //return "ClassPojo [summary = " + summaryList.toString() + ", author = " + author + ", title = " + title + ", character-definitions = " + characterList.toString() + ", attribute-definitions = " + attributeDefinitions + ", name = " + name + ", role-definitions = " + rolesList.toString() + ", scene-definitions = " + sceneList + ", global-variables = " + globalVariables + ", relationship-definitions = " + relationshipDefinitions + ", layout-definition = " + layoutDefinition + "]";
     return "Story Class";
+    }
+
+    public void addCharacter(Character character) {
+        characterList.add(character);
     }
 }
