@@ -41,16 +41,16 @@ public class SummaryController {
       Summary newSummary = new Summary();
 
 
-      System.out.println("In Add Summary Section 1");
+
       newSummary.setName(summaryName);
       newSummary.setContent(summaryContent);
 
-      // System.out.println(newSummary.getContent());
+
       summaryList.add(newSummary);
       Gson gson = new Gson();
      String jsonString = gson.toJson(summaryList);
       return jsonString;
-      // System.out.println(obj.toJSONString());
+
   }
   catch(Exception e){
       System.out.println(e.getMessage());

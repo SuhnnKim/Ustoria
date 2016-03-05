@@ -8,7 +8,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Ustoria</a>
+            <img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
         </div>
         <!-- <a href="#">My Projects</a> -->
         <ul class="nav navbar-nav navbar-right">
