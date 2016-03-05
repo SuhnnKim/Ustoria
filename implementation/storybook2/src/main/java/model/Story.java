@@ -201,4 +201,8 @@ public class Story {
         //return "ClassPojo [summary = " + summaryList.toString() + ", author = " + author + ", title = " + title + ", character-definitions = " + characterList.toString() + ", attribute-definitions = " + attributeDefinitions + ", name = " + name + ", role-definitions = " + rolesList.toString() + ", scene-definitions = " + sceneList + ", global-variables = " + globalVariables + ", relationship-definitions = " + relationshipDefinitions + ", layout-definition = " + layoutDefinition + "]";
     return "Story Class";
     }
+
+    public void saveCharacter(Character newCharacter) {
+        characterList.add(newCharacter);
+    }
 }

@@ -113,6 +113,18 @@ public class UserController {
         }
         story = (Story)req.getSession().getAttribute("story");
 
+        List<Character> characterList = story.getCharacterList();
+        Character editCharacter = new Character();
+
+        if (characterList.size() != 0){
+            for (Character temp : characterList){
+                if (temp.getId().equals("")){
+                    editCharacter = temp;
+                }
+            }
+        }
+
+
         model.addAttribute("email",email);
 
         String save = req.getParameter("save");
@@ -178,10 +190,10 @@ public class UserController {
             model.addAttribute("sidebar",sidebar);
             model.addAttribute("thumbnail",thumbnail);
 
-            Character character = new Character();
-            character.setName(name);
-            character.setCharacterDescription(desc);
-            character.setAttributeList(attlist);
+
+            editCharacter.setName(name);
+            editCharacter.setCharacterDescription(desc);
+            editCharacter.setAttributeList(attlist);
 
             
 
@@ -196,6 +208,19 @@ public class UserController {
     public String NewCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
+
+
+        Story story = (Story)req.getSession().getAttribute("story");
+        if (story == null){
+            req.getSession().setAttribute("story", new Story());
+        }
+        story = (Story)req.getSession().getAttribute("story");
+        UUID uuid = UUID.randomUUID();
+
+        Character newCharacter = new Character();
+        newCharacter.setId(uuid.toString());
+
+        story.saveCharacter(newCharacter);
 
         return "character";
     }
