@@ -1,6 +1,8 @@
 package controller;
 
 
+import com.google.gson.Gson;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,36 +27,46 @@ public class SummaryController {
     public String redirectToSummary(HttpServletRequest req, Model model){
 
         //ModelAndView m = new ModelAndView("summary");
-        System.out.println("Inside Controller");
-        model.addAttribute("summaryList","Hello World");
+
+        //model.addAttribute("summaryList","Hello World");
         return "summary";
     }
 
     /* Saving Summary Section */
     @RequestMapping(value="/AddSummarySection",method= RequestMethod.POST)
-    public @ResponseBody
-    List<Summary>
-    SaveSummarySection(HttpServletRequest request, @RequestParam(value = "summaryName") String summaryName,
+    public @ResponseBody String SaveSummarySection(HttpServletRequest request, @RequestParam(value = "summaryName") String summaryName,
                        @RequestParam(value = "summaryContent") String summaryContent){
 
+  try {
+      Summary newSummary = new Summary();
 
-        Summary newSummary = new Summary();
 
-        newSummary.setName(summaryName);
-        newSummary.setContent(summaryContent);
-        summaryList.add(newSummary);
+      System.out.println("In Add Summary Section 1");
+      newSummary.setName(summaryName);
+      newSummary.setContent(summaryContent);
 
-        return summaryList;
+      // System.out.println(newSummary.getContent());
+      summaryList.add(newSummary);
+      Gson gson = new Gson();
+     String jsonString = gson.toJson(summaryList);
+      return jsonString;
+      // System.out.println(obj.toJSONString());
+  }
+  catch(Exception e){
+      System.out.println(e.getMessage());
+  }
+        return  null;
     }
-
     /* Saving Main Summary */
     @RequestMapping(value="/SaveSummary",method=RequestMethod.POST)
-    public String SaveSummary(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
+    public @ResponseBody String SaveSummary(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
 
-      // MainSummary m = new MainSummary();
-        //m.setFullSummary(summaryText);
 
-        return summaryText;
+
+       MainSummary m = new MainSummary();
+        m.setFullSummary(summaryText);
+
+        return m.getFullSummary();
     }
 
 }

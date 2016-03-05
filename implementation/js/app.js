@@ -15,6 +15,24 @@
     
   });
 
+  app.controller('TimeLineController', function($scope){
+    $scope.timeline = {
+      hidden: false,
+      toggle: function() {
+        this.hidden = !this.hidden;
+        timeline_wrapper.hidden = !timeline_wrapper.hidden;
+        timeline_hide.hidden = !timeline_hide.hidden;
+        if(this.hidden){
+          jQuery('#timeline_panel').height(20);
+          jQuery('#scene-panel').height(jQuery('#content').height()-120);
+        }else{
+          jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
+          jQuery('#timeline_panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
+        }
+      }
+    };
+  });
+
 
   app.controller('addSceneController', function($scope){
 
@@ -58,6 +76,24 @@
 
   });
 
+  var sidebarAnimate = function(){
+    jQuery('#cssmenu li.active').addClass('open').children('ul').show();
+    jQuery('#cssmenu li.has-sub>a').on('click', function(){
+      jQuery(this).removeAttr('href');
+      var element = jQuery(this).parent('li');
+      if (element.hasClass('open')) {
+        element.removeClass('open');
+        element.find('li').removeClass('open');
+        element.find('ul').slideUp(200);
+      }
+      else {
+        element.addClass('open');
+        element.children('ul').slideDown(200);
+        element.siblings('li').find('li').removeClass('open');
+      }
+    });
+  };
+
 
 
   
@@ -77,16 +113,65 @@
     }
   });
 
+  app.directive('loadMenuItems', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('load', function() {
+                scope.$emit('$menuItemLoaded');
+            });
+        }
+    };
+  });
+
 	app.controller('MainController', function($scope) {
+
     $scope.sidebar = {
       hidden: false,
       toggle: function() {
         this.hidden = !this.hidden;
       }
     };
+
+    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+        sidebarAnimate();
+    });
+
+    $scope.menuItems = predefinedMenuItem;
+    $scope.menuItem = {};
+    $scope.menuSubItems = [];
+
+    $scope.addMenuItem = function(newMenuItem){
+      if(!(newMenuItem.name === undefined || newMenuItem.name === '')){
+        $scope.menuItems.push({
+          name: newMenuItem.name,
+          children: []
+        });
+        $scope.missingNewMenuItemError = "";
+        jQuery("#addCategoryModal").modal("hide");
+      }else{
+        $scope.missingNewMenuItemError = "Please enter a valid name.";
+      }
+    };
+
   });
 
   
+
+  var predefinedMenuItem = [
+    {
+      name: "Charactor",
+      children: [{name: "Diana"},{name: "Prannoy"}]
+    },
+    {
+      name: "Location",
+      children: []
+    },
+    {
+      name: "Summary",
+      children: []
+    }
+  ];
 
   var scenes_collection = [
   	{
@@ -101,7 +186,7 @@
 
   
   jQuery(document).ready(function(){
-    jQuery('#timeline-panel [data-toggle="tooltip"]').tooltip();   
+    jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();   
 	});
 
   ///////////////////////
@@ -113,14 +198,14 @@ var width8 = jQuery(window).width() * 0.8;
 var width15 = jQuery(window).width() * 0.15;
 
 
+
 jQuery(window).resize(function () {
   jQuery('html').css('height', jQuery(window).height());
   jQuery('body').css('height', jQuery(window).height());
 
   jQuery('#content').css('height', jQuery(window).height());
 
-  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
-  jQuery('#timeline-panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
+  
 
 
 
@@ -129,7 +214,7 @@ jQuery(window).resize(function () {
   // jQuery('#sidebar').css('width', width2);
 
   jQuery('#content').css('margin-left', jQuery('#sidebar').width());
-  // jQuery('#cssmenu').css('width', jQuery(window).width() * 0.18);
+  jQuery('#content').css('width', jQuery(window).width()-150);
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
@@ -160,6 +245,9 @@ jQuery(window).resize(function () {
 
 jQuery(function(){ 
   jQuery(window).resize();
+  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
+  jQuery('#timeline_panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
+
   jQuery('#hide-sidebar').click(function(event) {
     jQuery('#content').css('width', jQuery(window).width());
     jQuery('#content').css('margin-left', 0);

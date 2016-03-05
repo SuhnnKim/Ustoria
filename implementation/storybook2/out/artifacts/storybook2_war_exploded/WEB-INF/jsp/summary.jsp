@@ -253,7 +253,7 @@
 
 
 
-		$.ajax({
+		jQuery.ajax({
 			method : "POST",
 			url : 'AddSummarySection',
 			data : {
@@ -261,14 +261,16 @@
 				summaryContent: summaryText
 			},
 			success : function(responseText) {
+				alert(typeof responseText);
+
 				//$('#ajaxGetUserServletResponse').text(responseText);
 
-				jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
-
-
-				var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
-
-				jQuery('#summary-section-list').append(cloneSummaryListItem);
+//				jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
+//
+//
+//				var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
+//
+//				jQuery('#summary-section-list').append(cloneSummaryListItem);
 
 				jQuery('#myModal').modal('hide');
 
@@ -279,19 +281,19 @@
 
 	// New Summary
 
-	jQuery('#new-summary').click(function(){
+	jQuery('#save-story').click(function(){
 
 
 		var summaryText = jQuery('#summary-panel').text();
 
-		$.ajax({
+		jQuery.ajax({
 			method : "POST",
 			url : 'SaveSummary',
 			data : {
 				summaryData : summaryText
 			},
 			success : function(responseText) {
-				$('#summary-panel').text(" ");
+				jQuery('#summary-panel').text(" ");
 
 				$('#summary-panel').text(responseText);
 			}
@@ -300,6 +302,7 @@
 
 
 
+<<<<<<< HEAD
 	jQuery('#btnSummaryNameSave').click(function(){
 
 		var summaryName = jQuery('#summaryName').val();
@@ -322,6 +325,36 @@
 		alert(s);
 
 	});
+=======
+
+
+
+
+//
+//
+//	jQuery('#btnSummaryNameSave').click(function(){
+//
+//		var summaryName = jQuery('#summaryName').val();
+//
+//		var summaryText = jQuery('.text-select').text();
+//		jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
+//
+//
+//		var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
+//
+//		jQuery('#summary-section-list').append(cloneSummaryListItem);
+//
+//		jQuery('#myModal').modal('hide');
+//
+//	});
+//
+//	jQuery('#save-story').on('click',function(){
+//
+//		var s = jQuery('#summary-panel').html();
+//		alert(s);
+//
+//	});
+>>>>>>> b3ba11d611ed2622eadd254260cd968e06cf555a
 
 
 	jQuery('div[contenteditable]').keydown(function(e) {
