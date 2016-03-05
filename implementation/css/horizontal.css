@@ -35,16 +35,17 @@ body { background: #e8e8e8; }
 	cursor: pointer;
 }
 .frame ul li.active {
-	color: #fff;
-	background: #e14b3b;
+	/*color: #fff;*/
+	/*background: #e14b3b;*/
 }
 
 /* Scrollbar */
 .scrollbar {
-	margin: 0 0 1em 0;
+	margin-bottom: 5px;
 	height: 3px;
 	background: #ccc;
 	line-height: 0;
+	clear: both;
 }
 .scrollbar .handle {
 	width: 100px;

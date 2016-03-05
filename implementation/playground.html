@@ -24,9 +24,8 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">Ustoria</a>
+	      <img src="img/logo_2_1.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
 	    </div>
-		<!-- <a href="#">My Projects</a> -->
 	    <ul class="nav navbar-nav navbar-right">
 	      
 	      <li class="dropdown">
@@ -45,7 +44,7 @@
 	</nav>
 	
 	<div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
-		</span><span class="glyphicon glyphicon-menu-right"></span>
+		<span class="glyphicon glyphicon-menu-right"></span>
 	</div>
 	<div id="sidebar" ng-hide="sidebar.hidden">
 		<div id="hide-sidebar" ng-click="sidebar.toggle()">
@@ -53,29 +52,69 @@
 		</div>
 		<div class="inner">
 			<div id='cssmenu'>
-				<ul>
-				   <li class='active' ><a href='index.html'>Home</a></li>
-				   <li class='has-sub'><a href='#'>Characters</a>
-				      <ul class="menu_item_list">
-				         <li class="menu_item"><a href='#'>Diana</a></li>
-				         <li class="menu_item"><a href='#'>Prannoy</a></li>
-				         <li class="menu_item"><a href='#'>Zhipeng</a></li>
-				         <li class="menu_item"><a href='#'>Wei</a></li>
+				<!-- <ul>
+				   	<li class='active' ><a href='index.html'>Home</a></li>
+				   	<li class='has-sub'>
+				   		<a href='#'>Characters</a>
+				      	<ul class="menu_item_list">
+				         	<li class="menu_item"><a href='#'>Diana</a></li>
+				         	<li class="menu_item"><a href='#'>Prannoy</a></li>
+				         	<li class="menu_item"><a href='#'>Zhipeng</a></li>
+				         	<li class="menu_item"><a href='#'>Wei</a></li>
 				         
-				      </ul>
-				   </li>
-				   <li class='has-sub'><a href='#'>Locations</a>
-				      <ul class="menu_item_list">
-				         <li class="menu_item"><a href='#'>Humber College</a></li>
-
-
-				         <!-- <li><a href='#'>Location</a></li> -->
-				      </ul>
-				   </li>
-				   <li><a href='#'>Summary</a></li>
+				      	</ul>
+				   	</li>
+				   	<li class='has-sub'>
+				   		<a href='#'>Locations</a>
+				      	<ul class="menu_item_list">
+				         	<li class="menu_item"><a href='#'>Humber College</a></li>
+				      	</ul>
+				   	</li>
+				   	<li><a href='#'>Summary</a></li>
+				</ul> -->
+				<ul load-menu-items>
+					<li ng-repeat="menuItem in menuItems" ng-class="menuItem.children.length!=0?'has-sub':''"  >
+						<a href="#">{{menuItem.name}}</a>
+						<ul ng-class="menuItem.children.length != 0?'menu_item_list':''">
+				         	<li class="menu_item" ng-repeat="subMenuItem in menuItem.children" >
+				         		<a href='#'>{{subMenuItem.name}}</a>
+				         	</li>
+				      	</ul>
+					</li>
 				</ul>
+
+
+
 			</div>
-			<div><a id="link-add-category" href="#"><span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span><span id="add-category-text">Add Category</span></a></div>
+			<div>
+				<a id="link-add-category" href="#" data-toggle="modal" data-target="#addCategoryModal">
+				<span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span>
+				<span id="add-category-text">Add Category</span>
+				</a>
+			</div>
+
+			<div id="addCategoryModal" class="modal fade" role="dialog" >
+			  	<div class="modal-dialog">
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">Add a Category</h4>
+				      </div>
+				      <div class="modal-body">
+				        <input class="form-control" type="text" name="category_name" id="category_name" ng-model="newMenuItem.name" placeholder="Add new category name"/>
+				        <p>{{ missingNewMenuItemError }}</p>
+				      </div>
+				      <div class="modal-footer">
+				      	<button type="button" class="btn btn-default" id="create_ok" ng-click="addMenuItem(newMenuItem)">OK</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+
+			  	</div>
+			</div>
+
+
 			<div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>
 
 		</div>
@@ -91,7 +130,7 @@
 	        <h4 class="modal-title">Create a scene</h4>
 	      </div>
 	      <div class="modal-body">
-	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title"></input>
+	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title"/>
 	        <p ng-show="title == ''">{{ error_message }}</p>
 	      </div>
 	      <div class="modal-footer">
@@ -126,18 +165,31 @@
 
 
 
-		<div id="timeline-panel" class="wrap">
-			<div class="scrollbar">
-				<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
-					<div class="mousearea"></div>
-				</div>
+		<div id="timeline_panel" class="wrap" ng-controller="TimeLineController">
+
+			<div id="timeline_show" class="toggle_timeline toggle_btn" ng-show="timeline.hidden" ng-click="timeline.toggle()">
+				<span class="glyphicon glyphicon-menu-up"></span>
+			</div>
+			
+			<div id="timeline_hide" class="toggle_timeline toggle_btn" ng-show="!timeline.hidden" ng-click="timeline.toggle()">
+				<span class="glyphicon glyphicon-menu-down"></span>
 			</div>
 
-			<div class="frame" id="timeline_wrap" style="overflow: hidden;">
-				<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
-					<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-					<li>10</li><li>11</li><li>12</li><li>13</li
-				</ul>
+			<div id="timeline_wrapper">
+				<div class="scrollbar">
+					<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
+						<div class="mousearea"></div>
+					</div>
+				</div>
+
+				
+
+				<div class="frame" id="timeline_wrap" style="overflow: hidden;">
+					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
+						<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+						<li>10</li><li>11</li><li>12</li><li>13</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -152,25 +204,6 @@
 	// after this, need to use jQuery instead of "$" for jquery's function
 	$.noConflict();
 
-
-
-	///// for sidebar menu's animation
-	jQuery('#cssmenu li.active').addClass('open').children('ul').show();
-	jQuery('#cssmenu li.has-sub>a').on('click', function(){
-		jQuery(this).removeAttr('href');
-		var element = jQuery(this).parent('li');
-		if (element.hasClass('open')) {
-			element.removeClass('open');
-			element.find('li').removeClass('open');
-			element.find('ul').slideUp(200);
-		}
-		else {
-			element.addClass('open');
-			element.children('ul').slideDown(200);
-			element.siblings('li').find('li').removeClass('open');
-		}
-	});
-	///////
 </script>
 
 
