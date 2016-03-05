@@ -5,12 +5,16 @@ import entity.UsersEntity;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,9 +47,8 @@ public class CustomUserDetailsService implements UserDetailsService{
         //User class is subclass of UserDetails
         //not null username, not null password, enable,
         //accountNonExpired, credentialsNonExpired, accountNonLocked, authorities
-        userDetails = new User("lvvl","111",true,true,true,true,getAuthorities(1));
-        String s = "";
-
+        //This is the authority user information, the username and password should be match
+        userDetails = new User("123@123.com","111",true,true,true,true,getAuthorities(1));
 
         return userDetails;
     }
@@ -65,4 +68,6 @@ public class CustomUserDetailsService implements UserDetailsService{
         //user return ROLE_USER
         return authList;
     }
+
+
 }

@@ -96,6 +96,13 @@ public class UserController {
         return "playground";
     }
 
+    @RequestMapping("home")
+    public String Home(HttpServletRequest req, Model model){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        String email = (String)req.getSession().getAttribute("email");
+        model.addAttribute("email",name);
+        return "home";
+    }
 
 
 
