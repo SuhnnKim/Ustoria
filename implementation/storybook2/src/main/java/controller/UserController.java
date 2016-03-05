@@ -104,8 +104,9 @@ public class UserController {
 
     @RequestMapping("/saveCharacter.form")
     public String SaveCharacter(HttpServletRequest req, Model model){
-        String email = (String)req.getSession().getAttribute("email");
 
+        String email = (String)req.getSession().getAttribute("email");
+        model.addAttribute("email",email);
 
         Story story = (Story)req.getSession().getAttribute("story");
         if (story == null){
@@ -113,7 +114,16 @@ public class UserController {
         }
         story = (Story)req.getSession().getAttribute("story");
 
-        model.addAttribute("email",email);
+        List<Character> characterList = story.getCharacterList();
+        Character editCharacter = new Character();
+
+        if (characterList.size() != 0){
+            for (Character temp : characterList){
+                if (temp.getId().equals(""))
+                    editCharacter = temp;
+            }
+        }
+
 
         String save = req.getParameter("save");
         if (save!=null&&save.equals("Save")){
@@ -170,21 +180,17 @@ public class UserController {
             attlist.put("sceneList",sceneList);
 
 
-
-
             String sidebar = "<li><a href='#'>"+name+"</a></li>";
             String thumbnail = "<img src='storybook/resources/img/default-character-image.png' alt=''character' class='img-thumbnail' width='80' height='80' />";
 
             model.addAttribute("sidebar",sidebar);
             model.addAttribute("thumbnail",thumbnail);
 
-            Character character = new Character();
-            character.setName(name);
-            character.setCharacterDescription(desc);
-            character.setAttributeList(attlist);
+            editCharacter.setName(name);
+            editCharacter.setCharacterDescription(desc);
+            editCharacter.setAttributeList(attlist);
 
-            
-
+//            story.addCharacter(getCharacter);
 
         }
 
@@ -196,6 +202,19 @@ public class UserController {
     public String NewCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
+
+        Story story = (Story)req.getSession().getAttribute("story");
+        if (story == null){
+            req.getSession().setAttribute("story", new Story());
+        }
+        story = (Story)req.getSession().getAttribute("story");
+
+        UUID uuid = UUID.randomUUID();
+        Character newCharacter = new Character();
+        newCharacter.setId(uuid.toString());
+        model.addAttribute("uuid",uuid.toString());
+
+        story.addCharacter(newCharacter);
 
         return "character";
     }
