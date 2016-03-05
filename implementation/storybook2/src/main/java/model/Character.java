@@ -25,7 +25,7 @@ public class Character
   
     private String characterDescription;
 
-    private List<Scene> sceneList;
+    //private List<Scene> sceneList;
 
 
 

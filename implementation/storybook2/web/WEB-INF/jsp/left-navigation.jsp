@@ -17,16 +17,8 @@
             <ul>
                 <li class='active' ><a style="border-bottom: dashed 2px white;" href='index.html'>Home</a></li>
                 <li class='has-sub'><a href='#'>Characters</a>
-                    <ul>
-                        <li><a href='#'>Diana</a></li>
-                        <li><a href='#'>Prannoy</a></li>
-                        <li><a href='#'>Zhipeng</a></li>
-                        <li><a href='#'>Wei</a></li>
-                        <li><a href='#'>Wei</a></li>
+                    <ul id="character-list">
 
-
-
-                        <li><a href='#'>Wei</a></li>
                     </ul>
                 </li>
                 <li class='has-sub'><a href='#'>Locations</a>

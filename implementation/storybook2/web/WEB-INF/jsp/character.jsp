@@ -16,13 +16,14 @@
 
 	<jsp:include page="left-navigation.jsp" />
 
-	<form action="saveCharacter.form">
+	<form id="saveForm" method="post">
 	<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
 		<div id="control-panel">
-			<a class="ctrl-btn pull-left" id="new-character" href="newCharacter.form">Create a new character</a>
+			<a class="ctrl-btn pull-left" id="new-character" href="#">Create a new character</a>
 			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
 			<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
-			<input type="submit" class="ctrl-btn pull-right" name="save" id="save" value="Save"/>
+			<input type="hidden" id="uuid" value="${uuid}"/>
+			<input type="submit" class="ctrl-btn pull-right" onclick="save()" id="save" name="save" value="Save"/>
 		</div>
 		<div id="character-panel">
 			<div id="character-form">
@@ -159,8 +160,8 @@
 				</div>
 			</div>
 
-			<div id="character-list">
-				${thumbnail}
+			<div id="thumbnaillist">
+
 			</div>
 
 			</div>

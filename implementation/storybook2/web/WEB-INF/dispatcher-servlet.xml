@@ -18,10 +18,9 @@
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-    <mvc:annotation-driven />
 
     <context:component-scan base-package="controller" annotation-config="true"/>
-
+    <mvc:annotation-driven />
 
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
