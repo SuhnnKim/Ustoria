@@ -202,7 +202,7 @@ public class Story {
     return "Story Class";
     }
 
-    public void addCharacter(Character character) {
-        characterList.add(character);
+    public void saveCharacter(Character newCharacter) {
+        characterList.add(newCharacter);
     }
 }
