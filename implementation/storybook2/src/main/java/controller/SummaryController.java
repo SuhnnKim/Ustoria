@@ -21,15 +21,21 @@ import model.*;
 @Controller
 public class SummaryController {
 
-    List<Summary> summaryList = new ArrayList();
+   // List<Summary> summaryList = new ArrayList();
 
-    @RequestMapping(value="/summary" , method=RequestMethod.GET)
-    public String redirectToSummary(HttpServletRequest req, Model model){
+    @RequestMapping(value={"/summary.form","/summary.jsp","/summary"} , method=RequestMethod.GET)
+    public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
 
-        //ModelAndView m = new ModelAndView("summary");
+        Story story = getStoryFromSession(req);
+        MainSummary mainSummary = story.getSummary();
+        //req.setAttribute("summaryList",m.getSummaryList());
 
-        //model.addAttribute("summaryList","Hello World");
-        return "summary";
+        ModelAndView m = new ModelAndView("summary");
+
+
+        req.setAttribute("summaryList",mainSummary.getSummaryList());
+        req.setAttribute("summary",mainSummary.getFullSummary());
+        return m;
     }
 
     /* Saving Summary Section */
@@ -38,15 +44,26 @@ public class SummaryController {
                        @RequestParam(value = "summaryContent") String summaryContent){
 
   try {
+      Story story = getStoryFromSession(request);
+
+
+      MainSummary mainSummary = story.getSummary();
+      List<Summary> summaryList = mainSummary.getSummaryList();
+
+
       Summary newSummary = new Summary();
-
-
-
       newSummary.setName(summaryName);
       newSummary.setContent(summaryContent);
 
 
       summaryList.add(newSummary);
+
+      mainSummary.setSummaryList(summaryList); // set latest summaryList
+
+      story.setSummary(mainSummary); // set main summary object
+
+      request.getSession().setAttribute("story",story);
+
       Gson gson = new Gson();
      String jsonString = gson.toJson(summaryList);
       return jsonString;
@@ -61,12 +78,40 @@ public class SummaryController {
     @RequestMapping(value="/SaveSummary",method=RequestMethod.POST)
     public @ResponseBody String SaveSummary(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
 
+        Story story = getStoryFromSession(request);
 
-
-       MainSummary m = new MainSummary();
+       MainSummary m = story.getSummary();
+        String formatedSummary = summaryText.replaceAll("(<br>|<br />)","\\n");
         m.setFullSummary(summaryText);
 
-        return m.getFullSummary();
+        story.setSummary(m);
+
+        request.getSession().setAttribute("story",story);
+        return m.getFullSummary().replaceAll("\\n","<br>");
+    }
+
+
+    @RequestMapping(value="/getSummarySectionText",method=RequestMethod.POST)
+    public @ResponseBody String getSummarySectionText(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
+
+        Story story = getStoryFromSession(request);
+
+        MainSummary m = story.getSummary();
+        Summary summary = m.getSummaryByName(summaryText);
+
+        return summary.getContent().replaceAll("\\n","<br>");
+    }
+
+    public Story getStoryFromSession(HttpServletRequest request){
+
+        Story story = (Story)request.getSession().getAttribute("story");
+        if (story == null){
+            request.getSession().setAttribute("story", new Story());
+        }
+        else {
+            story = (Story) request.getSession().getAttribute("story");
+        }
+            return story;
     }
 
 }

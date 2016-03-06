@@ -5,6 +5,9 @@
   Time: 3:20 PM
   To change this template use File | Settings | File Templates.
 --%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+
 <div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
     </span><span class="glyphicon glyphicon-menu-right"></span>
 </div>
@@ -31,7 +34,13 @@
                 </li>
                 <li class='has-sub'><a href='#'>Summary</a>
                     <ul id="summary-list">
+                        <c:if test="${not empty summaryList}">
 
+                            <c:forEach var="summary" items="${summaryList}">
+                                <li id=<c:out value="${summary.getName()}" /> ><a href="#" ><c:out value="${summary.getName()}"/></a></li>
+                            </c:forEach>
+
+                        </c:if>
 
                     </ul>
                 </li>

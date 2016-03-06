@@ -63,9 +63,18 @@
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:5.1.38" level="project" />
     <orderEntry type="library" exported="" name="javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.11" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.6.2" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
-    <orderEntry type="library" exported="" name="Maven: javax:javaee-web-api:7.0" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13" level="project" />
+    <orderEntry type="library" name="Maven: javax:javaee-web-api:7.0" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/web/WEB-INF/lib/jstl-1.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

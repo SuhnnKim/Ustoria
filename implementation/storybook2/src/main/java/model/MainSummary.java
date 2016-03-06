@@ -22,6 +22,10 @@ public class MainSummary {
         return summaryList;
     }
 
+    public void setSummaryList(List<Summary> summaryList){
+        this.summaryList = summaryList;
+    }
+
     public void addSummarySection(Summary summarySection){
         this.summaryList.add(summarySection);
     }
@@ -38,6 +42,21 @@ public class MainSummary {
            }
        }
     }
+
+    public Summary getSummaryByName(String name){
+        System.out.println(name);
+        for(int i=0;i< this.summaryList.size();i++){
+            if(this.summaryList.get(i).getName().equals(name)){
+                System.out.println(summaryList.get(i).getName());
+                return this.summaryList.get(i);
+
+            }
+        }
+
+        return null;
+    }
+
+
     public String getFullSummary() {
         return fullSummary;
     }

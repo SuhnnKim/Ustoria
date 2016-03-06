@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 			display: none;
 		}
 
+		.highlight{
+			color:yellow;
+		}
 		#summary-panel::selection {
 			color: #e14b3b; /* WebKit/Blink Browsers */
 
@@ -61,14 +65,27 @@
 <div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="save-story" href="#">Save Story</a>
+		<a class="ctrl-btn pull-left" id="undo" href="character.form">Character</a>
+		<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
 
 		<button class="ctrl-btn pull-right" id="saveText"  data-toggle="modal" data-target="#myModal">Create Section</button>
 	</div>
 
 	<div id="main-panel">
-		<div id="summary-panel" contentEditable="true" data-placeholder="Please Enter your summary here"></div>
+		<div id="summary-panel" contentEditable="true" data-placeholder="Please Enter your summary here">
+            <c:if test="${not empty summary}">
+                ${summary}
+            </c:if>
+        </div>
 
 		<div id="summary-section-list">
+			<c:if test="${not empty summaryList}">
+
+				<c:forEach var="summary" items="${summaryList}">
+					<div id="${summary.getName()}" class="summary-section-wrapper"><button type="button" class="btn btn-info summary-section-button">${summary.getName()}</button><button type="button" class="btn btn-success btn-small"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button type="button" class="btn btn-danger btn-small"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></div>
+				</c:forEach>
+
+			</c:if>
 
 		</div>
 
@@ -110,6 +127,7 @@
 <script src="${pageContext.request.contextPath}/resources/vendor/jquery.ui.widget.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
 
 <script type="text/javascript">
 
@@ -161,7 +179,7 @@
 
 		var summaryName = jQuery('#summaryName').val();
 
-		var summaryText = jQuery('.text-select').text();
+		var summaryText = jQuery('.text-select').html();
 
 
 
@@ -180,7 +198,7 @@
 				jQuery.each(JSON.parse(responseText), function(idx, obj) {
 					jQuery('#summary-list').append('<li id='+obj.name+'><a href=\'#\' >'+obj.name+'</a></li>');
 
-					var cloneSummaryListItem= '<div id='+obj.name+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+obj.name+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
+					var cloneSummaryListItem= '<div id='+obj.name+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info summary-section-button\'>'+obj.name+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
 
 					jQuery('#summary-section-list').append(cloneSummaryListItem);
 
@@ -201,7 +219,7 @@
 	jQuery('#save-story').on('click',function(){
 
 
-		var summaryText = jQuery('#summary-panel').text();
+		var summaryText = jQuery('#summary-panel').html();
 
 		jQuery.ajax({
 			method : "POST",
@@ -210,65 +228,47 @@
 				summaryData : summaryText
 			},
 			success : function(responseText) {
-				jQuery('#summary-panel').text(" ");
+				jQuery('#summary-panel').html(" ");
 
-				jQuery('#summary-panel').text(responseText);
+				jQuery('#summary-panel').html(responseText);
 			}
 		});
 	});
 
-//	jQuery('#btnSummaryNameSave').click(function(){
-//
-//		var summaryName = jQuery('#summaryName').val();
-//
-//		var summaryText = jQuery('.text-select').text();
-//		jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
-//
-//
-//		var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
-//
-//		jQuery('#summary-section-list').append(cloneSummaryListItem);
-//
-//		jQuery('#myModal').modal('hide');
-//
-//	});
-//
-//	jQuery('#save-story').on('click',function(){
-//
-//		var s = jQuery('#summary-panel').html();
-//		alert(s);
-//
-//	});
+	jQuery('.summary-section-button').on('click',function(){
 
 
+		jQuery('#summary-panel').removeHighlight();
+		var summaryText = jQuery(this).text();
+
+		jQuery.ajax({
+			method : "POST",
+			url : 'getSummarySectionText',
+			data : {
+				summaryData : summaryText
+			},
+			success : function(responseText) {
+              // var htmlText = jQuery.parseHTML(responseText);
+                htmlText = jQuery.parseHTML(responseText);
+                //alert(typeof htmlText);
+                var finalText="";
+                jQuery.each( htmlText, function( k,v ) {
+                    alert("Key "+k);
+                    alert("Value "+ v.nodeValue);
+                    //finalText+=v.nodeName;
+                });
+               // alert(finalText);
+                //jQuery('#summary-panel').highlight(finalText);
 
 
+				//jQuery('#summary-panel').html(responseText);
+			}
+		});
+	});
 
-//
-//
-//	jQuery('#btnSummaryNameSave').click(function(){
-//
-//		var summaryName = jQuery('#summaryName').val();
-//
-//		var summaryText = jQuery('.text-select').text();
-//		jQuery('#summary-list').append('<li id='+summaryName+'><a href=\'#\' >'+summaryName+'</a></li>');
-//
-//
-//		var cloneSummaryListItem= '<div id='+summaryName+' class=\'summary-section-wrapper\'><button type=\'button\' class=\'btn btn-info\'>'+summaryName+'</button><button type=\'button\' class=\'btn btn-success btn-small\'><span class=\'glyphicon glyphicon-pencil\' aria-hidden=\'true\'></span></button><button type=\'button\' class=\'btn btn-danger btn-small\'><span class=\'glyphicon glyphicon-remove\' aria-hidden=\'true\'></span></button></div>';
-//
-//		jQuery('#summary-section-list').append(cloneSummaryListItem);
-//
-//		jQuery('#myModal').modal('hide');
-//
-//	});
-//
-//	jQuery('#save-story').on('click',function(){
-//
-//		var s = jQuery('#summary-panel').html();
-//		alert(s);
-//
-//	});
-
+    function convertToHtml(plainText){
+        return jQuery(this).html(plainText)
+    }
 
 
 	jQuery('div[contenteditable]').keydown(function(e) {

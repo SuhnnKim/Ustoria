@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.Gson;
 import model.Attribute;
 import model.Character;
+import model.MainSummary;
 import model.Story;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.portlet.ModelAndView;
+import sun.applet.Main;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -20,13 +23,22 @@ import java.util.*;
 @Controller
 public class CharacterController {
 
-    @RequestMapping("character")
-    public String Character(HttpServletRequest req, Model model){
-        String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",email);
+    @RequestMapping("/character.form")
+    public ModelAndView Character(HttpServletRequest req, Model model){
+//        String email = (String)req.getSession().getAttribute("email");
+//        model.addAttribute("email",email);
 
+        Story story = (Story)req.getSession().getAttribute("story");
+        if (story == null){
+            req.getSession().setAttribute("story", new Story());
+        }
+        story = (Story)req.getSession().getAttribute("story");
 
-        return "character";
+        MainSummary m = story.getSummary();
+        req.setAttribute("summaryList",m.getSummaryList());
+       // req.setAttribute("characterList",story.getCharacterList());
+
+        return new ModelAndView("character");
 
     }
 
