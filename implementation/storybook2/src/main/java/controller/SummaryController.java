@@ -23,8 +23,15 @@ public class SummaryController {
 
    // List<Summary> summaryList = new ArrayList();
 
+<<<<<<< HEAD
     @RequestMapping(value={"/summary.form","/summary.jsp","/summary"} , method=RequestMethod.GET)
     public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
+=======
+    @RequestMapping(value="/summary" , method=RequestMethod.GET)
+    public String redirectToSummary(HttpServletRequest req, Model model){
+        String email = (String)req.getSession().getAttribute("email");
+        model.addAttribute("email",email);
+>>>>>>> 28a71d1fb1d9ce17954e47d4e84ff06f01c4746a
 
         Story story = getStoryFromSession(req);
         MainSummary mainSummary = story.getSummary();
