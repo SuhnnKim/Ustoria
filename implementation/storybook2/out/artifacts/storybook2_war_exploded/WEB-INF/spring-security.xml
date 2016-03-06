@@ -22,7 +22,7 @@
         <security:form-login
             login-page="/login"
             default-target-url="/home"
-            authentication-failure-url="/character"
+            authentication-failure-url="/login?error=1"
             username-parameter="email-login"
             password-parameter="password-login"
             always-use-default-target="true"/>
@@ -55,11 +55,6 @@
 
     <!--MD5 for password-->
     <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="md5PasswordEncoder"/>
-
-
-
-
-
 
         
 </beans>

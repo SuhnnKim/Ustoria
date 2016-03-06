@@ -25,6 +25,8 @@ public class SummaryController {
 
     @RequestMapping(value="/summary" , method=RequestMethod.GET)
     public String redirectToSummary(HttpServletRequest req, Model model){
+        String email = (String)req.getSession().getAttribute("email");
+        model.addAttribute("email",email);
 
         //ModelAndView m = new ModelAndView("summary");
 

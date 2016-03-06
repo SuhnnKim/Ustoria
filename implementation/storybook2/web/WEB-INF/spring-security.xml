@@ -56,11 +56,6 @@
     <!--MD5 for password-->
     <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="md5PasswordEncoder"/>
 
-
-
-
-
-
         
 </beans>
 

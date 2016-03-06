@@ -42,28 +42,6 @@ public class UserController {
     @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
 
-        String email = req.getParameter("email-login");
-
-        String password = req.getParameter("password-login");
-
-        String em = (String)req.getSession().getAttribute("email");
-
-        //User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-        } else {
-            String username = principal.toString();
-        }
-
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        if (em == null)
-            req.getSession().setAttribute("email",name);
-
-        model.addAttribute("email",email);
 
         return "home";
 
@@ -101,6 +79,7 @@ public class UserController {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",name);
+        req.getSession().setAttribute("email",name);
         return "home";
     }
 
