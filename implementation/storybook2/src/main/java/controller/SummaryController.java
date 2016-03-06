@@ -3,6 +3,7 @@ package controller;
 
 import com.google.gson.Gson;
 
+import model.Character;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,15 +24,12 @@ public class SummaryController {
 
    // List<Summary> summaryList = new ArrayList();
 
-<<<<<<< HEAD
     @RequestMapping(value={"/summary.form","/summary.jsp","/summary"} , method=RequestMethod.GET)
     public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
-=======
-    @RequestMapping(value="/summary" , method=RequestMethod.GET)
-    public String redirectToSummary(HttpServletRequest req, Model model){
+
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
->>>>>>> 28a71d1fb1d9ce17954e47d4e84ff06f01c4746a
+
 
         Story story = getStoryFromSession(req);
         MainSummary mainSummary = story.getSummary();
@@ -39,6 +37,9 @@ public class SummaryController {
 
         ModelAndView m = new ModelAndView("summary");
 
+
+        req.setAttribute("characterList",story.getCharacterList());
+        //req.setAttribute("character", );
 
         req.setAttribute("summaryList",mainSummary.getSummaryList());
         req.setAttribute("summary",mainSummary.getFullSummary());

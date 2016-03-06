@@ -6,6 +6,7 @@ import dao.userDAOImpl;
 import entity.UsersEntity;
 import model.Attribute;
 import model.Character;
+import model.MainSummary;
 import model.Story;
 import org.hibernate.bytecode.buildtime.spi.Logger;
 import org.hibernate.mapping.Array;
@@ -35,9 +36,6 @@ import java.util.*;
 @Controller
 public class UserController {
 
-    ArrayList<String> sidebarList = new ArrayList<String>();
-    ArrayList<String> thumbnailList = new ArrayList<String>();
-    int listNum = 0;
 
     @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
@@ -71,6 +69,12 @@ public class UserController {
     public String Playground(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
+
+        Story story = (Story)req.getSession().getAttribute("story");
+        model.addAttribute("characterList",story.getCharacterList());
+        MainSummary m = story.getSummary();
+        model.addAttribute("summaryList",m.getSummaryList());
+
         return "playground";
     }
 

@@ -94,7 +94,7 @@
 <script type="text/javascript">
     jQuery("#btnProjectCreate").on("click", function() {
         jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-                "<td><a href='summary.form' style='color:black;'>"+jQuery("#projectName").val()+"</a></td>" +
+                "<td><a href='summary' style='color:black;'>"+jQuery("#projectName").val()+"</a></td>" +
                 "<td>"+jQuery("#description").val()+"</td>" +
                 "<td>Time</td>" +
                 "</tr>");

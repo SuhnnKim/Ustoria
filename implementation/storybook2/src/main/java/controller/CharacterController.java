@@ -23,10 +23,10 @@ import java.util.*;
 @Controller
 public class CharacterController {
 
-    @RequestMapping("/character.form")
+    @RequestMapping("character.form")
     public ModelAndView Character(HttpServletRequest req, Model model){
-//        String email = (String)req.getSession().getAttribute("email");
-//        model.addAttribute("email",email);
+        String email = (String)req.getSession().getAttribute("email");
+        model.addAttribute("email",email);
 
         Story story = (Story)req.getSession().getAttribute("story");
         if (story == null){
@@ -36,8 +36,8 @@ public class CharacterController {
 
         MainSummary m = story.getSummary();
         req.setAttribute("summaryList",m.getSummaryList());
-       // req.setAttribute("characterList",story.getCharacterList());
 
+        req.setAttribute("characterList",story.getCharacterList());
         return new ModelAndView("character");
 
     }
@@ -83,9 +83,6 @@ public class CharacterController {
                                 @RequestParam(value = "roleList") List<String> role,
                                 @RequestParam(value = "attributeList") List<String> att,
                                 @RequestParam(value = "sceneList") List<String> scene){
-        String email = (String)req.getSession().getAttribute("email");
-
-        String name1 = uuid;
 
 
         Story story = (Story)req.getSession().getAttribute("story");
@@ -97,7 +94,6 @@ public class CharacterController {
         List<Character> characterList = story.getCharacterList();
         Character editCharacter = new Character();
 
-        List<Character> sss = characterList;
 
         List<Attribute> relationshipList = new ArrayList<Attribute>();
         List<Attribute> roleList = new ArrayList<Attribute>();
@@ -235,5 +231,30 @@ public class CharacterController {
         String jsonString = gson.toJson(story.getCharacterList());
 
         return jsonString;
+    }
+
+    @RequestMapping("loadCharacter*")
+    public String loadCharacter(HttpServletRequest req, Model model){
+
+        String id = req.getParameter("id");
+        Story story = (Story)req.getSession().getAttribute("story");
+        List<Character> list = story.getCharacterList();
+        Character character = new Character();
+
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).getId().equals(id))
+                character = list.get(i);
+        }
+
+
+        model.addAttribute("loadCharacter",character);
+        model.addAttribute("characterList",story.getCharacterList());
+        MainSummary m = story.getSummary();
+        model.addAttribute("summaryList",m.getSummaryList());
+
+        String name = character.getName();
+
+        return "character";
+
     }
 }

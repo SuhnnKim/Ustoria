@@ -1,7 +1,5 @@
 jQuery("#saveForm").submit(function() {
 
-
-
   var relationList = new Array();
   var roleList = new Array();
   var attList = new Array();
@@ -64,14 +62,13 @@ jQuery("#saveForm").submit(function() {
 
 
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
-        //alert(idx+"\n"+obj.id)
-        jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="character" >' + obj.name + '</a></li><input id="select" type="hidden" value="'+obj.id+'>');
+
+        jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="loadCharacter?id='+obj.id+'" >' + obj.name + '</a></li>');
+
         jQuery("#thumbnaillist").append("<img src='' alt=''character1' class='img-thumbnail' width='80' height='80' />");
         if(id == ""){jQuery("#uuid").val(obj.id);}
 
       });
-
-
 
     },
     error:function(request){
@@ -79,26 +76,6 @@ jQuery("#saveForm").submit(function() {
       event.preventDefault();
     }
   });
-
-});
-
-
-jQuery(".link").on("click", function() {
-
-  var id  = jQuery("#select").val();
-
-
-  jQuery.ajax({
-    method: "POST",
-    url: 'selectCharacter',
-    data: {
-      id: id,
-    },
-    success: function (responseText) {
-      jQuery("#name").val(JSON.parse(responseText).name);
-    }
-
-  })
 
 });
 
@@ -115,10 +92,20 @@ jQuery("#new-character").on("click", function() {
 
       jQuery('#character-list').empty();
       jQuery("#thumbnaillist").empty();
+      jQuery("#relationship").empty();
+      jQuery("#relationship").append("<tr><td>Relationship</td></tr>");
+      jQuery("#role").empty();
+      jQuery("#role").append("<tr><td>Role</td></tr>");
+      jQuery("#scene").empty();
+      jQuery("#scene").append("<tr><td>Scene</td></tr>");
+      jQuery("#att").empty();
+      jQuery("#att").append("<tr><td>Attribute</td></tr>");
+      jQuery("#name").val("");
+      jQuery("#desc").val("");
 
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
 
-        jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="#">' + obj.name + '</a></li><input id="select" type="hidden" value="'+obj.id+'>');
+        jQuery('#character-list').append('<li id=' + obj.name + '><a href="loadCharacter?id="'+ obj.id+'>' + obj.name + '</a></li>');
         jQuery("#thumbnaillist").append("<img src='' alt=''character1' class='img-thumbnail' width='80' height='80' />");
 
         jQuery("#uuid").val(obj.id);
@@ -144,36 +131,30 @@ jQuery("#pop").on("click", function() {
 jQuery("#relationAddlist li").on("click", function() {
   jQuery("#relationship").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li><input type='hidden' name='relaAtt' id='relaAtt' value='"+jQuery(this).text()+"'/></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
-  jQuery(".del").on("click", function() {
-      jQuery(this).parent().parent().remove();
-  });
 
+});
+
+jQuery(".del").on("click", function() {
+  jQuery(this).parent().parent().remove();
 });
 
 jQuery("#roleAddlist li").on("click", function() {
   jQuery("#role").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"<input type='hidden' name='roleAtt' value='"+ jQuery(this).text() +"'/></li></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
-
-  jQuery(".del").on("click", function() {
-      jQuery(this).parent().parent().remove();
-  });
 
 });
 
 jQuery("#attAddlist li").on("click", function() {
   jQuery("#att").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li><input type='hidden' name='attAtt' value='"+ jQuery(this).text() +"'/></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
-  jQuery(".del").on("click", function() {
-      jQuery(this).parent().parent().remove();
-  });
 
 });
 
 jQuery("#sceneAddlist li").on("click", function() {
   jQuery("#scene").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li></td><input type='hidden' name='sceneAtt' value='"+ jQuery(this).text() +"'><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
-  jQuery(".del").on("click", function() {
-      jQuery(this).parent().parent().remove();
-  });
+  //jQuery(".del").on("click", function() {
+  //    jQuery(this).parent().parent().remove();
+  //});
 
 });
 

@@ -18,9 +18,18 @@
     <div class="inner">
         <div id='cssmenu'>
             <ul>
-                <li class='active' ><a style="border-bottom: dashed 2px white;" href='index.html'>Home</a></li>
+                <li class='active' ><a style="border-bottom: dashed 2px white;" href='#'>Home</a></li>
                 <li class='has-sub'><a href='#'>Characters</a>
                     <ul id="character-list">
+                        <c:if test="${not empty characterList}">
+
+                            <c:forEach var="character" items="${characterList}">
+                                <li id=<c:out value="${character.getName()}" /> >
+                                    <a href="<c:out value="loadCharacter?id=${character.getId()}"/>"><c:out value="${character.getName()}"/></a>
+                                </li>
+                            </c:forEach>
+
+                        </c:if>
 
                     </ul>
                 </li>

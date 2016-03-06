@@ -15,7 +15,7 @@
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
 
 	<jsp:include page="nav_top.jsp"/>
-	
+
 	<div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
 		</span><span class="glyphicon glyphicon-menu-right"></span>
 	</div>
@@ -33,7 +33,7 @@
 				         <li class="menu_item"><a href='#'>Prannoy</a></li>
 				         <li class="menu_item"><a href='#'>Zhipeng</a></li>
 				         <li class="menu_item"><a href='#'>Wei</a></li>
-				         
+
 				      </ul>
 				   </li>
 				   <li class='has-sub'><a href='#'>Locations</a>

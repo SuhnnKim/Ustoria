@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 			<a class="ctrl-btn pull-left" id="new-character" href="#">Create a new character</a>
 			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
 			<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
-			<input type="hidden" id="uuid" value="${uuid}"/>
+			<input type="hidden" id="uuid" value="${loadCharacter.id}"/>
 			<input type="submit" class="ctrl-btn pull-right" onclick="save()" id="save" name="save" value="Save"/>
 		</div>
 		<div id="character-panel">
@@ -55,7 +56,7 @@
 				</div>
 					<div class="col-sm-8">
 						<label class="radio-inline">
-							<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="${name}"/>
+							<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="${loadCharacter.name}"/>
 						</label>
 						<label class="radio-inline">
 							Model:
@@ -68,7 +69,7 @@
 						</label>
 					</div>
 					<div class="col-sm-8">
-						<textarea class="form-control" name="desc" rows="8" id="desc" placeholder="Description">${desc}</textarea>
+						<textarea class="form-control" name="desc" rows="8" id="desc" placeholder="Description">${loadCharacter.characterDescription}</textarea>
 					</div>
 				</div>
 				<div class="row" id="row2">
@@ -78,6 +79,26 @@
 						<ul name="relationshipList" class="list-group">
 							<table id="relationship">
 								<tr><td>Relationship Attribute</td></tr>
+								<c:if test="${not empty loadCharacter}">
+									<c:forEach items="${loadCharacter.attributeList}" var="item">
+										<c:if test="${item.key == 'relationship'}">
+
+											<c:forEach items="${item.value}" var="relationshipList">
+												<tr>
+													<td>
+														<li class='list-group-item'>
+															<c:out value="${relationshipList.name.toString()}"/></li>
+															<input type='hidden' name='relaAtt' id='relaAtt' value='<c:out value="${relationshipList.name.toString()}"/>'/>
+													</td>
+													<td>
+														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
+													</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</c:forEach>
+								</c:if>
+
 							</table>
 						</ul>
 						<div class="btn-group btn-block dropup">
@@ -99,6 +120,24 @@
 						<ul class="list-group">
 							<table id="role">
 								<tr><td>Role Attribute</td></tr>
+								<c:if test="${not empty loadCharacter}">
+									<c:forEach items="${loadCharacter.attributeList}" var="item">
+										<c:if test="${item.key == 'role'}">
+											<c:forEach items="${item.value}" var="roleList">
+												<tr>
+													<td>
+														<li class='list-group-item'>
+															<c:out value="${roleList.name.toString()}"/></li>
+														<input type='hidden' name='relaAtt' id='roleAtt' value='<c:out value="${roleList.name.toString()}"/>'/>
+													</td>
+													<td>
+														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
+													</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</table>
 						</ul>
 						<div class="btn-group btn-block dropup">
@@ -120,6 +159,24 @@
 						<ul class="list-group">
 							<table id="scene">
 								<tr><td>Scene Attribute</td></tr>
+								<c:if test="${not empty loadCharacter}">
+									<c:forEach items="${loadCharacter.attributeList}" var="item">
+										<c:if test="${item.key == 'scene'}">
+											<c:forEach items="${item.value}" var="sceneList">
+												<tr>
+													<td>
+														<li class='list-group-item'>
+															<c:out value="${sceneList.name.toString()}"/></li>
+														<input type='hidden' name='relaAtt' id='sceneAtt' value='<c:out value="${sceneList.name.toString()}"/>'/>
+													</td>
+													<td>
+														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
+													</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</table>
 						</ul>
 						<div class="btn-group btn-block dropup">
@@ -141,6 +198,24 @@
 						<ul class="list-group">
 							<table id="att">
 								<tr><td>Attribute</td></tr>
+								<c:if test="${not empty loadCharacter}">
+									<c:forEach items="${loadCharacter.attributeList}" var="item">
+										<c:if test="${item.key == 'attribute'}">
+											<c:forEach items="${item.value}" var="attributeList">
+												<tr>
+													<td>
+														<li class='list-group-item'>
+															<c:out value="${attributeList.name.toString()}"/></li>
+														<input type='hidden' name='relaAtt' id='roleAtt' value='<c:out value="${attributeList.name.toString()}"/>'/>
+													</td>
+													<td>
+														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
+													</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+									</c:forEach>
+								</c:if>
 							</table>
 						</ul>
 						<div class="btn-group btn-block dropup">
