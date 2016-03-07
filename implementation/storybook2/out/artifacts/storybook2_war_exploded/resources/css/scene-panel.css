@@ -1,6 +1,5 @@
 #scene-panel{
 	width: inherit;
-	height: 480px;
 	background-color: #fff;
   overflow-x:auto;
   overflow-y:none;
@@ -18,15 +17,17 @@
 #scene-panel>.scene>.panel-body{
   background-color: #333333;
   color: white;
-  height: 100%;
+  position: inherit;
+  height: 280px;
+  width: 280px;
+  z-index: -1;
 }
 
 #scene-panel>.panel{
   /*margin: 10px 5px;*/
   background-color: #fff;
   transition: opacity 0.4s ease-in-out;
-  height: 280px;
-  width: 280px;
+  
   display:inline-block;
   vertical-align: middle;
   white-space:normal;

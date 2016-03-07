@@ -1,5 +1,5 @@
-#timeline-panel{
-	background-color: #66b3ff;
+#timeline_panel{
+	background-color: #fff;
 	width: inherit;
 	height: 150px;
 	/*position: absolute;*/
@@ -10,7 +10,7 @@
   white-space:nowrap;
 }
 
-#timeline-panel .panel-heading{
+#timeline_panel .panel-heading{
 	overflow: hidden;
 	white-space:nowrap;
 }
