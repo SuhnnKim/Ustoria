@@ -16,7 +16,42 @@
 
 	<jsp:include page="nav_top.jsp"/>
 
-	<jsp:include page="left-navigation.jsp" />
+	<div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
+		</span><span class="glyphicon glyphicon-menu-right"></span>
+	</div>
+	<div id="sidebar" ng-hide="sidebar.hidden">
+		<div id="hide-sidebar" ng-click="sidebar.toggle()">
+			<span class="glyphicon glyphicon-menu-left"></span>
+		</div>
+		<div class="inner">
+			<div id='cssmenu'>
+				<ul>
+				   <li class='active' ><a href='index.html'>Home</a></li>
+				   <li class='has-sub'><a href='#'>Characters</a>
+				      <ul class="menu_item_list">
+				         <li class="menu_item"><a href='#'>Diana</a></li>
+				         <li class="menu_item"><a href='#'>Prannoy</a></li>
+				         <li class="menu_item"><a href='#'>Zhipeng</a></li>
+				         <li class="menu_item"><a href='#'>Wei</a></li>
+
+				      </ul>
+				   </li>
+				   <li class='has-sub'><a href='#'>Locations</a>
+				      <ul class="menu_item_list">
+				         <li class="menu_item"><a href='#'>Humber College</a></li>
+
+
+				         <!-- <li><a href='#'>Location</a></li> -->
+				      </ul>
+				   </li>
+				   <li><a href='#'>Summary</a></li>
+				</ul>
+			</div>
+			<div><a id="link-add-category" href="#"><span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span><span id="add-category-text">Add Category</span></a></div>
+			<div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>
+
+		</div>
+	</div>
 
 	<div id="myModal" class="modal fade" role="dialog"  ng-controller="addSceneController" ng-init="addSceneController.id_counter = 2" >
 	  <div class="modal-dialog">

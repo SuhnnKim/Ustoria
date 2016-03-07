@@ -1,0 +1,43 @@
+.highlight{
+    color:yellow;
+}
+#summary-panel::selection {
+    color: #e14b3b; /* WebKit/Blink Browsers */
+
+    font-size: 20px;
+
+}
+#summary-panel::-moz-selection {
+    color: #e14b3b; /* Gecko Browsers */
+
+    font-size: 20px;
+
+}
+
+#main-panel #summary-panel
+{
+    width:80%;
+    float:left;
+
+}
+
+#main-panel #summary-section-list{
+    width: 20%;
+    float: right;
+
+}
+
+.summary-section-wrapper{
+    margin: 1% 0;
+}
+
+#summary-section-list button{
+    margin: 0 1%;
+}
+#content{
+    overflow: auto !important;
+}
+
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(data-placeholder)
+}

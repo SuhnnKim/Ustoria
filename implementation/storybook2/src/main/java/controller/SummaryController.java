@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import model.*;
@@ -32,7 +33,8 @@ public class SummaryController {
 
 
         Story story = getStoryFromSession(req);
-        MainSummary mainSummary = story.getSummary();
+        MainSummary mainSummary = new MainSummary();
+        mainSummary = story.getSummary();
         //req.setAttribute("summaryList",m.getSummaryList());
 
         ModelAndView m = new ModelAndView("summary");
@@ -112,9 +114,11 @@ public class SummaryController {
 
     public Story getStoryFromSession(HttpServletRequest request){
 
-        Story story = (Story)request.getSession().getAttribute("story");
-        if (story == null){
-            request.getSession().setAttribute("story", new Story());
+        HttpSession session = request.getSession();
+
+        Story story = new Story();
+        if (session.getAttribute("story")== null){
+           session.setAttribute("story", new Story());
         }
         else {
             story = (Story) request.getSession().getAttribute("story");

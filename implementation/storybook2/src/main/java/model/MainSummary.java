@@ -16,6 +16,7 @@ public class MainSummary {
     public MainSummary(){
 
         summaryList = new ArrayList<Summary>();
+        fullSummary = "";
     }
 
     public List<Summary> getSummaryList() {
