@@ -236,7 +236,6 @@
 			</div>
 
 			<div id="thumbnaillist">
-
 			</div>
 
 			</div>

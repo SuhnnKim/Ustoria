@@ -52,7 +52,7 @@
 		height: 480px;
 }
 
-#character-panel>#thumbnaillist>img{
+img.img-thumbnail{
 	margin: 10px;
 	padding: 0px;
 	width: 80px;
@@ -70,4 +70,20 @@
 	height: 200px;
 	overflow: scroll;
 	border-style: solid;
+}
+
+button#addRel.btn.btn-primary.btn-block.dropdown-toggle{
+	border-radius: 0px;
+}
+
+button#addRole.btn.btn-primary.btn-block.dropdown-toggle{
+	border-radius: 0px;
+}
+
+button#addScene.btn.btn-primary.btn-block.dropdown-toggle{
+	border-radius: 0px;
+}
+
+button#addAtt.btn.btn-primary.btn-block.dropdown-toggle{
+	border-radius: 0px;
 }

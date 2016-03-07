@@ -65,7 +65,7 @@ jQuery("#saveForm").submit(function() {
 
         jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="loadCharacter?id='+obj.id+'" >' + obj.name + '</a></li>');
 
-        jQuery("#thumbnaillist").append("<img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />");
+        jQuery("#thumbnaillist").append("<a title="+ obj.name +" id="+ obj.id +"><img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' /></a>");
         if(id == ""){jQuery("#uuid").val(obj.id);}
 
       });
@@ -106,7 +106,7 @@ jQuery("#new-character").on("click", function() {
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
 
         jQuery('#character-list').append('<li id=' + obj.name + '><a href="loadCharacter?id="'+ obj.id+'>' + obj.name + '</a></li>');
-        jQuery("#thumbnaillist").append("<img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />");
+        jQuery("#thumbnaillist").append("<a title="+ obj.name +" id="+ obj.id +"><img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' /></a>");
 
         jQuery("#uuid").val(obj.id);
 
@@ -131,6 +131,10 @@ jQuery("#pop").on("click", function() {
 jQuery("#relationAddlist li").on("click", function() {
   jQuery("#relationship").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li><input type='hidden' name='relaAtt' id='relaAtt' value='"+jQuery(this).text()+"'/></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
+  jQuery(".del").on("click", function() {
+    jQuery(this).parent().parent().remove();
+  });
+
 
 });
 
@@ -139,10 +143,20 @@ jQuery("#relationAddlist li").on("click", function() {
 jQuery("#roleAddlist li").on("click", function() {
   jQuery("#role").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"<input type='hidden' name='roleAtt' value='"+ jQuery(this).text() +"'/></li></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
+  jQuery(".del").on("click", function() {
+    jQuery(this).parent().parent().remove();
+  });
+
+
 });
 
 jQuery("#attAddlist li").on("click", function() {
   jQuery("#att").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li><input type='hidden' name='attAtt' value='"+ jQuery(this).text() +"'/></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
+
+  jQuery(".del").on("click", function() {
+    jQuery(this).parent().parent().remove();
+  });
+
 
 
 });
@@ -150,13 +164,18 @@ jQuery("#attAddlist li").on("click", function() {
 jQuery("#sceneAddlist li").on("click", function() {
   jQuery("#scene").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li></td><input type='hidden' name='sceneAtt' value='"+ jQuery(this).text() +"'><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
-  //jQuery(".del").on("click", function() {
-  //    jQuery(this).parent().parent().remove();
-  //});
+  jQuery(".del").on("click", function() {
+    jQuery(this).parent().parent().remove();
+  });
+
+
 
 });
 
 jQuery(".del").on("click", function() {
   jQuery(this).parent().parent().remove();
 });
+
+
+
 
