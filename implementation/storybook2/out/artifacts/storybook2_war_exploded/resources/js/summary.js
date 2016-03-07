@@ -30,6 +30,7 @@ jQuery('#btnSummaryNameSave').click(function(){
 
 
 
+
     jQuery.ajax({
         method : "POST",
         url : 'AddSummarySection',
@@ -95,12 +96,13 @@ jQuery('.summary-section-button').on('click',function(){
         },
         success : function(responseText) {
             // var htmlText = jQuery.parseHTML(responseText);
-            htmlText = jQuery.parseHTML(responseText);
-            var myString = jQuery('<div/>').text(responseText).html();
-            alert(myString);
-
-            var htmlString = jQuery('<div/>').html(myString).text();
-            alert(htmlString)
+            alert(responseText);
+            //htmlText = jQuery.parseHTML(responseText);
+            //var myString = jQuery('<div/>').text(responseText).html();
+            //alert(myString);
+            //
+            //var htmlString = jQuery('<div/>').html(myString).text();
+            //alert(htmlString)
             //var finalText="";
             //jQuery.each( htmlText, function( k,v ) {
             //    alert("HTML+");
@@ -111,7 +113,7 @@ jQuery('.summary-section-button').on('click',function(){
             //    //finalText+=v.nodeName;
             //});
             // alert(finalText);
-            //jQuery('#summary-panel').highlight(finalText);
+            jQuery('#summary-panel').highlight(responseText);
 
 
             //jQuery('#summary-panel').html(responseText);

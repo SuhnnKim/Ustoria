@@ -60,6 +60,7 @@ public class SummaryController {
       MainSummary mainSummary = story.getSummary();
       List<Summary> summaryList = mainSummary.getSummaryList();
 
+      System.out.println(summaryContent);
 
       Summary newSummary = new Summary();
       newSummary.setName(summaryName);
@@ -97,7 +98,7 @@ public class SummaryController {
         story.setSummary(m);
 
         request.getSession().setAttribute("story",story);
-        return m.getFullSummary().replaceAll("\\n","<br>");
+        return m.getFullSummary();
     }
 
 
@@ -109,7 +110,8 @@ public class SummaryController {
         MainSummary m = story.getSummary();
         Summary summary = m.getSummaryByName(summaryText);
 
-        return summary.getContent().replaceAll("\\n","<br>");
+       // String[] ss = summary
+        return summary.getContent();
     }
 
 
