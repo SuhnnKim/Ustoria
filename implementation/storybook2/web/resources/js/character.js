@@ -63,7 +63,7 @@ jQuery("#saveForm").submit(function() {
 
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
 
-        jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="loadCharacter?id='+obj.id+'" >' + obj.name + '</a></li>');
+        jQuery('#character-list').append('<li id=' + obj.name + 'class="menu_item ng-scope" ng-repeat="subMenuItem in menuItem.children" on-menu-finish-render on-finish-render><a class="link" href="loadCharacter?id='+obj.id+'" >' + obj.name + '</a></li>');
 
         jQuery("#thumbnaillist").append("<a title="+ obj.name +" id="+ obj.id +"><img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' /></a>");
         if(id == ""){jQuery("#uuid").val(obj.id);}
@@ -105,7 +105,7 @@ jQuery("#new-character").on("click", function() {
 
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
 
-        jQuery('#character-list').append('<li id=' + obj.name + '><a href="loadCharacter?id="'+ obj.id+'>' + obj.name + '</a></li>');
+        jQuery('#character-list').append('<li id=' + obj.name + 'class="menu_item ng-scope" ng-repeat="subMenuItem in menuItem.children" on-menu-finish-render on-finish-render><a href="loadCharacter?id="'+ obj.id+'>' + obj.name + '</a></li>');
         jQuery("#thumbnaillist").append("<a title="+ obj.name +" id="+ obj.id +"><img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' /></a>");
 
         jQuery("#uuid").val(obj.id);

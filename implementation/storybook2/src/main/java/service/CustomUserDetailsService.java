@@ -48,7 +48,7 @@ public class CustomUserDetailsService implements UserDetailsService{
         //not null username, not null password, enable,
         //accountNonExpired, credentialsNonExpired, accountNonLocked, authorities
         //This is the authority user information, the username and password should be match
-        userDetails = new User("123@123.com","111",true,true,true,true,getAuthorities(1));
+        userDetails = new User("admin@admin.com","admin",true,true,true,true,getAuthorities(1));
 
         return userDetails;
     }
