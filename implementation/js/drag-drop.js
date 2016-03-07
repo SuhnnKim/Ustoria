@@ -1,7 +1,7 @@
 
 var makeMenuItemSortable = function(){
 	jQuery(".menu_item_list").sortable({
-	    
+	    // revert:"invalid",
 	    helper: function (e, li) {
 	        this.copyHelper = li.clone().insertAfter(li);
 
@@ -24,10 +24,6 @@ var makeMenuItemSortable = function(){
 	});
 }
 jQuery(function(){
-
-
-	// makeSceneDroppable();
-	// makeSceneTitleDraggable();
 
 	jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
 	jQuery('#timeline').width(jQuery('#content').width());
@@ -64,7 +60,7 @@ jQuery(function(){
 	
 	
 
-	makeMenuItemSortable();
+	// makeMenuItemSortable();
 
 	var removeIntent = false;
 	
@@ -98,6 +94,13 @@ jQuery(function(){
 	        mySlySlider.reload();
 	    },
 	});
+
+	jsPlumb.bind("click", function (conn, originalEvent) {
+        console.log('click invoked');
+        if (confirm("Delete connection between " + jQuery('#'+conn.sourceId+" a").text() + " and " + jQuery('#'+conn.targetId+" a").text() + "?")){
+          this.detach(conn);
+        }
+    });
 
 
 });

@@ -21,6 +21,7 @@
   height: 280px;
   width: 280px;
   z-index: -1;
+  margin-bottom:0;
 }
 
 #scene-panel>.panel{
@@ -33,6 +34,7 @@
   white-space:normal;
   border:none;
   padding: 10px;
+  box-shadow: none;
   /*position: absolute;*/
 }
 #scene-panel .scene {
