@@ -1,4 +1,3 @@
-
 (function(){
 
 	var app = angular.module('playground', [ ]);
@@ -10,7 +9,6 @@
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         makeSceneDroppable();
         makeSceneTitleDraggable();
-
     });
     
   });
@@ -76,9 +74,12 @@
 
   });
 
-  var sidebarAnimate = function(){
-    jQuery('#cssmenu li.active').addClass('open').children('ul').show();
+  var sidebarAnimate = function(){    
+    // in case click event repeated or mixed up with other click event
+    jQuery("#cssmenu li.has-sub>a").off("click");
+    // rebind the click event
     jQuery('#cssmenu li.has-sub>a').on('click', function(){
+
       jQuery(this).removeAttr('href');
       var element = jQuery(this).parent('li');
       if (element.hasClass('open')) {
@@ -99,29 +100,19 @@
   
 
   // callback function for np-repeat
+  // bind the ngRepeatFinished event with noFinishRender directive
   // reference from http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
   app.directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
-            if (scope.$last === true) {
+            if (scope.$last) {
                 $timeout(function () {
                     scope.$emit('ngRepeatFinished');
                 });
             }
         }
     }
-  });
-
-  app.directive('loadMenuItems', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-            element.bind('load', function() {
-                scope.$emit('$menuItemLoaded');
-            });
-        }
-    };
   });
 
 	app.controller('MainController', function($scope) {
@@ -134,24 +125,52 @@
     };
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        sidebarAnimate();
+      // bind the ngRepeatFinished event with following function
+      // make sure the new added item gets binded
+      sidebarAnimate();
+      makeMenuItemSortable();
     });
 
+
     $scope.menuItems = predefinedMenuItem;
-    $scope.menuItem = {};
     $scope.menuSubItems = [];
 
     $scope.addMenuItem = function(newMenuItem){
-      if(!(newMenuItem.name === undefined || newMenuItem.name === '')){
-        $scope.menuItems.push({
-          name: newMenuItem.name,
-          children: []
-        });
-        $scope.missingNewMenuItemError = "";
-        jQuery("#addCategoryModal").modal("hide");
-      }else{
-        $scope.missingNewMenuItemError = "Please enter a valid name.";
+      
+      if(newMenuItem.name === undefined || newMenuItem.name === ''){
+        $scope.missingNewMenuItemError = "Category needs a name";
+        return;
       }
+      $scope.menuItems.push({
+        name: newMenuItem.name,
+        children: $scope.menuSubItems
+      });
+      $scope.missingNewMenuItemError = "";
+      jQuery("#addCategoryModal").modal("hide");
+      newMenuItem.name = null;
+      $scope.menuSubItems = [];
+      
+      return;
+    };
+
+    $scope.addSubMenuItem = function(menuSubItem){
+      if(!(menuSubItem.name === undefined || menuSubItem.name === '')){
+        $scope.menuSubItems.push({
+          name: menuSubItem.name
+        });
+        menuSubItem.name = null;
+      }
+    };
+
+    $scope.removeSubMenuItem = function(subItem){
+      var index = $scope.menuSubItems.indexOf(subItem);
+      $scope.menuSubItems.splice(index, 1);
+    };
+
+    $scope.cancelCategoryModal = function(newMenuItem, newSubMenuItems){
+      newMenuItem = null;
+      $scope.menuSubItems = [];
+      jQuery("#addCategoryModal").modal("hide");
     };
 
   });
@@ -235,9 +254,6 @@ jQuery(window).resize(function () {
     'bottom': jQuery('#link-playground').height()*2.5,
 
   });
-  
-  
-
 });
 
 

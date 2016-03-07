@@ -52,31 +52,12 @@
 		</div>
 		<div class="inner">
 			<div id='cssmenu'>
-				<!-- <ul>
-				   	<li class='active' ><a href='index.html'>Home</a></li>
-				   	<li class='has-sub'>
-				   		<a href='#'>Characters</a>
-				      	<ul class="menu_item_list">
-				         	<li class="menu_item"><a href='#'>Diana</a></li>
-				         	<li class="menu_item"><a href='#'>Prannoy</a></li>
-				         	<li class="menu_item"><a href='#'>Zhipeng</a></li>
-				         	<li class="menu_item"><a href='#'>Wei</a></li>
-				         
-				      	</ul>
-				   	</li>
-				   	<li class='has-sub'>
-				   		<a href='#'>Locations</a>
-				      	<ul class="menu_item_list">
-				         	<li class="menu_item"><a href='#'>Humber College</a></li>
-				      	</ul>
-				   	</li>
-				   	<li><a href='#'>Summary</a></li>
-				</ul> -->
-				<ul load-menu-items>
-					<li ng-repeat="menuItem in menuItems" ng-class="menuItem.children.length!=0?'has-sub':''"  >
+				
+				<ul >
+					<li ng-repeat="menuItem in menuItems" ng-class="menuItem.children.length!=0?'has-sub':''"  on-menu-finish-render>
 						<a href="#">{{menuItem.name}}</a>
-						<ul ng-class="menuItem.children.length != 0?'menu_item_list':''">
-				         	<li class="menu_item" ng-repeat="subMenuItem in menuItem.children" >
+						<ul ng-class="menuItem.children.length != 0?'menu_item_list':''" >
+				         	<li class="menu_item" ng-repeat="subMenuItem in menuItem.children" on-menu-finish-render on-finish-render>
 				         		<a href='#'>{{subMenuItem.name}}</a>
 				         	</li>
 				      	</ul>
@@ -93,22 +74,39 @@
 				</a>
 			</div>
 
-			<div id="addCategoryModal" class="modal fade" role="dialog" >
-			  	<div class="modal-dialog">
+			<div id="addCategoryModal" class="modal fade" role="dialog" ng-init="newMenuItem=''">
+			  	<div class="modal-dialog ">
 				    <!-- Modal content-->
 				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        <h4 class="modal-title">Add a Category</h4>
-				      </div>
-				      <div class="modal-body">
-				        <input class="form-control" type="text" name="category_name" id="category_name" ng-model="newMenuItem.name" placeholder="Add new category name"/>
-				        <p>{{ missingNewMenuItemError }}</p>
-				      </div>
-				      <div class="modal-footer">
-				      	<button type="button" class="btn btn-default" id="create_ok" ng-click="addMenuItem(newMenuItem)">OK</button>
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				      </div>
+				      	<div class="modal-header">
+				        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+				        	<h4 class="modal-title">Add a Category</h4>
+				      	</div>
+				      	<div class="modal-body"  >
+							<div class="col-lg-12" style="padding: 0;">
+					        	<input class="form-control" type="text" name="category_name" id="category_name" ng-model="newMenuItem.name" placeholder="Add new category name"/>
+							</div>
+							<div id="subItemsGroup" class="clearfix col-lg-10 col-md-10 col-sm-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2" style="padding: 10px 10px 10px 10px ;">
+
+								<p ng-show="menuSubItems.length === 0">No sub-items yet.</p>
+
+								<ul style="padding-left: 0;">
+									<li ng-repeat="subItem in menuSubItems" style='list-style: none;'><img src="img/cross.png" alt="X" style="margin-right: 10px;cursor: pointer;"  ng-click="removeSubMenuItem(subItem)">{{subItem.name}}</li>
+								</ul>
+
+								<div class="col-lg-10 col-md-10 col-sm-10" style="padding: 0;">
+						        	<input class="form-control" type="text" ng-model="menuSubItem.name" placeholder="add sub-items">
+								</div>
+								<div class="col-lg-1 col-md-1 col-sm-1" style="padding: 0;">
+									<img src="img/plus.png" alt="+" style="cursor: pointer;" ng-click="addSubMenuItem(menuSubItem)" />
+								</div>
+							</div>
+				      	</div>
+				      	<div class="modal-footer" style="clear: both;">
+				      		<p class="pull-left">{{ missingNewMenuItemError }}</p>
+				      		<button class="btn btn-default" id="create_ok" ng-click="addMenuItem(newMenuItem)">OK</button>
+				        	<button class="btn btn-default" ng-click="cancelCategoryModal(newMenuItem, newSubMenuItems)">Close</button>
+				      	</div>
 				    </div>
 
 			  	</div>

@@ -53,12 +53,12 @@
 #show-sidebar {
 	position: absolute;
 	z-index: 10;
-  	border-radius: 0 10px 10px 0;
-  	height: 100px;
-  	line-height: 100px;
-  	background-color: #fff;
-  	text-align: center;
-	color: #666;
+	border-radius: 0 10px 10px 0;
+	height: 100px;
+	line-height: 100px;
+	background-color: #666;
+	text-align: center;
+	color: #fff;
 	width: 20px;
 }
 

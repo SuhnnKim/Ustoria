@@ -1,3 +1,28 @@
+
+var makeMenuItemSortable = function(){
+	jQuery(".menu_item_list").sortable({
+	    
+	    helper: function (e, li) {
+	        this.copyHelper = li.clone().insertAfter(li);
+
+	        jQuery(this).data('copied', false);
+
+	        return li.clone();
+	    },
+	    
+	    stop: function () {
+
+	        var copied = jQuery(this).data('copied');
+	        
+	        if (!copied) {
+	            this.copyHelper.remove();
+	        }
+	        
+	        this.copyHelper = null;
+	    }
+    
+	});
+}
 jQuery(function(){
 
 
@@ -38,30 +63,8 @@ jQuery(function(){
 	}());
 	
 	
-	jQuery(".menu_item_list").sortable({
-	    
-	    helper: function (e, li) {
-	        this.copyHelper = li.clone().insertAfter(li);
 
-	        jQuery(this).data('copied', false);
-
-	        return li.clone();
-	    },
-	    
-	    stop: function () {
-
-	        var copied = jQuery(this).data('copied');
-	        
-	        if (!copied) {
-	            this.copyHelper.remove();
-	        }
-	        
-	        this.copyHelper = null;
-	    }
-	    
-	});
-
-
+	makeMenuItemSortable();
 
 	var removeIntent = false;
 	
