@@ -119,3 +119,11 @@ body{
 	position: absolute;
 	right: 0;
 }
+#subItemsGroup{
+	border-radius: 0 0 10px 10px;
+	border-width: 0 2px 2px 2px;
+	border-style: dashed;
+	border-color: grey;
+	margin-bottom: 20px;
+
+}
