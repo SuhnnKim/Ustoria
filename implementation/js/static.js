@@ -67,9 +67,12 @@ var hollowSquare = {
 
 
 var num = 0;
-var confirmed = false;
+// var confirmed = false;
+
+
 
 var makeSceneDroppable = function(){
+  console.log('makeSceneDroppable invoked');
   jQuery( ".panel-body" ).droppable({
     accept: ".menu_item",
     tolerance: 'fit',
@@ -82,6 +85,8 @@ var makeSceneDroppable = function(){
       // alert("ddd");
     },
     drop: function(event, ui) {
+      console.log('drop  invoked');
+
       num = num + 1;
 
       var cloned = jQuery(ui.draggable).clone();
@@ -93,35 +98,15 @@ var makeSceneDroppable = function(){
 
       item_copied.removeClass("menu_item");
 
-      
 
       jsPlumb.setContainer(jQuery(".panel-body"));
 
       jsPlumb.addEndpoint(id, { anchors: "RightMiddle" }, hollowSquare);
       jsPlumb.addEndpoint(id, { anchors: "LeftMiddle" }, hollowSquare);
-      // jsPlumb.addEndpoint(id, { anchors: "TopCenter" }, hollowCircle);
-      // jsPlumb.addEndpoint(id, { anchors: "BottomCenter" }, hollowCircle);
-
-      // jsPlumb.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
-      // init = function (connection) {
-      //       connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
-      //   };
-      // jsPlumb.bind("connection", function (connInfo, originalEvent) {
-      //       init(connInfo.connection);
-      //   });
-
-      jsPlumb.bind("click", function (conn, originalEvent) {
-        
-        if (!confirmed && confirm("Delete connection between " + conn.sourceId + " and " + conn.targetId + "?")){
-          this.detach(conn);
-        }
-        confirmed = true;
-        
-      });
 
       jQuery(id).draggable({
           // containment: "parent",
-          // containment: "parent",
+          containment: "parent",
           start: function () {
               // startMove();
           },
@@ -146,7 +131,7 @@ var makeSceneDroppable = function(){
 
 var makeSceneTitleDraggable = function(){
   jQuery('.scene>.scene-title').draggable({
-    containment: "#content",
+    containment: "#play_wrap",
     connectToSortable: "#timeline",
     helper:function(){
       return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());

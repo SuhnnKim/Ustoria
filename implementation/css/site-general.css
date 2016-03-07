@@ -8,6 +8,9 @@ body{
 	border:none;
 	border-radius: 0;
 }
+#navbar_playground{
+	height: 53px;
+}
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
 	color:white;
 }

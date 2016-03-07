@@ -4,13 +4,20 @@
 
 	app.controller('scenePanelController', function($scope){
 
-  	this.scenes = scenes_collection;
+    $scope.id_counter = 2;
+
+  	$scope.scenes = scenes_collection;
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         makeSceneDroppable();
         makeSceneTitleDraggable();
     });
-    
+
+    $scope.removeScene = function(scene){
+      var index = $scope.scenes.indexOf(scene);
+      $scope.scenes.splice(index, 1);
+    };
+
   });
 
   app.controller('TimeLineController', function($scope){
@@ -36,39 +43,21 @@
 
     var id_counter = 2;
 
-    $scope.error_message = "Please type in your new scene's title.";
-
-    $scope.scene = {};
-
     $scope.addNew = function($title) {
 
-      if(!($title === undefined || $title === "")){
-        $scope.scene = {title:$title,id:"scene"+id_counter};
-      
-        scenes_collection.push($scope.scene);
-
-        jQuery("#new_scene_title").val('');
-
-        jQuery("#myModal").modal("hide");
-
-        // alert("ff");
-
-        id_counter ++;
-
-        $scope.scene = {};
-
-        $scope.title = "";
-
-
-      }else{
-
+      if($title === ""){
+        $scope.error_message = "Please type in your new scene's title.";
         jQuery("#new_scene_title").focus();
-
-        $scope.title = "";
-
+        return;
       }
 
-      $scope.scene_title = "";
+      scenes_collection.push({title:$title,id:"scene"+id_counter});
+
+      jQuery("#myModal").modal("hide");
+
+      id_counter ++;
+
+      $scope.title = '';
 
     }
 
@@ -183,10 +172,6 @@
       children: [{name: "Diana"},{name: "Prannoy"}]
     },
     {
-      name: "Location",
-      children: []
-    },
-    {
       name: "Summary",
       children: []
     }
@@ -212,28 +197,38 @@
 })();
 
 
-var width2 = jQuery(window).width() * 0.2;
-var width8 = jQuery(window).width() * 0.8;
-var width15 = jQuery(window).width() * 0.15;
-
-
-
 jQuery(window).resize(function () {
-  jQuery('html').css('height', jQuery(window).height());
-  jQuery('body').css('height', jQuery(window).height());
+  // jQuery('html').css('height', jQuery(window).height());
+  // jQuery('body').css('height', jQuery(window).height());
 
-  jQuery('#content').css('height', jQuery(window).height());
-
-  
-
-
-
-  // jQuery('#sidebar').css('height', jQuery(window).height()-170);
-
-  // jQuery('#sidebar').css('width', width2);
+  // setting #sidebar's width
+  jQuery('#sidebar').css('width', 150);
+  // setting #content's width
+  jQuery('#content').css('width', jQuery(window).width() - jQuery('#sidebar').width());
+  // setting #content's height
+  jQuery('#content').css('height', jQuery(window).height() - jQuery('#navbar_playgrond').height());
 
   jQuery('#content').css('margin-left', jQuery('#sidebar').width());
-  jQuery('#content').css('width', jQuery(window).width()-150);
+
+  jQuery('#play_wrap').css('height', (jQuery('#content').height()-50));
+
+  jQuery('#play_wrap').css('border-bottom', 'solid 1px black');
+
+  jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6);
+
+  jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
+
+  jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
+
+  // jQuery('.frame').css('height', 50);
+  // jQuery('.frame ul li').css('line-height', jQuery('.frame').height());
+
+
+
+
+
+
+
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
@@ -248,6 +243,7 @@ jQuery(window).resize(function () {
     'bottom': 0,
     'left':0,
     'width': jQuery('#sidebar').width(),
+
   });
   jQuery('#link-add-category').css({
 
@@ -260,14 +256,14 @@ jQuery(window).resize(function () {
 
 
 jQuery(function(){ 
-  jQuery(window).resize();
-  jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
-  jQuery('#timeline_panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
 
+  jQuery(window).resize();
+  
   jQuery('#hide-sidebar').click(function(event) {
     jQuery('#content').css('width', jQuery(window).width());
     jQuery('#content').css('margin-left', 0);
   });
+
   jQuery('#show-sidebar').click(function(event) {
     jQuery(window).resize();
   });

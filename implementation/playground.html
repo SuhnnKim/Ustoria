@@ -21,7 +21,7 @@
 
 <body ng-app="playground" ng-controller="MainController" ng-cloak>
 
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default" id="navbar_playground">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <img src="img/logo_2_1.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
@@ -103,8 +103,8 @@
 							</div>
 				      	</div>
 				      	<div class="modal-footer" style="clear: both;">
-				      		<p class="pull-left">{{ missingNewMenuItemError }}</p>
-				      		<button class="btn btn-default" id="create_ok" ng-click="addMenuItem(newMenuItem)">OK</button>
+				      		<p style="color:red;" class="pull-left">{{ missingNewMenuItemError }}</p>
+				      		<button class="btn btn-default" ng-click="addMenuItem(newMenuItem)">OK</button>
 				        	<button class="btn btn-default" ng-click="cancelCategoryModal(newMenuItem, newSubMenuItems)">Close</button>
 				      	</div>
 				    </div>
@@ -118,7 +118,7 @@
 		</div>
 	</div>
 
-	<div id="myModal" class="modal fade" role="dialog"  ng-controller="addSceneController" ng-init="addSceneController.id_counter = 2" >
+	<div id="myModal" class="modal fade" role="dialog"  ng-controller="addSceneController" ng-init="addSceneController.id_counter = 2; title=''" >
 	  <div class="modal-dialog">
 
 	    <!-- Modal content-->
@@ -128,11 +128,12 @@
 	        <h4 class="modal-title">Create a scene</h4>
 	      </div>
 	      <div class="modal-body">
-	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title"/>
-	        <p ng-show="title == ''">{{ error_message }}</p>
+	        <input class="form-control" type="text" name="scene_title" id="new_scene_title" ng-model="title" placeholder="Title" />
+	        
 	      </div>
 	      <div class="modal-footer">
-	      	<button type="button" class="btn btn-default" id="create_ok" ng-click="addNew(title)">OK</button>
+	      	<p class="pull-left" ng-show="title == ''">{{ error_message }}</p>
+	      	<button type="button" class="btn btn-default" ng-click="addNew(title)">OK</button>
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      </div>
 	    </div>
@@ -141,52 +142,75 @@
 	</div>
 
 	<div class="" id="content" expandable ng-controller="scenePanelController as scenePanel">
+
+		<div id="myEditScenesModal" class="modal fade" role="dialog" ng-init="addSceneController.id_counter = 2; title=''" >
+	  		<div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		        		<h4 class="modal-title">Delete Scenes</h4>
+		      		</div>
+		      		<div class="modal-body" style="max-height: 350px; overflow-y: auto;">
+		        		<ul>
+		        			<li style="list-style: none;" ng-repeat="scene in scenes">
+		        				<img src="img/cross.png" alt="X" style="margin-right: 10px;cursor: pointer;"  ng-click="removeScene(scene)">{{scene.title}}
+		        			</li>
+		        		</ul>
+		        		
+		      		</div>
+		      		<div class="modal-footer">
+		      		</div>
+		    	</div>
+
+		  	</div>
+		</div>
+
 		<div id="control-panel">
 			<a class="ctrl-btn pull-left" id="new-scene" href="#" data-toggle="modal" data-target="#myModal">Create a new scene</a>
-
-			<!-- <a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
-			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a> -->
+			<a class="ctrl-btn pull-left" href="#" data-toggle="modal" data-target="#myEditScenesModal">Delete Scenes</a>
+			<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
+			<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
 			<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 		</div>
-		<div id="scene-panel" >
-			<!-- loop scenes -->
-				<div  style="float: none;"ng-repeat="scene in scenePanel.scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
-		            <div class="panel-heading scene-title">
-		              {{ scene.title }}
-		            </div>
-		            <ul class="panel-body">
-		              <!-- <div class="member" id="member-left" style="top: 100px; position: absolute; margin-right: 10px;  width: 50px;height: 50px;background-color: white;"></div>
-		              <div class="member" id="member-right" style="position: absolute; margin-right: 10px;float: left; width: 50px;height: 50px;background-color: white;"></div> -->
-		            </ul>
-		        </div>
-		</div>
-
-
-
-		<div id="timeline_panel" class="wrap" ng-controller="TimeLineController">
-
-			<div id="timeline_show" class="toggle_timeline toggle_btn" ng-show="timeline.hidden" ng-click="timeline.toggle()">
-				<span class="glyphicon glyphicon-menu-up"></span>
-			</div>
-			
-			<div id="timeline_hide" class="toggle_timeline toggle_btn" ng-show="!timeline.hidden" ng-click="timeline.toggle()">
-				<span class="glyphicon glyphicon-menu-down"></span>
+		<div id="play_wrap" style="width: inherit;height: inherit;">
+			<div id="scene-panel" >
+				<!-- loop scenes -->
+					<div  style="float: none;"ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
+			            <div class="panel-heading scene-title">
+			              {{ scene.title }}
+			            </div>
+			            <ul class="panel-body">
+			            </ul>
+			        </div>
 			</div>
 
-			<div id="timeline_wrapper">
-				<div class="scrollbar">
-					<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
-						<div class="mousearea"></div>
-					</div>
+			<div id="timeline_panel" class="wrap" ng-controller="TimeLineController">
+
+				<div id="timeline_show" class="toggle_timeline toggle_btn" ng-show="timeline.hidden" ng-click="timeline.toggle()">
+					<span class="glyphicon glyphicon-menu-up"></span>
+				</div>
+				
+				<div id="timeline_hide" class="toggle_timeline toggle_btn" ng-show="!timeline.hidden" ng-click="timeline.toggle()">
+					<span class="glyphicon glyphicon-menu-down"></span>
 				</div>
 
-				
+				<div id="timeline_wrapper">
+					<div class="scrollbar">
+						<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
+							<div class="mousearea"></div>
+						</div>
+					</div>
 
-				<div class="frame" id="timeline_wrap" style="overflow: hidden;">
-					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
-						<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-						<li>10</li><li>11</li><li>12</li><li>13</li>
-					</ul>
+					
+
+					<div class="frame" id="timeline_wrap" style="overflow: hidden;">
+						<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
+							<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+							<li>10</li><li>11</li><li>12</li><li>13</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
