@@ -96,13 +96,20 @@ jQuery('.summary-section-button').on('click',function(){
         success : function(responseText) {
             // var htmlText = jQuery.parseHTML(responseText);
             htmlText = jQuery.parseHTML(responseText);
-            //alert(typeof htmlText);
-            var finalText="";
-            jQuery.each( htmlText, function( k,v ) {
-                alert("Key "+k);
-                alert("Value "+ v.nodeValue);
-                //finalText+=v.nodeName;
-            });
+            var myString = jQuery('<div/>').text(responseText).html();
+            alert(myString);
+
+            var htmlString = jQuery('<div/>').html(myString).text();
+            alert(htmlString)
+            //var finalText="";
+            //jQuery.each( htmlText, function( k,v ) {
+            //    alert("HTML+");
+            //    alert("Key "+ k +" Value "+ v.nodeValue);
+            //
+            //    alert("Key Name "+ k.nodeName+ " Value "+v.nodeName);
+            //
+            //    //finalText+=v.nodeName;
+            //});
             // alert(finalText);
             //jQuery('#summary-panel').highlight(finalText);
 

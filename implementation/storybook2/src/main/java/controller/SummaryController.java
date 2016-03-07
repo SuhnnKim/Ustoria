@@ -112,6 +112,8 @@ public class SummaryController {
         return summary.getContent().replaceAll("\\n","<br>");
     }
 
+
+    /* Create or set session object */
     public Story getStoryFromSession(HttpServletRequest request){
 
         HttpSession session = request.getSession();
