@@ -65,7 +65,7 @@ jQuery("#saveForm").submit(function() {
 
         jQuery('#character-list').append('<li id=' + obj.name + '><a class="link" href="loadCharacter?id='+obj.id+'" >' + obj.name + '</a></li>');
 
-        jQuery("#thumbnaillist").append("<img src='' alt=''character1' class='img-thumbnail' width='80' height='80' />");
+        jQuery("#thumbnaillist").append("<img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />");
         if(id == ""){jQuery("#uuid").val(obj.id);}
 
       });
@@ -106,7 +106,7 @@ jQuery("#new-character").on("click", function() {
       jQuery.each(JSON.parse(responseText), function (idx, obj) {
 
         jQuery('#character-list').append('<li id=' + obj.name + '><a href="loadCharacter?id="'+ obj.id+'>' + obj.name + '</a></li>');
-        jQuery("#thumbnaillist").append("<img src='' alt=''character1' class='img-thumbnail' width='80' height='80' />");
+        jQuery("#thumbnaillist").append("<img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />");
 
         jQuery("#uuid").val(obj.id);
 
@@ -134,9 +134,7 @@ jQuery("#relationAddlist li").on("click", function() {
 
 });
 
-jQuery(".del").on("click", function() {
-  jQuery(this).parent().parent().remove();
-});
+
 
 jQuery("#roleAddlist li").on("click", function() {
   jQuery("#role").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"<input type='hidden' name='roleAtt' value='"+ jQuery(this).text() +"'/></li></td><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
@@ -152,9 +150,12 @@ jQuery("#attAddlist li").on("click", function() {
 jQuery("#sceneAddlist li").on("click", function() {
   jQuery("#scene").append("<tr><td><li class='list-group-item'>"+jQuery(this).text()+"</li></td><input type='hidden' name='sceneAtt' value='"+ jQuery(this).text() +"'><td><img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' /></td></tr>");
 
-  //jQuery(".del").on("click", function() {
-  //    jQuery(this).parent().parent().remove();
-  //});
 
 });
+
+jQuery(".del").on("click", function() {
+  jQuery(this).parent().parent().remove();
+});
+
+
 

@@ -43,7 +43,7 @@
 	float: left;
 }
 
-#character-panel>#character-list{
+#character-panel>#thumbnaillist{
 		/*width: 230px;*/
 		width: 10%;
 		float: right;
@@ -52,7 +52,7 @@
 		height: 480px;
 }
 
-#character-panel>#character-list>img{
+#character-panel>#thumbnaillist>img{
 	margin: 10px;
 	padding: 0px;
 	width: 80px;

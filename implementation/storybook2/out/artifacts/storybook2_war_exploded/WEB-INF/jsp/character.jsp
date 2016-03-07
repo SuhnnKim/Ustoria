@@ -24,7 +24,7 @@
 			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
 			<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
 			<input type="hidden" id="uuid" value="${loadCharacter.id}"/>
-			<input type="submit" class="ctrl-btn pull-right" onclick="save()" id="save" name="save" value="Save"/>
+			<input type="submit" class="ctrl-btn pull-right" id="save" name="save" value="Save"/>
 		</div>
 		<div id="character-panel">
 			<div id="character-form">
