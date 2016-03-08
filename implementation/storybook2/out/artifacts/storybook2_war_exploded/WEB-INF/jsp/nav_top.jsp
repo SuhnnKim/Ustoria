@@ -5,13 +5,15 @@
   Time: 10:54 AM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
         </div>
 
-        <h2></h2>
+        <h2 id="Project Title">${projectTitle}</h2>
         <!-- <a href="#">My Projects</a> -->
         <ul class="nav navbar-nav navbar-right">
 

@@ -37,7 +37,7 @@ import java.util.*;
 public class UserController {
 
 
-    @RequestMapping("login")
+    //@RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
 
 
@@ -45,7 +45,7 @@ public class UserController {
 
     }
 
-    @RequestMapping("/signup.form")
+   // @RequestMapping("/signup.form")
     public String SignUp(HttpServletRequest req, Model model){
 
 
@@ -66,16 +66,29 @@ public class UserController {
 
 
     @RequestMapping("/playground.form")
-    public String Playground(HttpServletRequest req, Model model){
+    public ModelAndView Playground(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
 
-        Story story = (Story)req.getSession().getAttribute("story");
-        model.addAttribute("characterList",story.getCharacterList());
-        MainSummary m = story.getSummary();
-        model.addAttribute("summaryList",m.getSummaryList());
+//        model.addAttribute("characterList",story.getCharacterList());
+      //  MainSummary m = story.getSummary();
+       // model.addAttribute("summaryList",m.getSummaryList());
 
-        return "playground";
+        Story story = getStoryFromSession(req);
+        MainSummary mainSummary = new MainSummary();
+        mainSummary = story.getSummary();
+        //req.setAttribute("summaryList",m.getSummaryList());
+
+        ModelAndView m = new ModelAndView("playground");
+
+
+        req.setAttribute("characterList",story.getCharacterList());
+        req.setAttribute("projectTitle",story.getName());
+        //req.setAttribute("character", );
+
+        req.setAttribute("summaryList",mainSummary.getSummaryList());
+
+        return m;
     }
 
     @RequestMapping("home")
@@ -87,7 +100,19 @@ public class UserController {
         return "home";
     }
 
+    public Story getStoryFromSession(HttpServletRequest request){
 
+        HttpSession session = request.getSession();
+
+        Story story = new Story();
+        if (session.getAttribute("story")== null){
+            session.setAttribute("story", new Story());
+        }
+        else {
+            story = (Story) request.getSession().getAttribute("story");
+        }
+        return story;
+    }
 
 
 

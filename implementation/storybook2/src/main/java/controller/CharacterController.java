@@ -36,8 +36,9 @@ public class CharacterController {
 
         MainSummary m = story.getSummary();
         req.setAttribute("summaryList",m.getSummaryList());
+        req.setAttribute("projectTitle",story.getName());
 
-        String t = "<img src='/storybook/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />";
+        String t = "<img src='/Ustoria/resources/img/default-character-image.png' alt='character1' class='img-thumbnail' width='80' height='80' />";
 
         for (int i =0;i<story.getCharacterList().size();i++){
             t += t;

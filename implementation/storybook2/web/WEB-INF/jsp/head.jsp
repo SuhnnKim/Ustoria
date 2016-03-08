@@ -20,3 +20,5 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/character-panel.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summary.css">
 
+
+

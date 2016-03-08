@@ -20,7 +20,7 @@
 	<form id="saveForm" method="post">
 	<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
 		<div id="control-panel">
-			<a class="ctrl-btn pull-left" id="new-character" href="#">Create a new character</a>
+			<a class="ctrl-btn pull-left" id="new-character" href="#">New character</a>
 			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
 			<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
 			<input type="hidden" id="uuid" value="${loadCharacter.id}"/>

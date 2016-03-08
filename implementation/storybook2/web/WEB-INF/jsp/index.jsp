@@ -10,20 +10,36 @@
 		table { border-collapse:separate; border-spacing: 2px; }
 		/*.row-gap:before{content: " ";min-height: 20px;}*/
 		.plus-gap{margin-bottom: 20px;}
-		.big-logo{
-			background-image: url('${pageContext.request.contextPath}/resources/img/writing-logo.png');
-			height: 300px;
-			background-size: contain; 
-			background-repeat: no-repeat;
+		#brand-logo img{
+			height:300px;
+
 		}
+		#brand-name{
+			color:#337ab7;
+			font-size:54px;
+		}
+		#brand-wrapper{
+			float: left;
+			position: absolute;
+			right: 24%;
+			top: 28%;
+		}
+		<%--.big-logo{--%>
+			<%--background-image: url('${pageContext.request.contextPath}/resources/img/main_logo.png');--%>
+			<%--height: 300px;--%>
+			<%--background-size: contain; --%>
+			<%--background-repeat: no-repeat;--%>
+		<%--}--%>
 	</style>
 </head>
 <body>
 <nav class="navbar navbar-default">
   <div class="container">
 	  <form action="j_spring_security_check" method="post">
-		<div class="navbar-header col-lg-3">
-		  <img src="${pageContext.request.contextPath}/resources/img/logo_1.png" alt="Ustoria" height="100"/>
+		<div class="navbar-header col-lg-5">
+			<div class="col-md-6"><img src="${pageContext.request.contextPath}/resources/img/small-logo.png" height="100" alt="Logo"/></div>
+			<div id="brand-wrapper" class="col-md-6"><p id="brand-name">Ustoria</p></div>
+
 		</div>
     
 		<table class="nav navbar-nav navbar-right col-lg-5" >
@@ -49,7 +65,9 @@
 
 
 <div class="container">
-	<div class="col-lg-6 big-logo"></div>
+	<div class="col-lg-6 big-logo" id="brand-logo">
+		<img src="${pageContext.request.contextPath}/resources/img/writing-logo.png" title="logo" />
+	</div>
 	<div class="col-lg-6">
 		<form action="signup.form">
 			<h1>Sign Up</h1>

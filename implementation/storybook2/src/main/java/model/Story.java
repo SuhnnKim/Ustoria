@@ -43,6 +43,7 @@ public class Story {
         globalVariables = new HashMap();
         //attributeDefinitions = new ArrayList();
         summary = new MainSummary();
+
         //relationshipDefinitions = new ArrayList();
         //sceneList = new LinkedList();
         //rolesList = new ArrayList();

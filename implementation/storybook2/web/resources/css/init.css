@@ -14,3 +14,22 @@ padding:2%;
 #header-wrapper button{
 border-radius:0px;
 }
+
+.has-sub.open > a{
+	background: #e14b3b !important;
+}
+
+#control-panel a , #save , #saveText{
+	border-radius:15px !important;
+	border:none;
+	text-transform: uppercase;
+
+}
+
+#control-panel a:hover ,#save,#saveText{
+	color:white !important;
+	background:#e14b3b !important ;
+
+	transition: all 400ms ease-out;
+
+}

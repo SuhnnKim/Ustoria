@@ -96,7 +96,7 @@ jQuery('.summary-section-button').on('click',function(){
         },
         success : function(responseText) {
             // var htmlText = jQuery.parseHTML(responseText);
-            alert(responseText);
+           // alert(responseText);
             //htmlText = jQuery.parseHTML(responseText);
             //var myString = jQuery('<div/>').text(responseText).html();
             //alert(myString);

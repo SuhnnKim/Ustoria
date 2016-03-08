@@ -56,7 +56,7 @@
             </ul>
         </div>
         <div><a id="link-add-category" href="#"><span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span><span id="add-category-text">Add Category</span></a></div>
-        <div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>
+        <%--<div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>--%>
 
     </div>
 </div>

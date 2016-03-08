@@ -6,10 +6,7 @@ import com.google.gson.Gson;
 import model.Character;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +22,7 @@ public class SummaryController {
 
    // List<Summary> summaryList = new ArrayList();
 
-    @RequestMapping(value={"/summary.form","/summary.jsp","/summary"} , method=RequestMethod.GET)
+    @RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
     public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
 
         String email = (String)req.getSession().getAttribute("email");
@@ -33,6 +30,8 @@ public class SummaryController {
 
 
         Story story = getStoryFromSession(req);
+
+        //story.s(projectName);
         MainSummary mainSummary = new MainSummary();
         mainSummary = story.getSummary();
         //req.setAttribute("summaryList",m.getSummaryList());
@@ -41,6 +40,7 @@ public class SummaryController {
 
 
         req.setAttribute("characterList",story.getCharacterList());
+        req.setAttribute("projectTitle",story.getName());
         //req.setAttribute("character", );
 
         req.setAttribute("summaryList",mainSummary.getSummaryList());
@@ -112,6 +112,20 @@ public class SummaryController {
 
        // String[] ss = summary
         return summary.getContent();
+    }
+
+    @RequestMapping(value="/CreateStory",method=RequestMethod.POST)
+    public @ResponseBody String createStory(HttpServletRequest request,@RequestParam(value = "projectName") String projectName,@RequestParam(value = "projectDesc") String projectDesc){
+
+        Story story = getStoryFromSession(request);
+
+        MainSummary m = story.getSummary();
+        story.setTitle(projectDesc);
+        story.setName(projectName);
+       //Summary summary = m.getSummaryByName(summaryText);
+        request.getSession().setAttribute("story",story);
+        // String[] ss = summary
+        return "StoryCreated";
     }
 
 

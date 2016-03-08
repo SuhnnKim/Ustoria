@@ -4,6 +4,12 @@
 <head>
 	<title>Home</title>
     <jsp:include page="head.jsp" />
+    <style>
+        #brand-name{
+            color:white;
+
+        }
+    </style>
 </head>
 
 <body style="background-color: white;">
@@ -12,7 +18,8 @@
   <nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">Ustoria</a>
+            <h2 id="brand-name">Ustoria</h2>
+            <%--<img src="${pageContext.request.contextPath}/resources/img/logo_2.png" alt="Home"/>--%>
 	    </div>
 		<!-- <a href="#">My Projects</a> -->
 	    <ul class="nav navbar-nav navbar-right">
@@ -48,7 +55,7 @@
 <div class="row" id="content-wrapper" style="margin:0;">
 <table id="storyList" class="table table-bordered">
  <tr>
- 	<th id="check-all"><input type="checkbox"></th>
+ 	<th id="check-all"></th>
  	<th>Project Name</th>
  	<th>Description</th>
  	<th>Last Modified</th>
@@ -93,13 +100,46 @@
 
 <script type="text/javascript">
     jQuery("#btnProjectCreate").on("click", function() {
-        jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-                "<td><a href='summary' style='color:black;'>"+jQuery("#projectName").val()+"</a></td>" +
-                "<td>"+jQuery("#description").val()+"</td>" +
-                "<td>Time</td>" +
-                "</tr>");
 
-        jQuery('#myModal').modal('hide');
+//        var d = new Date();
+//
+//        var finalDate = (d.getDate())+"-"+(d.getMonth() + 1)+"-"+(d.getFullYear());
+//        var projectName = jQuery("#projectName").val();
+//        var title="/Ustoria/summary/"+projectName;
+//        jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
+//                "<td><a href='#' id='projectLink' style='color:black;'>"+projectName+"</a></td>" +
+//                "<td>"+jQuery("#description").val()+"</td>" +
+//                "<td>"+finalDate+"</td>" +
+//                "</tr>");
+
+
+
+
+                jQuery.ajax({
+                    type: 'POST',
+                    url: 'CreateStory',
+                    data: {
+                        projectName: jQuery('#projectName').val(),
+                        projectDesc: jQuery('#description').val()
+                    },
+                    success: function (responseText) {
+                        var d = new Date();
+
+                        var finalDate = (d.getDate())+"-"+(d.getMonth() + 1)+"-"+(d.getFullYear());
+                        jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
+                "<td><a href='summary'  style='color:black;'>"+jQuery('#projectName').val()+"</a></td>" +
+                "<td>"+jQuery('#description').val()+"</td>" +
+                "<td>"+finalDate+"</td>" +
+                "</tr>");
+                        jQuery('#myModal').modal('hide');
+
+
+                        //$('#ajaxGetUserServletResponse').text(responseText);
+                    }
+                });
+
+
+       // jQuery('#myModal').modal('hide');
 
     });
 
