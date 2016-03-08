@@ -6,15 +6,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<style>
+    #ProjectTitle{
+        text-align: center;
+    }
+
+</style>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="navbar-header">
+         <div class="navbar-header col-xs-6 col-md-4" >
             <img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
         </div>
-
-        <h2 id="Project Title">${projectTitle}</h2>
+       <div class="col-xs-6 col-md-4">
+        <h3 id="ProjectTitle">${projectTitle}</h3>
+       </div>
         <!-- <a href="#">My Projects</a> -->
+        <div class="col-xs-6 col-md-4">
         <ul class="nav navbar-nav navbar-right">
 
             <li class="dropdown">
@@ -29,5 +37,6 @@
 
         </ul>
         <form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>
-    </div>
+       </div>
+        </div>
 </nav>

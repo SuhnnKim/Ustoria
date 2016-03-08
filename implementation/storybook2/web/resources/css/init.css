@@ -33,3 +33,7 @@ border-radius:0px;
 	transition: all 400ms ease-out;
 
 }
+
+#ProjectTitle{
+	text-align: center;
+}
