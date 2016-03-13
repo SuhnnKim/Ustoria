@@ -150,6 +150,11 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+
+}
+.open > a{
+    background-color: #e14b3b !important;
+    color: white !important;
 }
 #cssmenu ul ul li a {
   padding: 14px 22px;

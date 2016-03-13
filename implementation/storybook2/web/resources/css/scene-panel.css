@@ -2,7 +2,7 @@
 	width: inherit;
 	background-color: #fff;
   overflow-x:auto;
-  overflow-y:none;
+  overflow-y:auto;
 
 }
 
@@ -45,4 +45,14 @@
   cursor: grab;
   cursor: -moz-grab;
   cursor: -webkit-grab;
+}
+.scene-panel div{
+  float: none;
+}
+#myEditScenesModal div div .modal-body{
+  max-height: 350px;
+  overflow-y: auto;
+}
+#myEditScenesModal div div .modal-body ul li{
+  list-style: none;
 }

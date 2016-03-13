@@ -82,7 +82,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/vendor/jquery.ui.widget.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
@@ -119,13 +118,9 @@
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dragula.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/js/ga.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/horizontal.js"></script>
 </body>
 </html>

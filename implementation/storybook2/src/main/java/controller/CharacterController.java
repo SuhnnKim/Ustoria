@@ -240,7 +240,7 @@ public class CharacterController {
         return jsonString;
     }
 
-    @RequestMapping("loadCharacter*")
+    @RequestMapping("loadCharacter")
     public String loadCharacter(HttpServletRequest req, Model model){
 
         String id = req.getParameter("id");

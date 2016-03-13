@@ -15,9 +15,7 @@ padding:2%;
 border-radius:0px;
 }
 
-.has-sub.open > a{
-	background: #e14b3b !important;
-}
+
 
 #control-panel a , #save , #saveText{
 	border-radius:15px !important;

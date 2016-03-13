@@ -1,4 +1,4 @@
-
+// make menu item sortable and draggable
 var makeMenuItemSortable = function(){
 	jQuery(".menu_item_list").sortable({
 	    // revert:"invalid",
@@ -25,9 +25,12 @@ var makeMenuItemSortable = function(){
 }
 jQuery(function(){
 
+	// initialize the width of #content and #timeline
 	jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
 	jQuery('#timeline').width(jQuery('#content').width());
 
+
+	// timeline scrolling animation
 	var mySlySlider;
 
 	// initialize the timeline scroll animation ( from sly library)
@@ -57,37 +60,29 @@ jQuery(function(){
 			clickBar: 1,
         }).init();
 	}());
-	
-	
 
-	// makeMenuItemSortable();
 
 	var removeIntent = false;
 	
 
+	// make timeline sortable
 	jQuery("#timeline").sortable({
 		opacity: 0.5,
-		// items: "> li",
+
 	    over: function (event, ui) {
-	    	// ui.helper.width(100); 
+
             removeIntent = false;
         },
         out: function () {
-
             removeIntent = true;
-
-            
         },
         beforeStop: function (event, ui) {
-        	
+        	// remove the item dragged out of timeline
             if(removeIntent == true){
                 ui.item.remove();  
                 // reload the timeline slider since item was removed
                 mySlySlider.reload();
             }
-        },
-        stop:function(event, ui){
-        	
         },
         update: function (event, ui) {
         	// reload the timeline slider since item was added
@@ -95,12 +90,26 @@ jQuery(function(){
 	    },
 	});
 
+	// delete the connector of items inside of scenes
 	jsPlumb.bind("click", function (conn, originalEvent) {
-        console.log('click invoked');
         if (confirm("Delete connection between " + jQuery('#'+conn.sourceId+" a").text() + " and " + jQuery('#'+conn.targetId+" a").text() + "?")){
-          this.detach(conn);
-        }
+			this.detach(conn);
+		}
     });
+	jsPlumb.bind("connection", function(info) {
+		var con = info.connection;
+		var relationship = prompt("Please enter the relationship", "");
+		if (relationship != null && relationship != '') {
+			con.addOverlay(
+				["Label", {
+					label: relationship,
+					location: 0.5,
+					cssClass: 'connectionLabel',
+				}]
+			);
+		}
+		console.log("a connection was made from " + info.sourceId + " to " + info.targetId);
+	});
 
 
 });

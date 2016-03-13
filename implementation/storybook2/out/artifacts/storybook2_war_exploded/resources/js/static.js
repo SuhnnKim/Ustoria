@@ -1,4 +1,4 @@
-
+// some pre-defined styles for jsplumb
 var connectorPaintStyle = {
     strokeStyle: "#1e8151",
     fillStyle: "transparent",
@@ -19,21 +19,30 @@ var endpointHoverStyle = {
 
 var hollowCircle = {
     DragOptions: { cursor: 'pointer', zIndex: 2000 },
-    endpoint: ["Dot", { radius: 7 }],  //端点的形状
-    connectorStyle: connectorPaintStyle,//连接线的颜色，大小样式
+    endpoint: ["Dot", { radius: 7 }],  // endpoint's style
+    connectorStyle: connectorPaintStyle,//connector's color, size or style
     connectorHoverStyle: connectorHoverStyle,
     paintStyle: {
         strokeStyle: "#1e8151",
         fillStyle: "transparent",
         radius: 5,
         lineWidth: 2
-    },        
-    //anchor: "AutoDefault",
+    },
     isSource: true,    
     connector: ["Straight", { stub: [0, 0], gap: 10, cornerRadius: 5, alwaysRespectStubs: true }], 
     isTarget: true,    
     maxConnections: -1,    
-    connectorOverlays: [["Arrow", { width: 10, length: 10, location: 1 }]]
+    connectorOverlays:  [
+            //[ "Label", {
+            //    fillStyle:"rgba(100,100,100,80)",
+            //    color:"white",
+            //    font:"12px sans-serif",
+            //    label:"Static label",
+            //    borderStyle:"black",
+            //    borderWidth:2
+            //}]
+    ]
+
 };
 
 
@@ -58,18 +67,17 @@ var makeSceneDroppable = function(){
 
       jsPlumb.setContainer(jQuery(".panel-body"));
 
+      // add endpoints to the element with the id
       jsPlumb.addEndpoint(id, { anchors: "RightMiddle" }, hollowCircle);
       jsPlumb.addEndpoint(id, { anchors: "LeftMiddle" }, hollowCircle);
       jsPlumb.addEndpoint(id, { anchors: "TopCenter" }, hollowCircle);
       jsPlumb.addEndpoint(id, { anchors: "BottomCenter" }, hollowCircle);
 
+
+      // make the dropped element draggable
       jQuery(id).draggable({
           containment: "parent",
-          start: function () {
-              // startMove();
-          },
           drag: function (event, ui) {
-              // MoveSelectDiv(event, ui, id);
               jsPlumb.repaintEverything();
           },
           stop: function () {
@@ -85,9 +93,9 @@ var makeSceneDroppable = function(){
   });
 };
 
+// a function to make scene title draggable instead of the whole scene
 var makeSceneTitleDraggable = function(){
   jQuery('.scene>.scene-title').draggable({
-    // containment: "document",
     connectToSortable: "#timeline",
     helper:function(){
       return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());

@@ -18,13 +18,14 @@
     <div class="inner">
         <div id='cssmenu'>
             <ul>
-                <li class='active' ><a style="border-bottom: dashed 2px white;" href='#'>Home</a></li>
-                <li class='has-sub'><a href='#'>Characters</a>
+
+                <li class="has-sub">
+                    <a href='#'>Character</a>
                     <ul id="character-list">
                         <c:if test="${not empty characterList}">
 
                             <c:forEach var="character" items="${characterList}">
-                                <li id=<c:out value="${character.getName()}" /> >
+                                <li class="draggable menu_item" id=<c:out value="${character.getName()}" /> >
                                     <a href="<c:out value="loadCharacter?id=${character.getId()}"/>"><c:out value="${character.getName()}"/></a>
                                 </li>
                             </c:forEach>
@@ -33,20 +34,15 @@
 
                     </ul>
                 </li>
-                <li class='has-sub'><a href='#'>Locations</a>
-                    <ul>
-                        <li><a href='#'>Humber College</a></li>
-
-
-                        <!-- <li><a href='#'>Location</a></li> -->
-                    </ul>
-                </li>
-                <li class='has-sub'><a href='#'>Summary</a>
+                <li class="has-sub">
+                    <a href='#'>Summary</a>
                     <ul id="summary-list">
                         <c:if test="${not empty summaryList}">
 
                             <c:forEach var="summary" items="${summaryList}">
-                                <li id=<c:out value="${summary.getName()}" /> ><a href="#" ><c:out value="${summary.getName()}"/></a></li>
+                                <li id=<c:out value="${summary.getName()}" /> >
+                                    <a href="#" ><c:out value="${summary.getName()}"/></a>
+                                </li>
                             </c:forEach>
 
                         </c:if>
@@ -56,7 +52,7 @@
             </ul>
         </div>
         <div><a id="link-add-category" href="#"><span class="glyphicon glyphicon-plus floating-left" id="add-sign"></span><span id="add-category-text">Add Category</span></a></div>
-        <%--<div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>--%>
+        <div class="link-playground-wrapper"><a id="link-playground" href="#">Playground</a></div>
 
     </div>
 </div>

@@ -2,11 +2,13 @@
 
 	var app = angular.module('playground', [ ]);
 
+  var scenes = [];
+
 	app.controller('scenePanelController', function($scope){
 
     $scope.id_counter = 2;
-
-  	$scope.scenes = scenes_collection;
+    $scope.scenes = scenes;
+  	$scope.scenes.push({title: 'scene1', id: 'scene1'});
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         makeSceneDroppable();
@@ -14,12 +16,13 @@
     });
 
     $scope.removeScene = function(scene){
-      var index = $scope.scenes.indexOf(scene);
-      $scope.scenes.splice(index, 1);
+        var index = $scope.scenes.indexOf(scene);
+        $scope.scenes.splice(index, 1);
     };
 
   });
 
+  // toggle controller for timeline part
   app.controller('TimeLineController', function($scope){
     $scope.timeline = {
       hidden: false,
@@ -27,6 +30,8 @@
         this.hidden = !this.hidden;
         timeline_wrapper.hidden = !timeline_wrapper.hidden;
         timeline_hide.hidden = !timeline_hide.hidden;
+
+        // change the fixed height of scene part along with timeline part toggled
         if(this.hidden){
           jQuery('#timeline_panel').height(20);
           jQuery('#scene-panel').height(jQuery('#content').height()-120);
@@ -38,31 +43,32 @@
     };
   });
 
-
+  // add scene controller for adding scene dynamically
   app.controller('addSceneController', function($scope){
 
     var id_counter = 2;
-
     $scope.addNew = function($title) {
 
+      // validate the title is not empty string
       if($title === ""){
         $scope.error_message = "Please type in your new scene's title.";
         jQuery("#new_scene_title").focus();
         return;
       }
 
-      scenes_collection.push({title:$title,id:"scene"+id_counter});
+      // push the new scene item to scenes array
+      scenes.push({title: $title, id: "scene"+id_counter});
 
+      // hide the modal manually since the default action of bootstrap is removed
       jQuery("#myModal").modal("hide");
-
       id_counter ++;
-
       $scope.title = '';
-
     }
 
   });
 
+
+  // enable sidebar menu item toggle animation
   var sidebarAnimate = function(){    
     // in case click event repeated or mixed up with other click event
     jQuery("#cssmenu li.has-sub>a").off("click");
@@ -71,6 +77,8 @@
 
       jQuery(this).removeAttr('href');
       var element = jQuery(this).parent('li');
+
+
       if (element.hasClass('open')) {
         element.removeClass('open');
         element.find('li').removeClass('open');
@@ -104,8 +112,8 @@
     }
   });
 
-	app.controller('MainController', function($scope) {
-
+  app.controller('MainController', function($scope) {
+    // toggle the sidebar
     $scope.sidebar = {
       hidden: false,
       toggle: function() {
@@ -121,7 +129,7 @@
     });
 
 
-    $scope.menuItems = predefinedMenuItem;
+    $scope.menuItems = [{name: 'Character', children: []}, {name: 'Summary', children: []}];
     $scope.menuSubItems = [];
 
     $scope.addMenuItem = function(newMenuItem){
@@ -164,36 +172,14 @@
 
   });
 
-  
-
-  var predefinedMenuItem = [
-    {
-      name: "Charactor",
-      children: [{name: "Diana"},{name: "Prannoy"}]
-    },
-    {
-      name: "Summary",
-      children: []
-    }
-  ];
-
-  var scenes_collection = [
-  	{
-      id: "scene1",
-  		title: 'scene 1',
-  		
-  	},
-
-  ];
 
 
 
-  
+
   jQuery(document).ready(function(){
     jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();   
 	});
 
-  ///////////////////////
 })();
 
 
@@ -219,16 +205,6 @@ jQuery(window).resize(function () {
   jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
 
   jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
-
-  // jQuery('.frame').css('height', 50);
-  // jQuery('.frame ul li').css('line-height', jQuery('.frame').height());
-
-
-
-
-
-
-
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
@@ -268,9 +244,9 @@ jQuery(function(){
     jQuery(window).resize();
   });
 
+  // hover toggle function
   jQuery("#link-add-category").hover(function(ev){
     jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
-    jQuery('#add-category-text').stop().fadeToggle();
   });
   
 
