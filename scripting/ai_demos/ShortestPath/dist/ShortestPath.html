@@ -1,0 +1,106 @@
+<HTML>
+<HEAD><TITLE>Shortest Path</TITLE></HEAD>
+<CENTER><H1>Shortest Path Algorithms</H1></CENTER>
+
+
+
+<p>
+Finding the shortest path between two locations can play an important
+part in a video game.  This article will explore two well-known algorithms
+to find the shortest path.  The article includes a working demo you can
+use to explore how each of the algorithms works in detail.
+<p>
+The demo shows a map of cities connected by roads in black.  The straight
+line distance between cities not connected by roads is shown in gray.  The
+problem is to find the shortest distance between any two cities.  The
+simple solution to this problem is to follow every road until you reach
+the destination and then pick the shortest route.  The problem is that
+in a big map with many cities, this soon takes a long time to calculate.
+What is needed is a way to calculate a good solution without having to follow
+every road to the destination.
+<p>
+The solution is to use a <em>heuristic</em> which does a low-cost estimate
+of whether you are on a good road to the destination or not.  The demo uses
+the greedy algorithm and the A* algorithm, which differ only in the heuristic
+used.
+<p>
+Try the demo and then read on to see how the algorithms work.
+<p>
+<script src="http://www.java.com/js/deployJava.js"></script>
+<script>
+    var attributes = {code:'ShortestPath.ShortestPathDemo.class',
+        archive:'ShortestPath.jar',
+        width:710, height:600} ;
+    var parameters = {fontSize:16} ;
+    var version = '1.6' ;
+    deployJava.runApplet(attributes, parameters, version);
+</script>
+
+<h2>The Greedy Algorithm</h2>
+The Greedy algorithm picks the next city it should go to by selecting the
+city that is closest to the final destination.  The map shows several cities
+connected by roads, shown as black lines.  The distances between the cities
+are shown beside the roads.  The map also shows the distances between cities
+not connected by roads in light gray.  These are just distances and cannot
+be used to travel between cities.
+
+<p>
+Consider going from London to Peterborough:
+<ul>
+<li> Kitchener is 200 Km from Peterborough while Hamilton is only 175 Km,
+so the algorith selects Hamilton as the next city.</l1>
+<li> Working out from Hamilton, we find Kitchener is 200 Km from Peterborough, Toronto is
+139 Km, and St. Catherines is 147 Km.  As a result, it goes to Toronto next.</l1>
+<li> From Toronto it can go to Barrie at 160 Km from Peterborough or it can
+go to Peterborough at 0 Km from Peterborough.  It goes to Peterborough and
+is finished.
+</ul>
+
+<h2>The A* Algorithm</H2>
+The A* algorithm modifies the greedy algorithm to take into account not just
+the distance from the next city to the final destination, but also the
+distance from the current city to the next city.
+
+<p>
+Consider going from London to Peterborough using the A* algorithm:
+<ul>
+<li> Kitchener is 200 Km from Peterborough plus 100 Km from London for
+a total of 300.  while Hamilton is 175 Km, from Peterborough plus 125 from
+London, also yielding 300 Km.  The algorithm arbitrarily selects Kitchener.
+as the next city.</l1>
+<li> Working out from Kitchener, we find the Hamilton route to be 235 Km
+while the Barrie route is 340 Km.  Thus, it goes to Hamilton next.</l1>
+<li> From Hamilton it can go to Barrie at 305 Km, Toronto at 209, or
+St. Catherines at 197.  The algorithm selects St. Catherines.  As humans,
+we can see it has made a bad choice because there is no road from St. Catherines
+to Toronto and it has reached a dead end.  The algorithm does not know this until
+it goes to St. Catherines and finds there are no roads forward.</li>
+<li> Since it cannot move forward, it goes back to Hamilton and tries the next
+best route.  THis time it selects Toronto as the best option and goes there.</li>
+<li> From Toronto, the Barrie route is 250 Km while the Peterborough route
+is 139.  It takes the Peterborough route and is finished.</li>
+</ul>
+<h2>Comparison of Algorithms</H2>
+In most cases the A* algorithm produces better results than the greedy
+algorithm.  In the example above, A* did not find the best solution
+because it had a tie between cities and picked the wrong one.
+<p>
+The difference between the algorithms is how it judges how close a city is
+to its final destination.  This measure of closeness is called a <em>
+heuristic</em>.  As we see here, changing the heuristic can change the
+path selected by the algorithm.
+<h2>The Demo</h2>
+Try various combinations of cities and algorthms in the demo.  It will show
+paths it considered in yellow and paths it selected in red.  You will find
+different results for the two algorithms.  You will find that A* is better
+in most of the cases you try.
+<p>
+Since the algorithm can reach a dead-end and get stuck, it must be able to
+backtrack and look for an alternate route.  This is most easily implemented
+using recursion so that the run-time stack will maintain the path back.
+You also need access to the path you have followed so that you do not
+go back to the city you just came from.
+
+
+</HTML>
+
