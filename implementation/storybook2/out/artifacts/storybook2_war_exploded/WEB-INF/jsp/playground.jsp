@@ -115,52 +115,6 @@
 	</div>
 </div>
 
-<<<<<<< HEAD
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
-<script type="text/javascript">
-
-	// deal with the conflict between jquery and angular (global variable "$")
-	// after this, need to use jQuery instead of "$" for jquery's function
-	$.noConflict();
-
-	jQuery(function() {
-
-
-		jQuery(".draggable").draggable({
-
-			helper: "clone"
-
-		});
-		jQuery( ".drop-panel" ).droppable({
-			activeClass: "ui-state-default",
-			hoverClass: "ui-state-hover",
-			accept: ":not(.ui-sortable-helper)",
-			drop: function( event, ui ) {
-				jQuery( this ).find( ".placeholder" ).remove();
-				jQuery(ui.draggable).appendTo(this);
-			}
-		}).sortable({
-			items: "li:not(.placeholder)",
-			sort: function() {
-				jQuery( this ).removeClass( "ui-state-default" );
-			}
-		});
-
-	})
-
-
-</script>
-
-
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
-=======
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
@@ -173,7 +127,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
->>>>>>> e9d1ac9375a993a90d1df0a281d6647301fc0371
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>

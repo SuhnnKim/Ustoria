@@ -12,12 +12,12 @@
 <jsp:include page="head.jsp" />
 
 </head>
-<body ng-app="playground" ng-controller="MainController" ng-cloak>
+<body ng-app="summary"  ng-cloak>
 
 <jsp:include page="nav_top.jsp" />
 
 <jsp:include page="left-navigation.jsp" />
-<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
+<div class="" id="content"  >
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="save-story" href="#">Save Story</a>
 		<a class="ctrl-btn pull-left" id="undo" href="character.form">Character</a>
@@ -91,11 +91,13 @@
 	jQuery.noConflict();
 
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 </body>
 </html>

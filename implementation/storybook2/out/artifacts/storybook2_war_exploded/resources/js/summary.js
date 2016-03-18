@@ -1,7 +1,7 @@
 /**
  * Created by AshirwadTank on 3/7/2016.
  */
-
+var app = angular.module('summary', [ ]);
 jQuery('.text-select').remove();
 jQuery('#content').append('<div class=\'text-select\' style=\' visibility: hidden\' ></div>');
 

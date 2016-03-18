@@ -1,3 +1,5 @@
+var app = angular.module('character', [ ]);
+
 jQuery("#saveForm").submit(function() {
 
   var relationList = new Array();

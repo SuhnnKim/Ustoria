@@ -35,7 +35,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container" id="index-container">
+  <div class="container" >
 	  <form action="j_spring_security_check" method="post">
 		<div class="navbar-header col-lg-5">
 			<div class="col-md-6"><img src="${pageContext.request.contextPath}/resources/img/small-logo.png" height="100" alt="Logo"/></div>
@@ -65,7 +65,7 @@
 </nav>
 
 
-<div class="container">
+<div class="container" id="index-container">
 	<div class="col-lg-6 big-logo" id="brand-logo">
 		<img src="${pageContext.request.contextPath}/resources/img/writing-logo.png" title="logo" />
 	</div>
