@@ -39,29 +39,30 @@ jQuery(function(){
 
 
 
-jQuery(window).resize(function () {
-    jQuery('#sidebar').css('width', 150);
-    jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
-
-    jQuery('#hide-sidebar').css({
-
-        'top': jQuery(window).height() * 0.5,
-        'left':jQuery('#sidebar').width()-20,
-
-    });
-    jQuery('#link-playground').css({
-
-        'bottom': 0,
-        'left':0,
-        'width': jQuery('#sidebar').width(),
-
-    });
-    jQuery('#link-add-category').css({
-
-        'bottom': jQuery('#link-playground').height()*2.5,
-
-    });
-});
+//jQuery(window).resize(function () {
+//    jQuery('#sidebar').css('width', 150);
+//    jQuery('#content').width(jQuery(window).width() - jQuery('#left_sidebar').width());
+//    jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
+//
+//    jQuery('#hide-sidebar').css({
+//
+//        'top': jQuery(window).height() * 0.5,
+//        'left':jQuery('#sidebar').width()-20,
+//
+//    });
+//    jQuery('#link-playground').css({
+//
+//        'bottom': 0,
+//        'left':0,
+//        'width': jQuery('#sidebar').width(),
+//
+//    });
+//    jQuery('#link-add-category').css({
+//
+//        'bottom': jQuery('#link-playground').height()*2.5,
+//
+//    });
+//});
 
 
 

@@ -11,7 +11,7 @@
 	<jsp:include page="head.jsp" />
 </head>
 
-<body ng-app="playground" ng-controller="PlaygroundController" ng-cloak>
+<body ng-app="playground"  ng-cloak>
 
 <jsp:include page="nav_top.jsp" />
 

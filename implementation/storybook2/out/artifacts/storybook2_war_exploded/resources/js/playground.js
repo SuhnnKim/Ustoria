@@ -229,7 +229,7 @@ var makeDragDropSort = function(){
   });
 };
 
-(function(){
+
   // the square brackets is for dependency injection
   var app = angular.module('playground', [ ]);
 
@@ -358,7 +358,7 @@ var makeDragDropSort = function(){
   //  jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();
   //});
 
-})();
+
 
 
 jQuery(window).resize(function () {
@@ -414,13 +414,6 @@ jQuery(function(){
   jQuery('#timeline').width(jQuery('#content').width());
 
   jQuery(window).resize();
-  
-
-
-  // this doesn't work
-  //jQuery(".drop-panel").bind("onmove", function (){ jsPlumb.repaintEverything(); });
-
-
 
   timelineScrollAnimation();
 

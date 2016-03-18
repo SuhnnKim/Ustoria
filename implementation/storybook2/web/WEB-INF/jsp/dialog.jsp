@@ -21,6 +21,11 @@
     <div id="dialog-ctrl" class="col-lg-12 col-md-12">
         <i class="glyphicon glyphicon-plus-sign"></i>
         <i class="glyphicon glyphicon-minus-sign"></i>
+        <select>
+            <option>scene1</option>
+            <option>scene2</option>
+        </select>
+        <a href="#" class="btn btn-primary pull-right">Save</a>
     </div>
     <div id="dialog-content" class="col-lg-12 col-md-12">
 
@@ -52,7 +57,7 @@
                     <span>sound.mp3</span>
                 </td>
                 <td class="col-lg-2 col-md-2">
-                    <button>upload</button>
+                    <button class="btn btn-info">upload</button>
                 </td>
             </tr>
         </table>
