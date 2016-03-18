@@ -34,9 +34,14 @@
 #summary-section-list button{
     margin: 0 1%;
 }
-#content{
-    overflow: auto !important;
-}
+
+/*
+this will occur scrollbar bugs in playground(at least)
+so instead of select #content, you can create a new wrapper with window percentage height and set its overflow auto, thx
+*/
+/*#content{*/
+    /*overflow: auto !important;*/
+/*}*/
 
 [contentEditable=true]:empty:not(:focus):before{
     content:attr(data-placeholder)

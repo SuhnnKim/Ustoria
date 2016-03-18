@@ -248,11 +248,11 @@
 			</div>
 	</form>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
 <script type="text/javascript">
 
 	// deal with the conflict between jquery and angular (global variable "$")
@@ -281,11 +281,11 @@
 	///////
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
 </body>
 </html>

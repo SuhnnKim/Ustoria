@@ -11,7 +11,7 @@
 	<jsp:include page="head.jsp" />
 </head>
 
-<body ng-app="playground" ng-controller="MainController" ng-cloak>
+<body ng-app="playground" ng-controller="PlaygroundController" ng-cloak>
 
 <jsp:include page="nav_top.jsp" />
 
@@ -104,8 +104,6 @@
 					</div>
 				</div>
 
-
-
 				<div class="frame" id="timeline_wrap" style="overflow: hidden;">
 					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
 						<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
@@ -117,57 +115,22 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jsPlumb-2.0.7.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
-	// deal with the conflict between jquery and angular (global variable "$")
-	// after this, need to use jQuery instead of "$" for jquery's function
-	$.noConflict();
-
-	jQuery(function() {
-
-
-		jQuery(".draggable").draggable({
-
-			helper: "clone"
-
-		});
-		jQuery( ".drop-panel" ).droppable({
-			activeClass: "ui-state-default",
-			hoverClass: "ui-state-hover",
-			accept: ":not(.ui-sortable-helper)",
-			drop: function( event, ui ) {
-				jQuery( this ).find( ".placeholder" ).remove();
-				jQuery(ui.draggable).appendTo(this);
-			}
-		}).sortable({
-			items: "li:not(.placeholder)",
-			sort: function() {
-				jQuery( this ).removeClass( "ui-state-default" );
-			}
-		});
-
-	})
-
-
-</script>
-
-
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jsPlumb-2.0.7.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/drag-drop.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/static.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 
+<div id="left_sidebar" ng-controller="LeftSidebarController">
 <div id="show-sidebar" ng-show="sidebar.hidden" ng-click="sidebar.toggle()">
     </span><span class="glyphicon glyphicon-menu-right"></span>
 </div>
@@ -56,5 +57,5 @@
 
     </div>
 </div>
-
+</div>
 
