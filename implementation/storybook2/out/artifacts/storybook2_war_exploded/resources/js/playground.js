@@ -351,65 +351,7 @@ var makeDragDropSort = function(){
     }
   });
 
-  app.controller('PlaygroundController', function($scope) {
-    // toggle the sidebar
-    $scope.sidebar = {
-      hidden: false,
-      toggle: function() {
-        this.hidden = !this.hidden;
-      }
-    };
 
-    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-      // bind the ngRepeatFinished event with following function
-      // make sure the new added item gets binded
-      sidebarAnimate();
-      makeMenuItemSortable();
-    });
-
-
-    $scope.menuItems = [{name: 'Character', children: []}, {name: 'Summary', children: []}];
-    $scope.menuSubItems = [];
-
-    $scope.addMenuItem = function(newMenuItem){
-      
-      if(newMenuItem.name === undefined || newMenuItem.name === ''){
-        $scope.missingNewMenuItemError = "Category needs a name";
-        return;
-      }
-      $scope.menuItems.push({
-        name: newMenuItem.name,
-        children: $scope.menuSubItems
-      });
-      $scope.missingNewMenuItemError = "";
-      jQuery("#addCategoryModal").modal("hide");
-      newMenuItem.name = null;
-      $scope.menuSubItems = [];
-      
-
-    };
-
-    $scope.addSubMenuItem = function(menuSubItem){
-      if(!(menuSubItem.name === undefined || menuSubItem.name === '')){
-        $scope.menuSubItems.push({
-          name: menuSubItem.name
-        });
-        menuSubItem.name = null;
-      }
-    };
-
-    $scope.removeSubMenuItem = function(subItem){
-      var index = $scope.menuSubItems.indexOf(subItem);
-      $scope.menuSubItems.splice(index, 1);
-    };
-
-    $scope.cancelCategoryModal = function(newMenuItem, newSubMenuItems){
-      newMenuItem = null;
-      $scope.menuSubItems = [];
-      jQuery("#addCategoryModal").modal("hide");
-    };
-
-  });
 
   // no need to use tooltip already since we have titles for scenes
   //jQuery(document).ready(function(){
@@ -473,22 +415,12 @@ jQuery(function(){
 
   jQuery(window).resize();
   
-  jQuery('#hide-sidebar').click(function(event) {
-    jQuery('#content').css('width', jQuery(window).width());
-    jQuery('#content').css('margin-left', 0);
-  });
 
-  jQuery('#show-sidebar').click(function(event) {
-    jQuery(window).resize();
-  });
 
   // this doesn't work
   //jQuery(".drop-panel").bind("onmove", function (){ jsPlumb.repaintEverything(); });
 
-  // hover toggle function
-  jQuery("#link-add-category").hover(function(ev){
-    jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
-  });
+
 
   timelineScrollAnimation();
 

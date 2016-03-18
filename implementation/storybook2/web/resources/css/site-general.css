@@ -1,6 +1,9 @@
 body{
 	background-color: #5672b6;
 }
+#content{
+	box-sizing: border-box;
+}
 .navbar{
 	margin-bottom: 0;
 	background-color: #5672b6;
@@ -12,9 +15,7 @@ body{
 .navbar-default .navbar-brand, .navbar-default .navbar-nav > li > a{
 	color:white;
 }
-.dropdown-menu > li > a{
-	color: #262425;
-}
+
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: black;
 }
@@ -25,47 +26,7 @@ body{
 	}
 }
 
-#link-playground{
-	padding: 20px;
-	color:white;
-	background-color: #e14b3b;
-	position: fixed;
-	text-align: center;
-	font-size: 22px;
-	z-index: 99;
-}
-#link-playground:link,#link-playground:visited,#link-playground:hover,#link-playground:active{
-	text-decoration: none;
-}
-#link-add-category{
-	/*padding: 10px;*/
-	color:white;
-	background-color: #ff8533;
-	position: fixed;
-	font-size: 15px;
-	border-radius: 0 10px 10px 0;
-	z-index: 50;
-	margin: 0 auto;
-	width: 40px;
-	height: 35px;
-	white-space: nowrap;
-	line-height: 35px;
-}
-#link-add-category:link, #link-add-category:visited, #link-add-category:hover, #link-add-category:active{
-	text-decoration: none;
-}
 .glyphicon{
-	margin: 0;
-	padding: 0;
-}
-.floating-left{
-	float: left;
-}
-#add-sign{
-	margin: 10px 5px 10px 10px;
-}
-#add-category-text{
-	display: none;
 	margin: 0;
 	padding: 0;
 }
@@ -130,14 +91,7 @@ body{
 	position: absolute;
 	right: 0;
 }
-#subItemsGroup{
-	border-radius: 0 0 10px 10px;
-	border-width: 0 2px 2px 2px;
-	border-style: dashed;
-	border-color: grey;
-	margin-bottom: 20px;
 
-}
 .connectionLabel{
 	border:1px white solid;
 }

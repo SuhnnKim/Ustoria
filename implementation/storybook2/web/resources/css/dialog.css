@@ -1,0 +1,21 @@
+body{
+    background-color: white;
+}
+#left_sidebar{
+    width: 150px;
+}
+#content{
+    float:right;
+}
+#dialog-ctrl{
+    font-size: 30px;
+    background-color: #e6e6e6;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+}
+#dialog-ctrl i{
+    line-height: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+}

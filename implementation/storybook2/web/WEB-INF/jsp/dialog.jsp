@@ -10,23 +10,63 @@
 <head>
     <title>Dialog Page</title>
     <jsp:include page="head.jsp" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dialog.css">
 </head>
-<body>
+<body ng-app="dialog">
 
 <jsp:include page="nav_top.jsp" />
 <jsp:include page="left-navigation.jsp" />
 
-<div id="dialog-main" class="container">
+<div id="content">
     <div id="dialog-ctrl" class="col-lg-12 col-md-12">
         <i class="glyphicon glyphicon-plus-sign"></i>
         <i class="glyphicon glyphicon-minus-sign"></i>
     </div>
-    <div class="col-lg-2 col-md-2">Speaker</div>
-    <div class="col-lg-4 col-md-4">Text</div>
-    <div class="col-lg-2 col-md-2">To Whom</div>
-    <div class="col-lg-2 col-md-2"></div>
-    <div class="col-lg-2 col-md-2">Sound Source</div>
+    <div id="dialog-content" class="col-lg-12 col-md-12">
+
+        <table class="col-lg-12 col-md-12 table table-bordered table-responsive">
+            <tr>
+                <th class="col-lg-2 col-md-2">Speaker</th>
+                <th class="col-lg-4 col-md-4">Text</th>
+                <th class="col-lg-2 col-md-2">To Whom</th>
+                <th class="col-lg-2 col-md-2">Sound File</th>
+                <th class="col-lg-2 col-md-2">Sound Source</th>
+            </tr>
+            <tr>
+                <td class="col-lg-2 col-md-2">
+                    <select>
+                        <option>aaa</option>
+                        <option>bbb</option>
+                    </select>
+                </td>
+                <td class="col-lg-4 col-md-4">
+                    <textarea style="width: 100%;"></textarea>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                    <select>
+                        <option>aaa</option>
+                        <option>bbb</option>
+                    </select>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                    <span>sound.mp3</span>
+                </td>
+                <td class="col-lg-2 col-md-2">
+                    <button>upload</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
 </div>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dialog.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 
 </body>
 </html>
