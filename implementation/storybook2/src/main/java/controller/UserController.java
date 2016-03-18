@@ -44,6 +44,13 @@ public class UserController {
         return "home";
 
     }
+    @RequestMapping("dialog")
+    public String Dialog(HttpServletRequest req, Model model){
+
+
+        return "dialog";
+
+    }
 
    // @RequestMapping("/signup.form")
     public String SignUp(HttpServletRequest req, Model model){

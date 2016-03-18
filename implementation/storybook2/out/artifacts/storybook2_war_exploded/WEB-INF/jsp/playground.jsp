@@ -11,7 +11,7 @@
 	<jsp:include page="head.jsp" />
 </head>
 
-<body ng-app="playground" ng-controller="MainController" ng-cloak>
+<body ng-app="playground" ng-controller="PlaygroundController" ng-cloak>
 
 <jsp:include page="nav_top.jsp" />
 
@@ -51,9 +51,9 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Delete Scenes</h4>
 				</div>
-				<div class="modal-body" style="max-height: 350px; overflow-y: auto;">
+				<div class="modal-body">
 					<ul>
-						<li style="list-style: none;" ng-repeat="scene in scenes">
+						<li ng-repeat="scene in scenes">
 							<img src="${pageContext.request.contextPath}/resources/img/cross.png" alt="X" style="margin-right: 10px;cursor: pointer;"  ng-click="removeScene(scene)">{{scene.title}}
 						</li>
 					</ul>
@@ -78,7 +78,7 @@
 	<div id="play_wrap" style="width: inherit;height: inherit;">
 		<div id="scene-panel" >
 			<!-- loop scenes -->
-			<div  style="float: none;"ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
+			<div ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
 				<div class="panel-heading scene-title">
 					{{ scene.title }}
 				</div>
@@ -99,12 +99,10 @@
 
 			<div id="timeline_wrapper">
 				<div class="scrollbar">
-					<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
+					<div class="handle">
 						<div class="mousearea"></div>
 					</div>
 				</div>
-
-
 
 				<div class="frame" id="timeline_wrap" style="overflow: hidden;">
 					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
@@ -117,57 +115,22 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jsPlumb-2.0.7.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
-	// deal with the conflict between jquery and angular (global variable "$")
-	// after this, need to use jQuery instead of "$" for jquery's function
-	$.noConflict();
-
-	jQuery(function() {
-		//makeMenuItemSortable();
-
-		jQuery(".draggable").draggable({
-
-			helper: "clone"
-
-		});
-		jQuery( ".drop-panel" ).droppable({
-			activeClass: "ui-state-default",
-			hoverClass: "ui-state-hover",
-			accept: ":not(.ui-sortable-helper)",
-			drop: function( event, ui ) {
-				jQuery( this ).find( ".placeholder" ).remove();
-				jQuery(ui.draggable).appendTo(this);
-			}
-		}).sortable({
-			items: "li:not(.placeholder)",
-			sort: function() {
-				jQuery( this ).removeClass( "ui-state-default" );
-			}
-		});
-
-	})
-
-
-</script>
-
-
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jsPlumb-2.0.7.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/drag-drop.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/static.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
 </body>
 </html>

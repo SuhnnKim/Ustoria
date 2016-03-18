@@ -1,10 +1,241 @@
-(function(){
+//
+// some pre-defined styles for jsplumb plugin
+//
+var connectorPaintStyle = {
+  strokeStyle: "#1e8151",
+  fillStyle: "transparent",
+  radius: 5,
+  lineWidth: 2
+};
 
-	var app = angular.module('playground', [ ]);
+var connectorHoverStyle = {
+  lineWidth: 3,
+  strokeStyle: "#216477",
+  outlineWidth: 2,
+  // outlineColor: "white"
+};
+
+var hollowCircle = {
+  DragOptions: { cursor: 'pointer', zIndex: 2000 },
+  endpoint: ["Dot", { radius: 7 }],  // endpoint's style
+  connectorStyle: connectorPaintStyle,//connector's color, size or style
+  connectorHoverStyle: connectorHoverStyle,
+  paintStyle: {
+    strokeStyle: "#1e8151",
+    fillStyle: "transparent",
+    radius: 5,
+    lineWidth: 2
+  },
+  isSource: true,
+  connector: ["Straight", { stub: [0, 0], gap: 10, cornerRadius: 5, alwaysRespectStubs: true }],
+  isTarget: true,
+  maxConnections: -1,
+  connectorOverlays:  []
+};
+
+// dropped_item_counter is for makeSceneDroppable function
+var dropped_item_counter = 0;
+
+// a function to make scene body droppable
+var makeSceneDroppable = function(){
+  jQuery( ".panel-body" ).droppable({
+    accept: ".menu_item",
+    tolerance: 'fit',
+    drop: function(event, ui) {
+
+      dropped_item_counter = dropped_item_counter + 1;
+
+      var cloned = jQuery(ui.draggable).clone();
+
+      jQuery(this).append(cloned);
+
+      cloned.addClass('item-copied');
+
+      var dropped_item_new_id = cloned.attr("id","item"+dropped_item_counter);
+
+      jQuery(".item-copied").removeClass("menu_item");
+
+      //console.log(jQuery(dropped_item_new_id).parent());
+
+
+      jsPlumb.setContainer(jQuery('.panel-body'));
+
+      // add endpoints to the element with the id
+      jsPlumb.addEndpoint(dropped_item_new_id, { anchors: "RightMiddle" }, hollowCircle);
+      jsPlumb.addEndpoint(dropped_item_new_id, { anchors: "LeftMiddle" }, hollowCircle);
+      jsPlumb.addEndpoint(dropped_item_new_id, { anchors: "TopCenter" }, hollowCircle);
+      jsPlumb.addEndpoint(dropped_item_new_id, { anchors: "BottomCenter" }, hollowCircle);
+
+
+      // make the dropped element draggable
+      jQuery(dropped_item_new_id).draggable({
+        containment: "parent",
+        drag: function (event, ui) {
+          jsPlumb.repaintEverything();
+        },
+        stop: function () {
+          //jsPlumb.repaintEverything();
+        }
+      });
+
+    },
+    activate: function( event, ui ) {
+      // do some actions when draggble element is dragged
+      jQuery('.drop-panel').css('opacity', '0.5');
+    },
+    deactivate: function( event, ui ) {
+      // do some actions when draggble element is dropped
+      jQuery('.drop-panel').css('opacity', '1');
+    }
+  });
+};
+
+// a function to make scene title draggable instead of the whole scene
+var makeSceneTitleDraggable = function(){
+  jQuery('.scene>.scene-title').draggable({
+    connectToSortable: "#timeline",
+    helper:function(){
+      return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());
+    },
+    revert:"invalid"
+  });
+};
+
+// a function to make menu item sortable and draggable
+var makeMenuItemSortable = function(){
+  jQuery(".menu_item_list").sortable({
+    // revert:"invalid",
+    helper: function (e, li) {
+      this.copyHelper = li.clone().insertAfter(li);
+
+      jQuery(this).data('copied', false);
+
+      return li.clone();
+    },
+
+    stop: function () {
+
+      var copied = jQuery(this).data('copied');
+
+      if (!copied) {
+        this.copyHelper.remove();
+      }
+
+      this.copyHelper = null;
+    }
+
+  });
+};
+
+// mySlySlider is for timelineScrollAnimation
+var mySlySlider;
+// a function to make timeline scroll behavior nicer
+var timelineScrollAnimation = function(){
+  var frame  = jQuery('#timeline_wrap');
+  var slidee = frame.children('ul').eq(0);
+  var wrap   = frame.parent();
+
+  mySlySlider = new Sly(frame, {
+    horizontal: 1,
+    itemNav: 'basic',
+    smart: 1,
+    activateOn: 'click',
+    mouseDragging: 0,
+    touchDragging: 1,
+    releaseSwing: 1,
+    startAt: 0,
+    scrollBar: wrap.find('.scrollbar'),
+    scrollBy: 1,
+    // pagesBar: wrap.find('.pages'),
+    activatePageOn: 'click',
+    speed: 300,
+    elasticBounds: 1,
+    easing: 'easeOutExpo',
+    dragHandle: 1,
+    dynamicHandle: 1,
+    clickBar: 1,
+  }).init();
+};
+
+var makeTimelineSortable = function(){
+
+  var removeIntent = false;
+
+  jQuery("#timeline").sortable({
+    opacity: 0.5,
+
+    over: function (event, ui) {
+
+      removeIntent = false;
+    },
+    out: function () {
+      removeIntent = true;
+    },
+    beforeStop: function (event, ui) {
+      // remove the item dragged out of timeline
+      if(removeIntent == true){
+        ui.item.remove();
+        // reload the timeline slider since item was removed
+        mySlySlider.reload();
+      }
+    },
+    update: function (event, ui) {
+      // reload the timeline slider since item was added
+      mySlySlider.reload();
+    },
+  });
+};
+
+var jsplumbCustomizedBinding = function(){
+  // delete the connector of items inside of scenes
+  jsPlumb.bind("click", function (conn, originalEvent) {
+    if (confirm("Delete connection between " + jQuery('#'+conn.sourceId+" a").text() + " and " + jQuery('#'+conn.targetId+" a").text() + "?")){
+      this.detach(conn);
+    }
+  });
+  jsPlumb.bind("connection", function(info) {
+    var con = info.connection;
+    var relationship = prompt("Please enter the relationship", "");
+    if (relationship != null && relationship != '') {
+      con.addOverlay(
+          ["Label", {
+            label: relationship,
+            location: 0.5,
+            cssClass: 'connectionLabel',
+          }]
+      );
+    }
+    console.log("a connection was made from " + info.sourceId + " to " + info.targetId);
+  });
+};
+
+var makeDragDropSort = function(){
+  jQuery(".draggable").draggable({
+    helper: "clone"
+  });
+  jQuery( ".drop-panel" ).droppable({
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    accept: ":not(.ui-sortable-helper)",
+    drop: function( event, ui ) {
+      jQuery( this ).find( ".placeholder" ).remove();
+      jQuery(ui.draggable).appendTo(this);
+    }
+  }).sortable({
+    items: "li:not(.placeholder)",
+    sort: function() {
+      jQuery( this ).removeClass( "ui-state-default" );
+    }
+  });
+};
+
+(function(){
+  // the square brackets is for dependency injection
+  var app = angular.module('playground', [ ]);
 
   var scenes = [];
 
-	app.controller('scenePanelController', function($scope){
+  app.controller('scenePanelController', function($scope){
 
     $scope.id_counter = 2;
     $scope.scenes = scenes;
@@ -16,8 +247,16 @@
     });
 
     $scope.removeScene = function(scene){
-        var index = $scope.scenes.indexOf(scene);
-        $scope.scenes.splice(index, 1);
+      var index = $scope.scenes.indexOf(scene);
+      var n = index + 1;
+      console.log("deleted"+n);
+      //var myNode = document.getElementById("scene" + n);
+      //while (myNode.firstChild) {
+      //  myNode.removeChild(myNode.firstChild);
+      //  console.log("deleted")
+      //}
+      jQuery('#scene' + n).empty();
+      $scope.scenes.splice(index, 1);
     };
 
   });
@@ -112,7 +351,7 @@
     }
   });
 
-  app.controller('MainController', function($scope) {
+  app.controller('PlaygroundController', function($scope) {
     // toggle the sidebar
     $scope.sidebar = {
       hidden: false,
@@ -147,7 +386,7 @@
       newMenuItem.name = null;
       $scope.menuSubItems = [];
       
-      return;
+
     };
 
     $scope.addSubMenuItem = function(menuSubItem){
@@ -172,20 +411,15 @@
 
   });
 
-
-
-
-
-  jQuery(document).ready(function(){
-    jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();   
-	});
+  // no need to use tooltip already since we have titles for scenes
+  //jQuery(document).ready(function(){
+  //  jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();
+  //});
 
 })();
 
 
 jQuery(window).resize(function () {
-  // jQuery('html').css('height', jQuery(window).height());
-  // jQuery('body').css('height', jQuery(window).height());
 
   // setting #sidebar's width
   jQuery('#sidebar').css('width', 150);
@@ -231,7 +465,11 @@ jQuery(window).resize(function () {
 
 
 
-jQuery(function(){ 
+jQuery(function(){
+
+  // initialize the width of #content and #timeline
+  jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
+  jQuery('#timeline').width(jQuery('#content').width());
 
   jQuery(window).resize();
   
@@ -244,10 +482,19 @@ jQuery(function(){
     jQuery(window).resize();
   });
 
+  // this doesn't work
+  //jQuery(".drop-panel").bind("onmove", function (){ jsPlumb.repaintEverything(); });
+
   // hover toggle function
   jQuery("#link-add-category").hover(function(ev){
     jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
   });
-  
 
+  timelineScrollAnimation();
+
+  makeTimelineSortable();
+
+  jsplumbCustomizedBinding();
+
+  makeDragDropSort();
 });

@@ -141,3 +141,7 @@ body{
 .connectionLabel{
 	border:1px white solid;
 }
+.handle{
+	transform: translateZ(0px) translateX(99999999px);
+}
+
