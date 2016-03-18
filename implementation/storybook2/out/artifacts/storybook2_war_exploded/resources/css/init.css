@@ -35,3 +35,12 @@ border-radius:0px;
 #ProjectTitle{
 	text-align: center;
 }
+
+#footer-wrapper{
+	text-align: center;
+	background: #f8f8f8;
+	padding: 5% 0;
+}
+#index-container{
+	margin:2% 0;
+}

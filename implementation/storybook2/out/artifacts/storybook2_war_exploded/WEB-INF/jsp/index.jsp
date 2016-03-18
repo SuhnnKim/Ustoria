@@ -5,7 +5,8 @@
 	<title></title>
 	<sping:url value="/resources/css/bootstrap.css" var="bootstrap"/>
 	<link rel="stylesheet" href="${bootstrap}">
-	<link rel="stylesheet" href="/resosurces/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/init.css">
 	<style type="text/css">
 		table { border-collapse:separate; border-spacing: 2px; }
 		/*.row-gap:before{content: " ";min-height: 20px;}*/
@@ -34,7 +35,7 @@
 </head>
 <body>
 <nav class="navbar navbar-default">
-  <div class="container">
+  <div class="container" id="index-container">
 	  <form action="j_spring_security_check" method="post">
 		<div class="navbar-header col-lg-5">
 			<div class="col-md-6"><img src="${pageContext.request.contextPath}/resources/img/small-logo.png" height="100" alt="Logo"/></div>
@@ -82,6 +83,7 @@
 	</div>
 </div>
 
+<jsp:include page="footer.jsp" />
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>

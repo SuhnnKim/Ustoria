@@ -7,10 +7,16 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <style>
-    #ProjectTitle{
+    #project-title h3{
         text-align: center;
     }
-
+    #project-title{
+        padding:2% 0;
+    }
+    #myNavbar{
+        padding:1% 0;
+        margin:1% 0;
+    }
 </style>
 
 <nav class="navbar navbar-default">
@@ -18,24 +24,19 @@
         <%--<div class="navbar-header col-xs-6 col-md-4" >--%>
             <%--<img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>--%>
         <%--</div>--%>
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>
+        <div class="navbar-header col-md-2">
+            <img src="${pageContext.request.contextPath}/resources/img/logo_whole_white.png" alt="Ustoria" height="96">
         </div>
-       <div class="col-xs-6 col-md-4">
-        <h3 id="ProjectTitle">${projectTitle}</h3>
+       <div class="col-md-6" id="project-title">
+        <h3>${projectTitle}</h3>
        </div>
         <!-- <a href="#">My Projects</a> -->
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="col-md-4" id="myNavbar">
 
             <ul class="nav navbar-nav navbar-right" >
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}admin@admin.com
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">My Stories</a></li>

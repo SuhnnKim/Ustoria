@@ -51,9 +51,9 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Delete Scenes</h4>
 				</div>
-				<div class="modal-body" style="max-height: 350px; overflow-y: auto;">
+				<div class="modal-body">
 					<ul>
-						<li style="list-style: none;" ng-repeat="scene in scenes">
+						<li ng-repeat="scene in scenes">
 							<img src="${pageContext.request.contextPath}/resources/img/cross.png" alt="X" style="margin-right: 10px;cursor: pointer;"  ng-click="removeScene(scene)">{{scene.title}}
 						</li>
 					</ul>
@@ -78,7 +78,7 @@
 	<div id="play_wrap" style="width: inherit;height: inherit;">
 		<div id="scene-panel" >
 			<!-- loop scenes -->
-			<div  style="float: none;"ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
+			<div ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
 				<div class="panel-heading scene-title">
 					{{ scene.title }}
 				</div>
@@ -99,7 +99,7 @@
 
 			<div id="timeline_wrapper">
 				<div class="scrollbar">
-					<div class="handle" style="transform: translateZ(0px) translateX(99999999px); /*width: 100%;*/">
+					<div class="handle">
 						<div class="mousearea"></div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@
 	$.noConflict();
 
 	jQuery(function() {
-		//makeMenuItemSortable();
+
 
 		jQuery(".draggable").draggable({
 
