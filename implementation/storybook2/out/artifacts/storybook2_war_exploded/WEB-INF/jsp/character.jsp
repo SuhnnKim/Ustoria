@@ -11,14 +11,14 @@
 	<jsp:include page="head.jsp" />
 </head>
 
-<body ng-app="playground" ng-controller="MainController" ng-cloak>
+<body ng-app="character" ng-cloak>
 
 	<jsp:include page="nav_top.jsp"/>
 
 	<jsp:include page="left-navigation.jsp" />
 
 	<form id="saveForm" method="post">
-	<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
+	<div id="content">
 		<div id="control-panel">
 			<a class="ctrl-btn pull-left" id="new-character" href="#">New character</a>
 			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
@@ -248,12 +248,11 @@
 			</div>
 	</form>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/vendor/jquery.ui.widget.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
 <script type="text/javascript">
 
 	// deal with the conflict between jquery and angular (global variable "$")
@@ -282,15 +281,12 @@
 	///////
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dragula.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/js/ga.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/horizontal.js"></script>
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 </body>
 </html>

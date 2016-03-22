@@ -7,20 +7,17 @@
 		[ng\:cloak], [ng-cloak], .ng-cloak{
 			display: none;
 		}
-
-
-
 	</style>
 
 <jsp:include page="head.jsp" />
 
 </head>
-<body ng-app="playground" ng-controller="MainController" ng-cloak>
+<body ng-app="summary"  ng-cloak>
 
 <jsp:include page="nav_top.jsp" />
 
 <jsp:include page="left-navigation.jsp" />
-<div class="" id="content" expandable ng-controller="characterPanelController as characterPanel">
+<div class="" id="content"  >
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="save-story" href="#">Save Story</a>
 		<a class="ctrl-btn pull-left" id="undo" href="character.form">Character</a>
@@ -79,53 +76,28 @@
 	</div>
 </div>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-2.2.0.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script src="${pageContext.request.contextPath}/resources/vendor/jquery.ui.widget.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.fileupload.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/jquery.highlight-5.closure.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
 
 <script type="text/javascript">
 
-	// deal with the conflict between jquery and angular (global variable "$")
+	// deal with the conflict between jquery and other libraries (eg: angular) with global variable "$"
 	// after this, need to use jQuery instead of "$" for jquery's function
-	$.noConflict();
-
-	///// for sidebar menu's animation
-	jQuery('#cssmenu li.active').addClass('open').children('ul').show();
-	jQuery('#cssmenu li.has-sub>a').on('click', function(){
-		jQuery(this).removeAttr('href');
-		var element = jQuery(this).parent('li');
-		if (element.hasClass('open')) {
-			element.removeClass('open');
-			element.find('li').removeClass('open');
-			element.find('ul').slideUp(200);
-		}
-		else {
-			element.addClass('open');
-			element.children('ul').slideDown(200);
-			// element.siblings('li').children('ul').slideUp(200);
-			// element.siblings('li').removeClass('open');
-			element.siblings('li').find('li').removeClass('open');
-			// element.siblings('li').find('ul').slideUp(200);
-		}
-	});
-
-
-
+	// just in case some unexpected/unpredictable bugs
+	jQuery.noConflict();
 
 </script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/angular.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dragula.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-
-<script src="${pageContext.request.contextPath}/resources/js/ga.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/plugins.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/sly.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/horizontal.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/plugins.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 </body>
 </html>

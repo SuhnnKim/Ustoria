@@ -3,6 +3,7 @@
 	/*width: 230px;*/
 	height: 100%;
 	float: left;
+    width: 150px;
 	/*border-right: 1px solid white;*/
   	/*-webkit-box-shadow: 1px 0px 1px #ddd;
   	-moz-box-shadow: 1px 0px 1px #ddd;
@@ -28,7 +29,6 @@
   	-webkit-user-select: none;
   	-moz-user-select: none;
   	-ms-user-select: none;
-  	-o-user-select: none;
 }
 
 
@@ -37,15 +37,13 @@
 	
 }
 #hide-sidebar {
-  	height: 30px;
-  	line-height: 30px;
-  	z-index: 9999;
+  	z-index: 10;
   	text-align: center;
 	color: #666;
 	position: absolute;
 	border-radius: 10px 0 0 10px;
   	height: 100px;
-  	line-height: 100px;
+  	line-height: 100px !important;
   	width: 20px;
   	background-color: #fff;
 }
@@ -55,14 +53,18 @@
 	z-index: 10;
 	border-radius: 0 10px 10px 0;
 	height: 100px;
-	line-height: 100px;
+	line-height: 100px !important;
 	background-color: #666;
 	text-align: center;
 	color: #fff;
 	width: 20px;
 }
-
-
+.dropdown-menu > li > a{
+    color: #262425;
+}
+#hide-sidebar span, #show-sidebar span{
+    line-height: 100px !important;
+}
 
 /*       sidebar menu's style           */
 #cssmenu,
@@ -150,6 +152,11 @@
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+
+}
+.open > a{
+    background-color: #e14b3b !important;
+    color: white !important;
 }
 #cssmenu ul ul li a {
   padding: 14px 22px;
@@ -178,4 +185,55 @@
 #cssmenu ul ul > li.has-sub > a:before {
   top: 20px;
   background: #dddddd;
+}
+
+
+#link-playground{
+    padding: 20px;
+    color:white;
+    background-color: #e14b3b;
+    position: fixed;
+    text-align: center;
+    font-size: 22px;
+    z-index: 99;
+}
+#link-playground:link,#link-playground:visited,#link-playground:hover,#link-playground:active{
+    text-decoration: none;
+}
+#link-add-category{
+    /*padding: 10px;*/
+    color:white;
+    background-color: #ff8533;
+    position: fixed;
+    font-size: 15px;
+    border-radius: 0 10px 10px 0;
+    z-index: 50;
+    margin: 0 auto;
+    width: 40px;
+    height: 35px;
+    white-space: nowrap;
+    line-height: 35px;
+}
+#link-add-category:link, #link-add-category:visited, #link-add-category:hover, #link-add-category:active{
+    text-decoration: none;
+}
+#subItemsGroup{
+    border-radius: 0 0 10px 10px;
+    border-width: 0 2px 2px 2px;
+    border-style: dashed;
+    border-color: grey;
+    margin-bottom: 20px;
+
+}
+.floating-left{
+    float: left;
+}
+#add-sign{
+    margin: 10px 5px 10px 10px;
+}
+#add-category-text{
+    display:none;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
 }

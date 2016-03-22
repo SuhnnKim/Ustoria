@@ -15,9 +15,7 @@ padding:2%;
 border-radius:0px;
 }
 
-.has-sub.open > a{
-	background: #e14b3b !important;
-}
+
 
 #control-panel a , #save , #saveText{
 	border-radius:15px !important;
@@ -36,4 +34,13 @@ border-radius:0px;
 
 #ProjectTitle{
 	text-align: center;
+}
+
+#footer-wrapper{
+	text-align: center;
+	background: #f8f8f8;
+	padding: 5% 0;
+}
+#index-container{
+	margin:2% 0;
 }
