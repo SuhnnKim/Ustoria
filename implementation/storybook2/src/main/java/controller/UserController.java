@@ -107,6 +107,27 @@ public class UserController {
         return "home";
     }
 
+    @RequestMapping("search")
+    public String Search(HttpServletRequest req, Model model){
+        Story story = getStoryFromSession(req);
+
+        String search = req.getParameter("search");
+        int CharacterCount = 0;
+        List<Character> foundCharacterList = new ArrayList<Character>();
+        for(Character c : story.getCharacterList()){
+            if(c.getName().contains(search)){
+                CharacterCount++;
+                foundCharacterList.add(c);
+            }
+        }
+        model.addAttribute("search",search);
+        model.addAttribute("CharacterCount",CharacterCount);
+        model.addAttribute("foundCharacterList",foundCharacterList);
+
+        req.getSession().setAttribute("search",search);
+        return "search";
+    }
+
     public Story getStoryFromSession(HttpServletRequest request){
 
         HttpSession session = request.getSession();

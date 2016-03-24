@@ -46,7 +46,10 @@
                 </li>
 
             </ul>
-            <form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>
+            <form action="search" method="get">
+                <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" >
+
+            </form>
 
         </div>
     </div>

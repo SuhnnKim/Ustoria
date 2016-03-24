@@ -26,6 +26,7 @@ input[type=search] {
 	-webkit-transition: all .5s;
 	-moz-transition: all .5s;
 	transition: all .5s;
+	color: #1b6d85;
 }
 input[type=search]:focus {
 	width: 130px;

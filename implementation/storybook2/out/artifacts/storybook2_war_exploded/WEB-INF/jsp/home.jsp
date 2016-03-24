@@ -15,29 +15,30 @@
 <body style="background-color: white;">
 
 <div class="container-fluid" id="main-wrapper" style="padding:0;">
-  <nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-            <h2 id="brand-name">Ustoria</h2>
-            <%--<img src="${pageContext.request.contextPath}/resources/img/logo_2.png" alt="Home"/>--%>
-	    </div>
-		<!-- <a href="#">My Projects</a> -->
-	    <ul class="nav navbar-nav navbar-right">
-	      
-	      <li class="dropdown">
-	        <a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}
-	        <span class="caret"></span></a>
-	        <ul class="dropdown-menu">
-	          <li><a href="#">My Stories</a></li>
-	          <li><a href="#">Profile</a></li>
-	          <li><a href="#">Log Out</a></li> 
-	        </ul>
-	      </li>
+    <jsp:include page="nav_top.jsp" />
+  <%--<nav class="navbar navbar-default">--%>
+	  <%--<div class="container-fluid">--%>
+	    <%--<div class="navbar-header">--%>
+            <%--<h2 id="brand-name">Ustoria</h2>--%>
+            <%--&lt;%&ndash;<img src="${pageContext.request.contextPath}/resources/img/logo_2.png" alt="Home"/>&ndash;%&gt;--%>
+	    <%--</div>--%>
+		<%--<!-- <a href="#">My Projects</a> -->--%>
+	    <%--<ul class="nav navbar-nav navbar-right">--%>
+	      <%----%>
+	      <%--<li class="dropdown">--%>
+	        <%--<a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}--%>
+	        <%--<span class="caret"></span></a>--%>
+	        <%--<ul class="dropdown-menu">--%>
+	          <%--<li><a href="#">My Stories</a></li>--%>
+	          <%--<li><a href="#">Profile</a></li>--%>
+	          <%--<li><a href="#">Log Out</a></li> --%>
+	        <%--</ul>--%>
+	      <%--</li>--%>
 
-	    </ul>
-	    <form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>
-	  </div>
-	</nav>
+	    <%--</ul>--%>
+	    <%--<form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>--%>
+	  <%--</div>--%>
+	<%--</nav>--%>
 	
 
 
