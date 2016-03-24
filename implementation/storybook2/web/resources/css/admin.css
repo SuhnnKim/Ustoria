@@ -1,0 +1,14 @@
+body{
+    background-color: white;
+}
+
+strong{
+    font-size: medium;
+}
+
+input[type=checkbox] {
+    margin-top: 0px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    zoom: 1.5;
+}

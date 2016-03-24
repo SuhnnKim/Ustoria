@@ -1,6 +1,7 @@
 package dao;
 
 import entity.UsersEntity;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -38,14 +39,15 @@ public class userDAOImpl implements userDAO {
         return userList;
     }
 
-    @SuppressWarnings("unchecked")
-    public UsersEntity getUser(String username){
+    public UsersEntity getUserByEmail(String email) {
         Session session = this.sessionFactory.openSession();
-        UsersEntity user = (UsersEntity) session.byId(username);
-        session.close();
-        return user;
+
+        Query query = session.createQuery("from UsersEntity where email = :email");
+        query.setParameter("email", email);
+        List users = query.list();
+
+        return users == null || users.size() <= 0 ? null : (UsersEntity) users.get(0);
+
     }
-
-
 
 }

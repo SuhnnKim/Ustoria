@@ -12,6 +12,7 @@ import org.hibernate.bytecode.buildtime.spi.Logger;
 import org.hibernate.mapping.Array;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
@@ -36,15 +37,13 @@ import java.util.*;
 @Controller
 public class UserController {
 
+    @Autowired
+    private userDAO userDAO;
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("hibernate-config.xml");
 
     @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
         return "index";
-    }
-
-    @RequestMapping("admin")
-    public String Admin(HttpServletRequest req, Model model){
-        return "admin";
     }
 
 
@@ -140,6 +139,19 @@ public class UserController {
             story = (Story) request.getSession().getAttribute("story");
         }
         return story;
+    }
+
+    @RequestMapping("admin")
+    public String Admin(HttpServletRequest req, Model model){
+
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        req.getSession().setAttribute("email",name);
+        userDAO userDAO = context.getBean(userDAO.class);
+        List users = userDAO.list();
+
+        model.addAttribute("users",users);
+
+        return "admin";
     }
 
 
