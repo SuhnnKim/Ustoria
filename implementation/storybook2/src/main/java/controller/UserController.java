@@ -37,22 +37,23 @@ import java.util.*;
 public class UserController {
 
 
-    //@RequestMapping("login")
+    @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
-
-
-        return "home";
-
+        return "index";
     }
+
+    @RequestMapping("admin")
+    public String Admin(HttpServletRequest req, Model model){
+        return "admin";
+    }
+
+
     @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
-
-
         return "dialog";
-
     }
 
-   // @RequestMapping("/signup.form")
+    @RequestMapping("/signup.form")
     public String SignUp(HttpServletRequest req, Model model){
 
 
@@ -101,7 +102,6 @@ public class UserController {
     @RequestMapping("home")
     public String Home(HttpServletRequest req, Model model){
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",name);
         req.getSession().setAttribute("email",name);
         return "home";
@@ -141,8 +141,6 @@ public class UserController {
         }
         return story;
     }
-
-
 
 
 
