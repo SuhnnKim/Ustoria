@@ -9,6 +9,18 @@
             color:white;
 
         }
+        #collapseBtn{
+            background-color: grey;
+            color: white;
+        }
+        #collapseBtn:hover{
+            background-color: #333;
+            color: grey;
+        }
+        #myCtrl ul li{
+            margin-right: 10px;
+            margin-left: 15px;
+        }
     </style>
 </head>
 
@@ -43,28 +55,59 @@
 
 
 
- <div class="row" id="header-wrapper">
- 	<div class="col-md-4">
-  	<button type="button" class="btn btn-primary">Delete</button>
-  </div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
-  	<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Create New Project</button>
-  </div>
-</div>
+    <%--<div class="row" id="header-wrapper">--%>
+        <%--<div class="container" style="padding: 0;">--%>
+            <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myCtrl"--%>
+                    <%--style="color:white !important;opacity: 1;background-color: grey;">--%>
+                <%--<span class="icon-bar"></span>--%>
+                <%--<span class="icon-bar"></span>--%>
+                <%--<span class="icon-bar"></span>--%>
+            <%--</button>--%>
+            <%--<div class="collapse navbar-collapse" id="myCtrl">--%>
+                <%--<button type="button" class="btn btn-primary">Delete</button>--%>
+                <%--<button type="button" class="btn btn-primary">Generate XML</button>--%>
+                <%--<button type="button" class="btn btn-primary">Download XML</button>--%>
+            <%--</div>--%>
+            <%--<div class=" col-lg-6 col-md-4 col-sm-4 col-xs-12 ">--%>
+                <%--<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right">Create New Project</button>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+    <nav class="navbar navbar-inverse col-lg-12" style="background-color:white; " id="header-wrapper">
 
-<div class="row" id="content-wrapper" style="margin:0;">
-<table id="storyList" class="table table-bordered">
- <tr>
- 	<th id="check-all"></th>
- 	<th>Project Name</th>
- 	<th>Description</th>
- 	<th>Last Modified</th>
- </tr>
+            <div class="navbar-header">
+                <button id="collapseBtn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myCtrl" style="color: grey;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myCtrl" style="padding-left: 0;">
+                <ul class="nav navbar-nav">
+                    <li><button type="button" class="btn btn-primary">Delete</button></li>
+                    <li><button type="button" class="btn btn-primary">Generate XML</button></li>
+                    <li><button type="button" class="btn btn-primary">Download XML</button></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Create New Project</button>
+                </ul>
+            </div>
 
-</table>
+    </nav>
+    <div class="contsiner">
+    <div class="row col-lg-12" id="content-wrapper" style="margin:0;">
 
-</div>	
+        <table id="storyList" class="table table-bordered col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <tr>
+                <th id="check-all"></th>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Last Modified</th>
+            </tr>
+        </table>
+
+    </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
