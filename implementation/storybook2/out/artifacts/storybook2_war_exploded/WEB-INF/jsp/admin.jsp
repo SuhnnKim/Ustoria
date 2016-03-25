@@ -21,13 +21,15 @@
             <tr>
                 <th><input type="checkbox"/>Check All</th>
                 <th>User List</th>
-                <th>Delete Selected</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
             <c:forEach items="${users}" var="user">
                 <tr>
                     <td><input type="checkbox"/></td>
                     <td><strong>${user.getUserName()}</strong></td>
-                    <td><a href="#" class="btn btn-default">Delete</a></td>
+                    <td><a href="delete?id=${user.getId()}" class="btn btn-default">Delete</a></td>
+                    <td><a href="edit?id=${user.getId()}#" class="btn btn-default">Edit</a></td>
                 </tr>
             </c:forEach>
         </table>

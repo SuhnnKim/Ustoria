@@ -46,8 +46,39 @@ public class userDAOImpl implements userDAO {
         query.setParameter("email", email);
         List users = query.list();
 
+        session.close();
         return users == null || users.size() <= 0 ? null : (UsersEntity) users.get(0);
 
     }
 
+    @Override
+    public void delete(int id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        Query query = session.createQuery("delete from UsersEntity where id = :id");
+        query.setParameter("id",id);
+        query.executeUpdate();
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void Update(UsersEntity user) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.merge(user);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public UsersEntity findBy(int id) {
+        Session session = this.sessionFactory.openSession();
+        UsersEntity user = null;
+        Query query = session.createQuery("select u from UsersEntity as u where id = :id");
+        query.setParameter("id",id);
+        user = (UsersEntity) query.list().get(0);
+        return user;
+
+    }
 }

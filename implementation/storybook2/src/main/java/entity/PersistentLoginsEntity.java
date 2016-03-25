@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by liuwei on 2016-02-16.
+ * Created by liuwei on 2016-03-25.
  */
 @Entity
 @Table(name = "persistent_logins", schema = "Capstone", catalog = "")

@@ -4,6 +4,5 @@
     <persistence-unit name="NewPersistenceUnit">
         <class>entity.UsersEntity</class>
         <class>entity.PersistentLoginsEntity</class>
-        <class>entity.UserRolesEntity</class>
     </persistence-unit>
 </persistence>

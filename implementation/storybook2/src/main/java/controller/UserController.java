@@ -141,18 +141,7 @@ public class UserController {
         return story;
     }
 
-    @RequestMapping("admin")
-    public String Admin(HttpServletRequest req, Model model){
 
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        req.getSession().setAttribute("email",name);
-        userDAO userDAO = context.getBean(userDAO.class);
-        List users = userDAO.list();
-
-        model.addAttribute("users",users);
-
-        return "admin";
-    }
 
 
 

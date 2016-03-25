@@ -213,6 +213,8 @@ public class CharacterController {
         Gson gson = new Gson();
         String jsonString = gson.toJson(characterList);
 
+        System.out.print(jsonString);
+
         return jsonString;
     }
 

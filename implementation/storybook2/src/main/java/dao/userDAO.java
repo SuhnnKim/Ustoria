@@ -15,5 +15,11 @@ public interface userDAO {
 
     public UsersEntity getUserByEmail(String email);
 
+    public void delete(int id);
+
+    public void Update(UsersEntity user);
+
+    public UsersEntity findBy(int id);
+
 
 }
