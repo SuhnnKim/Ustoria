@@ -244,8 +244,7 @@
 		</div>
 
 		<div class="frame" id="timeline_wrap" style="overflow: hidden;">
-				
-			</div>
+		</div>
 	</form>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
