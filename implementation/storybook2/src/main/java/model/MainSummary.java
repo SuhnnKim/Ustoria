@@ -2,15 +2,21 @@ package model;
 
 
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by AshirwadTank on 3/2/2016.
  */
+@XmlRootElement(name = "Summary")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MainSummary {
 
+    @XmlElement(name="main-summary")
     private String fullSummary;
+
+    @XmlElement(name = "Summary-Section")
     private List<Summary> summaryList;
 
     public MainSummary(){

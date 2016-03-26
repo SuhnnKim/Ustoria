@@ -1,15 +1,22 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Summary")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Summary
 {
     //private SummarySection summarySection;
 
     //private SummarySequence summarySequence;
-    
+    @XmlAttribute(name="id")
     private String id;
-    
+    @XmlAttribute(name="content")
     private String content;
-    
+    @XmlAttribute(name="summary-name")
     private String name;
     // private String sceneId;
     

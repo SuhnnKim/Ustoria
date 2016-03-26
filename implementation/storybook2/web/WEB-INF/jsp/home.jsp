@@ -60,6 +60,7 @@
  	<th>Project Name</th>
  	<th>Description</th>
  	<th>Last Modified</th>
+     <th>Actions</th>
  </tr>
 
 </table>
@@ -131,6 +132,7 @@
                 "<td><a href='summary'  style='color:black;'>"+jQuery('#projectName').val()+"</a></td>" +
                 "<td>"+jQuery('#description').val()+"</td>" +
                 "<td>"+finalDate+"</td>" +
+                 "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> GET XML </a></td>" +
                 "</tr>");
                         jQuery('#myModal').modal('hide');
 

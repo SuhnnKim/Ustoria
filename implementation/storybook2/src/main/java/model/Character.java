@@ -1,16 +1,21 @@
 package model;
 
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+
+import javax.xml.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@XmlRootElement(name = "Character")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Character
 {
+    @XmlAttribute(name="id")
     private String id;
 
    // private List<Model> modelList;
-
+   @XmlAttribute(name="character-name")
     private String name;
 
    // private List<Image> imageList;
@@ -18,11 +23,10 @@ public class Character
    // private Model preferedModel;
     
    // private Image preferedImage;
+   @XmlElementWrapper(name = "attributeMap")
+   private Map<String,List<Attribute>> attributeList;
 
-
-
-    private Map<String,List<Attribute>> attributeList;
-  
+    @XmlAttribute(name="description")
     private String characterDescription;
 
     //private List<Scene> sceneList;

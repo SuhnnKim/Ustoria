@@ -2,24 +2,36 @@ package model;
 
 import sun.applet.Main;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+@XmlRootElement(name="story")
+@XmlAccessorType(XmlAccessType.NONE)
 public class Story {
 
+    @XmlAttribute(name="author")
     private String author;
+    @XmlAttribute(name="title")
     private String title;
+    @XmlAttribute(name="name")
     private String name;
 
    // protected List<Attribute> attributeDefinitions;
+    @XmlElement(name = "Summary")
     private MainSummary summary;
+
+
     private Map<String, String> globalVariables;
    //private List<RelationshipDefinition> relationshipDefinitions;
     
    // private LayoutDefinition layoutDefinition;
+  //  @XmlElement(name="Characters")
+    private List<Character> characterList;
+
 
     public List<Character> getCharacterList() {
         return characterList;
@@ -28,9 +40,6 @@ public class Story {
     public void setCharacterList(List<Character> characterList) {
         this.characterList = characterList;
     }
-
-    private List<Character> characterList;
-
     //private List<Roles> rolesList;
 
     //private List<Scene> sceneList;

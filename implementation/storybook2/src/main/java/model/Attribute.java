@@ -1,9 +1,17 @@
 package model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="attribute")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Attribute
 {
 //   private String id=null;
 
+    @XmlAttribute(name="attribute-name")
     private String name=null;
     
 //    private String value = null;
@@ -21,6 +29,7 @@ public class Attribute
 //    {
 //        this.id = id;
 //    }
+
 
     public String getName ()
     {

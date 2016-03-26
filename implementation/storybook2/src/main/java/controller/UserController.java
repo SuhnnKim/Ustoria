@@ -30,6 +30,10 @@ import sun.security.provider.MD5;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.util.*;
 
 
@@ -50,6 +54,29 @@ public class UserController {
 
         return "dialog";
 
+    }
+
+    @RequestMapping("getXML")
+    public String getXML(HttpServletRequest req,Model model){
+
+        Story storyObject = getStoryFromSession(req);
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(Story.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            //Marshal the employees list in console
+            jaxbMarshaller.marshal(storyObject, System.out);
+
+            //Marshal the employees list in file
+            jaxbMarshaller.marshal(storyObject, new File("P:/story.xml"));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+        return "home";
     }
 
    // @RequestMapping("/signup.form")

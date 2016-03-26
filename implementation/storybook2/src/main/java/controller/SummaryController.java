@@ -60,7 +60,7 @@ public class SummaryController {
       MainSummary mainSummary = story.getSummary();
       List<Summary> summaryList = mainSummary.getSummaryList();
 
-      System.out.println(summaryContent);
+    //  System.out.println(summaryContent);
 
       Summary newSummary = new Summary();
       newSummary.setName(summaryName);
