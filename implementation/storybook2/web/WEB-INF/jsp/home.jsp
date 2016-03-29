@@ -29,17 +29,10 @@
 <div class="container-fluid" id="main-wrapper" style="padding:0;">
     <jsp:include page="nav_top.jsp" />
 
-<<<<<<< HEAD
+
 <div class="row" id="content-wrapper" style="margin:0;">
-<table id="storyList" class="table table-bordered">
- <tr>
- 	<th id="check-all"></th>
- 	<th>Project Name</th>
- 	<th>Description</th>
- 	<th>Last Modified</th>
-     <th>Actions</th>
- </tr>
-=======
+
+
     <nav class="navbar navbar-inverse col-lg-12" style="background-color:white; " id="header-wrapper">
 
             <div class="navbar-header">
@@ -61,9 +54,9 @@
             </div>
 
     </nav>
-    <div class="contsiner">
-    <div class="row col-lg-12" id="content-wrapper" style="margin:0;">
->>>>>>> ef95a510d2a71e49a88f36a851e170eafdb80114
+    <div class="container">
+
+
 
         <table id="storyList" class="table table-bordered col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <tr>
@@ -71,10 +64,11 @@
                 <th>Project Name</th>
                 <th>Description</th>
                 <th>Last Modified</th>
+                <th>Actions</th>
             </tr>
         </table>
 
-    </div>
+
     </div>
 </div>
 
@@ -86,7 +80,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Please enter the Project Name</h4>
+                <h4 class="modal-title" id="myModalLabel">Project Details</h4>
             </div>
             <div class="modal-body">
                 <form method="post" action="#">
@@ -102,8 +96,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="btnProjectCreate">Create</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>

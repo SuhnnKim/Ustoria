@@ -28,51 +28,11 @@
 
 <div class="container-fluid" id="main-wrapper" style="padding:0;">
     <jsp:include page="nav_top.jsp" />
-  <%--<nav class="navbar navbar-default">--%>
-	  <%--<div class="container-fluid">--%>
-	    <%--<div class="navbar-header">--%>
-            <%--<h2 id="brand-name">Ustoria</h2>--%>
-            <%--&lt;%&ndash;<img src="${pageContext.request.contextPath}/resources/img/logo_2.png" alt="Home"/>&ndash;%&gt;--%>
-	    <%--</div>--%>
-		<%--<!-- <a href="#">My Projects</a> -->--%>
-	    <%--<ul class="nav navbar-nav navbar-right">--%>
-	      <%----%>
-	      <%--<li class="dropdown">--%>
-	        <%--<a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}--%>
-	        <%--<span class="caret"></span></a>--%>
-	        <%--<ul class="dropdown-menu">--%>
-	          <%--<li><a href="#">My Stories</a></li>--%>
-	          <%--<li><a href="#">Profile</a></li>--%>
-	          <%--<li><a href="#">Log Out</a></li> --%>
-	        <%--</ul>--%>
-	      <%--</li>--%>
-
-	    <%--</ul>--%>
-	    <%--<form><input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" ></form>--%>
-	  <%--</div>--%>
-	<%--</nav>--%>
-	
 
 
+<div class="row" id="content-wrapper" style="margin:0;">
 
-    <%--<div class="row" id="header-wrapper">--%>
-        <%--<div class="container" style="padding: 0;">--%>
-            <%--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myCtrl"--%>
-                    <%--style="color:white !important;opacity: 1;background-color: grey;">--%>
-                <%--<span class="icon-bar"></span>--%>
-                <%--<span class="icon-bar"></span>--%>
-                <%--<span class="icon-bar"></span>--%>
-            <%--</button>--%>
-            <%--<div class="collapse navbar-collapse" id="myCtrl">--%>
-                <%--<button type="button" class="btn btn-primary">Delete</button>--%>
-                <%--<button type="button" class="btn btn-primary">Generate XML</button>--%>
-                <%--<button type="button" class="btn btn-primary">Download XML</button>--%>
-            <%--</div>--%>
-            <%--<div class=" col-lg-6 col-md-4 col-sm-4 col-xs-12 ">--%>
-                <%--<button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary pull-right">Create New Project</button>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+
     <nav class="navbar navbar-inverse col-lg-12" style="background-color:white; " id="header-wrapper">
 
             <div class="navbar-header">
@@ -93,21 +53,10 @@
                 </ul>
             </div>
 
-<<<<<<< HEAD
-<div class="row" id="content-wrapper" style="margin:0;">
-<table id="storyList" class="table table-bordered">
- <tr>
- 	<th id="check-all"></th>
- 	<th>Project Name</th>
- 	<th>Description</th>
- 	<th>Last Modified</th>
-     <th>Actions</th>
- </tr>
-=======
     </nav>
-    <div class="contsiner">
-    <div class="row col-lg-12" id="content-wrapper" style="margin:0;">
->>>>>>> ef95a510d2a71e49a88f36a851e170eafdb80114
+    <div class="container">
+
+
 
         <table id="storyList" class="table table-bordered col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <tr>
@@ -115,10 +64,11 @@
                 <th>Project Name</th>
                 <th>Description</th>
                 <th>Last Modified</th>
+                <th>Actions</th>
             </tr>
         </table>
 
-    </div>
+
     </div>
 </div>
 
@@ -130,7 +80,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Please enter the Project Name</h4>
+                <h4 class="modal-title" id="myModalLabel">Project Details</h4>
             </div>
             <div class="modal-body">
                 <form method="post" action="#">
@@ -146,8 +96,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="btnProjectCreate">Create</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>

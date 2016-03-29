@@ -76,7 +76,7 @@
 				<div class="col-lg-6 plus-gap"><input type="text" name="fname" placeholder="First Name" class="form-control"></div>
 				<div class="col-lg-6 plus-gap"><input type="text" name="lname" placeholder="Last Name" class="form-control"></div>
 				<div class="col-lg-12 plus-gap"><input type="email" name="email-signup" placeholder="Your Email" class="form-control"></div>
-				<div class="col-lg-12 plus-gap"><input type="password" name="password-signup" placeholder="New Password" class="form-control"></div>
+				<div class="col-lg-12 plus-gap"><input type="password" name="password-signup" placeholder="Password" class="form-control"></div>
 				<div class="col-lg-12 plus-gap"><input type="submit" value="Sign up" class="btn btn-primary"/></div>
 			</div>
 		</form>

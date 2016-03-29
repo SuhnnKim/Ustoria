@@ -1,5 +1,5 @@
 .highlight{
-    color:yellow;
+    color:#e14b3b;
 }
 #summary-panel::selection {
     color: #e14b3b; /* WebKit/Blink Browsers */
