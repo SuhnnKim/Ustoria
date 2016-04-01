@@ -16,15 +16,23 @@
 
 #main-panel #summary-panel
 {
-    width:80%;
+    width:75%;
     float:left;
+    margin-left: 20px;
+    margin-top: 20px;
+    border: solid 2px grey;
+    padding: 10px;
+}
 
+#main-panel #summary-panel:focus
+{
+    border: none;
 }
 
 #main-panel #summary-section-list{
     width: 20%;
     float: right;
-
+    padding-top: 20px;
 }
 
 .summary-section-wrapper{

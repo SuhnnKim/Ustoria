@@ -3,22 +3,6 @@
  */
 
 jQuery(function(){
-    // left sidebar menu item clicked animation
-    //jQuery('#cssmenu li.active').addClass('open').children('ul').show();
-    //jQuery('#cssmenu li.has-sub>a').on('click', function(){
-    //    jQuery(this).removeAttr('href');
-    //    var element = jQuery(this).parent('li');
-    //    if (element.hasClass('open')) {
-    //        element.removeClass('open');
-    //        element.find('li').removeClass('open');
-    //        element.find('ul').slideUp(200);
-    //    }
-    //    else {
-    //        element.addClass('open');
-    //        element.children('ul').slideDown(200);
-    //        element.siblings('li').find('li').removeClass('open');
-    //    }
-    //});
 
     jQuery('#hide-sidebar').click(function(event) {
         jQuery('#content').css('width', jQuery(window).width());
@@ -35,35 +19,17 @@ jQuery(function(){
         jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
     });
     jQuery(window).resize();
+
+    jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
+
+    jQuery('#hide-sidebar').css({
+
+        'top': jQuery(window).height() * 0.5,
+        'left':jQuery('#sidebar').width()-20,
+
+    });
+
 });
-
-
-
-//jQuery(window).resize(function () {
-//    jQuery('#sidebar').css('width', 150);
-//    jQuery('#content').width(jQuery(window).width() - jQuery('#left_sidebar').width());
-//    jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
-//
-//    jQuery('#hide-sidebar').css({
-//
-//        'top': jQuery(window).height() * 0.5,
-//        'left':jQuery('#sidebar').width()-20,
-//
-//    });
-//    jQuery('#link-playground').css({
-//
-//        'bottom': 0,
-//        'left':0,
-//        'width': jQuery('#sidebar').width(),
-//
-//    });
-//    jQuery('#link-add-category').css({
-//
-//        'bottom': jQuery('#link-playground').height()*2.5,
-//
-//    });
-//});
-
 
 
 app.controller('LeftSidebarController', function($scope) {
@@ -124,4 +90,26 @@ app.controller('LeftSidebarController', function($scope) {
         jQuery("#addCategoryModal").modal("hide");
     };
 
+
+
+});
+
+jQuery("#cssmenu li.has-sub>a").off("click");
+// rebind the click event
+jQuery('#cssmenu li.has-sub>a').on('click', function(){
+
+    jQuery(this).removeAttr('href');
+    var element = jQuery(this).parent('li');
+
+
+    if (element.hasClass('open')) {
+        element.removeClass('open');
+        element.find('li').removeClass('open');
+        element.find('ul').slideUp(200);
+    }
+    else {
+        element.addClass('open');
+        element.children('ul').slideDown(200);
+        element.siblings('li').find('li').removeClass('open');
+    }
 });

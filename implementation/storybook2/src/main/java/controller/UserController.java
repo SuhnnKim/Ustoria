@@ -44,14 +44,14 @@ public class UserController {
     //@RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
 
-
+        model.addAttribute("pageName","Projects");
         return "home";
 
     }
     @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
 
-
+        model.addAttribute("pageName","Dialog");
         return "dialog";
 
     }
@@ -75,7 +75,7 @@ public class UserController {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
+        model.addAttribute("pageName","Projects");
         return "home";
     }
 
@@ -93,6 +93,8 @@ public class UserController {
 
         model.addAttribute("email",email);
 
+        model.addAttribute("pageName","Projects");
+
         return "home";
 
     }
@@ -103,6 +105,8 @@ public class UserController {
     public ModelAndView Playground(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
+
+        model.addAttribute("pageName","Playground");
 
 //        model.addAttribute("characterList",story.getCharacterList());
       //  MainSummary m = story.getSummary();
@@ -131,6 +135,7 @@ public class UserController {
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",name);
         req.getSession().setAttribute("email",name);
+        model.addAttribute("pageName","Projects");
         return "home";
     }
 
