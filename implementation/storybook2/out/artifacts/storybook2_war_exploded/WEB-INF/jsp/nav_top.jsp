@@ -41,7 +41,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="#">My Stories</a></li>
                         <li><a href="#">Profile</a></li>
-                        <li><a href="#">Log Out</a></li>
+                        <li><a href="/logout">Log Out</a></li>
                     </ul>
                 </li>
 

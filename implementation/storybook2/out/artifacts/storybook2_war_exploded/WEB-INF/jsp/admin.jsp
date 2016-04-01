@@ -19,6 +19,9 @@
     <div class="table-responsive">
         <table class="table">
             <tr>
+                <td><a href="/add" class="btn btn-default">Add</a> </td>
+            </tr>
+            <tr>
                 <th><input type="checkbox"/>Check All</th>
                 <th>User List</th>
                 <th>Delete</th>

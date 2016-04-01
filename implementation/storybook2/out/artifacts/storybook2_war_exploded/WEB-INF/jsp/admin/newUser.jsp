@@ -10,30 +10,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin</title>
+    <title>New User</title>
     <jsp:include page="../head.jsp" />
 </head>
 <body>
 <jsp:include page="../nav_top.jsp"/>
 <div class="container">
-    <form class="form-horizontal" action="save">
-        <input type="hidden" name="id" value="${user.id}">
+    <form class="form-horizontal" action="saveNew" method="post">
         <div class="form-group">
             <label class="control-label col-sm-2" for="name">Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="name" name="name" value="${user.userName}"/>
+                <input type="text" class="form-control" id="name" name="name" placeholder="username"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="email" name="email" value="${user.email}"/>
+                <input type="text" class="form-control" id="email" name="email" placeholder="email"/>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="password">Password:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="password" name="password" value="${user.password}"/>
+                <input type="text" class="form-control" id="password" name="password" placeholder="password"/>
             </div>
         </div>
 
@@ -41,8 +40,8 @@
             <label class="control-label col-sm-2" for="role">Role:</label>
             <div class="col-sm-10">
                 <select id="role" class="form-control" name="role">
-                    <option value="0" <c:if test="${role == 0}"><c:out value="selected=selected"/></c:if>>User</option>
-                    <option value="1" <c:if test="${role == 1}"><c:out value="selected=selected"/></c:if>>Admin</option>
+                    <option value="0" selected="selected">User</option>
+                    <option value="1">Admin</option>
                 </select>
             </div>
         </div>

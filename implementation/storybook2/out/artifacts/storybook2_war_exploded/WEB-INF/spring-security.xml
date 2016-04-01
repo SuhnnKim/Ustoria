@@ -16,7 +16,7 @@
     <security:http auto-config="true" use-expressions="true">
         <security:intercept-url pattern="/login" access="permitAll"/>
         <security:intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
-        <!--<security:intercept-url pattern="/main/common" access="hasRole('ROLE_USER')"/>-->
+        <security:intercept-url pattern="/home" access="hasRole('ROLE_USER')"/>
 
 
         <security:form-login
@@ -27,11 +27,11 @@
             password-parameter="password-login"
             always-use-default-target="true"/>
 
-        <!--<security:logout-->
-            <!--invalidate-session="true"-->
-            <!--logout-success-url="/auth/login"-->
-            <!--logout-url="/auth/logout"-->
-            <!--delete-cookies="JSESSIONID"/>-->
+        <security:logout
+            invalidate-session="true"
+            logout-success-url="/login"
+            logout-url="/logout"
+            delete-cookies="JSESSIONID"/>
 
         <!--<security:csrf/>-->
 

@@ -38,7 +38,21 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="control-label btn btn-default" value="Save">
+            <label class="control-label col-sm-2" for="role">Role:</label>
+            <div class="col-sm-10">
+                <select id="role" class="form-control" name="role">
+                    <option value="0" <c:if test="${role == 0}"><c:out value="selected=selected"/></c:if>>User</option>
+                    <option value="1" <c:if test="${role == 1}"><c:out value="selected=selected"/></c:if>>Admin</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="control-label col-sm-4"/>
+            <div class="col-sm-9">
+                <input type="submit" class="control-label btn btn-default" value="Save">
+            </div>
+
         </div>
     </form>
 
