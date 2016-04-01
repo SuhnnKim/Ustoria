@@ -76,24 +76,24 @@ public class AdminController {
         req.getSession().setAttribute("email",name);
         userDAO userDAO = context.getBean(userDAO.class);
 
-        String username = req.getParameter("name");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
-        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-
-        String encoderPassword = encoder.encodePassword(password,null);
-
-
-
-        String role = req.getParameter("role");
-
-        int r = Integer.parseInt(role);
-
         String id = req.getParameter("id");
 
         UsersEntity user = userDAO.findBy(Integer.parseInt(id));
+
+        String username = req.getParameter("name");
+        String email = req.getParameter("email");
+        String password = req.getParameter("password");
+        String role = req.getParameter("role");
+        int r = Integer.parseInt(role);
+
+
+        if (password != ""){
+            Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+            String encoderPassword = encoder.encodePassword(password,null);
+            user.setPassword(encoderPassword);
+        }
+
         user.setEmail(email);
-        user.setPassword(encoderPassword);
         user.setRole(r);
         user.setUserName(username);
 

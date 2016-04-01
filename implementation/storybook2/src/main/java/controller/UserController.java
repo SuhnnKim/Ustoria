@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -60,11 +61,24 @@ public class UserController {
 
         String lname = req.getParameter("lname");
 
+        String name = fname + " " + lname;
+
         String email = req.getParameter("email-signup");
 
         String password = req.getParameter("password-signup");
 
         model.addAttribute("email",email);
+
+        userDAO userDAO = context.getBean(userDAO.class);
+
+        UsersEntity user = new UsersEntity();
+        user.setUserName(name);
+        user.setEmail(email);
+        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+        String encoderPassword = encoder.encodePassword(password,null);
+        user.setPassword(encoderPassword);
+
+        userDAO.save(user);
 
         return "home";
 
