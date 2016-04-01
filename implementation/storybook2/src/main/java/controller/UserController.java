@@ -50,8 +50,16 @@ public class UserController {
     }
     @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
+        Story story = (Story)req.getSession().getAttribute("story");
 
+        MainSummary mainSummary = story.getSummary();
+        req.setAttribute("characterList",story.getCharacterList());
+        req.setAttribute("projectTitle",story.getName());
+        req.setAttribute("summaryList",mainSummary.getSummaryList());
         model.addAttribute("pageName","Dialog");
+        model.addAttribute("characterList",story.getCharacterList());
+        model.addAttribute("projectTitle",story.getName());
+        model.addAttribute("summaryList",mainSummary.getSummaryList());
         return "dialog";
 
     }

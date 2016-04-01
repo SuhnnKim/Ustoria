@@ -31,6 +31,7 @@
 
     #project-title {
         padding: 2% 0;
+        font-size: 14px;
     }
 
     #myNavbar {
@@ -111,13 +112,16 @@
         <div class="col-sm-3 col-md-3">
 
             <form action="search" method="get" class="navbar-form" role="search">
+                <span id="project-title">${projectTitle}</span>
                 <div class="input-group">
                     <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">
 
                 </div>
             </form>
+
         </div>
         <ul class="nav navbar-nav navbar-right">
+            <%--<li><h3>${projectTitle}</h3></li>--%>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${email} <b class="caret"></b></a>
                 <ul class="dropdown-menu">

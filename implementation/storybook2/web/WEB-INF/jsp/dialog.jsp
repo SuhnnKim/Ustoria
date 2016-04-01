@@ -66,10 +66,22 @@
 </div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
+<script type="text/javascript">
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
+    // deal with the conflict between jquery and angular (global variable "$")
+    // after this, need to use jQuery instead of "$" for jquery's function
+    $.noConflict();
+
+
+</script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/dialog.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 

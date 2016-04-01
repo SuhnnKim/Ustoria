@@ -43,8 +43,7 @@
                             <c:if test="${not empty summaryList}">
 
                                 <c:forEach var="summary" items="${summaryList}">
-                                    <li id=
-                                            <c:out value="${summary.getName()}"/>>
+                                    <li class="draggable menu_item" id=<c:out value="${summary.getName()}"/>>
                                         <a href="#"><c:out value="${summary.getName()}"/></a>
                                     </li>
                                 </c:forEach>
