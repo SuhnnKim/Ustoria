@@ -136,4 +136,4 @@ jQuery('div[contenteditable]').keydown(function(e) {
     }
 });
 
-jQuery('#summary-panel').empty();
+

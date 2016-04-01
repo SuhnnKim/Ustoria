@@ -32,7 +32,9 @@
 					${summary}
 				</c:when>
 				<c:otherwise>
-
+					<script>
+						jQuery('#summary-panel').empty();
+					</script>
 				</c:otherwise>
 			</c:choose>
         </div>
