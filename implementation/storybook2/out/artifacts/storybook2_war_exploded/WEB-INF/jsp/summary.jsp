@@ -88,7 +88,7 @@
 	// deal with the conflict between jquery and other libraries (eg: angular) with global variable "$"
 	// after this, need to use jQuery instead of "$" for jquery's function
 	// just in case some unexpected/unpredictable bugs
-	jQuery.noConflict();
+	$.noConflict();
 
 </script>
 

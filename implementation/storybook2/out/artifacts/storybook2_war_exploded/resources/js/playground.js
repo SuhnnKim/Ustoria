@@ -308,28 +308,28 @@ var makeDragDropSort = function(){
 
 
   // enable sidebar menu item toggle animation
-  var sidebarAnimate = function(){    
-    // in case click event repeated or mixed up with other click event
-    jQuery("#cssmenu li.has-sub>a").off("click");
-    // rebind the click event
-    jQuery('#cssmenu li.has-sub>a').on('click', function(){
+var sidebarAnimate = function(){
+  // in case click event repeated or mixed up with other click event
+  jQuery("#cssmenu li.has-sub>a").off("click");
+  // rebind the click event
+  jQuery('#cssmenu li.has-sub>a').on('click', function(){
 
-      jQuery(this).removeAttr('href');
-      var element = jQuery(this).parent('li');
+    jQuery(this).removeAttr('href');
+    var element = jQuery(this).parent('li');
 
 
-      if (element.hasClass('open')) {
-        element.removeClass('open');
-        element.find('li').removeClass('open');
-        element.find('ul').slideUp(200);
-      }
-      else {
-        element.addClass('open');
-        element.children('ul').slideDown(200);
-        element.siblings('li').find('li').removeClass('open');
-      }
-    });
-  };
+    if (element.hasClass('open')) {
+      element.removeClass('open');
+      element.find('li').removeClass('open');
+      element.find('ul').slideUp(200);
+    }
+    else {
+      element.addClass('open');
+      element.children('ul').slideDown(200);
+      element.siblings('li').find('li').removeClass('open');
+    }
+  });
+};
 
 
 

@@ -87,8 +87,8 @@
 												<tr>
 													<td>
 														<li class='list-group-item'>
-															<c:out value="${relationshipList.name.toString()}"/></li>
-															<input type='hidden' name='relaAtt' id='relaAtt' value='<c:out value="${relationshipList.name.toString()}"/>'/>
+															<c:out value="${relationshipList.name}"/></li>
+															<input type='hidden' name='relaAtt' id='relaAtt' value='<c:out value="${relationshipList.name}"/>'/>
 													</td>
 													<td>
 														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />

@@ -21,5 +21,12 @@
 <c:forEach var="character" items="${foundCharacterList}">
     <p><a href="<c:out value="loadCharacter?id=${character.getId()}"/>"><c:out value="${character.getName()}"/></a></p>
 </c:forEach>
+
+<p>found: ${SummaryCount} records in Summary</p>
+<c:forEach var="summary" items="${foundSummaryList}">
+    <p><c:out value="${summary.content}"/></p>
+</c:forEach>
+
+
 </body>
 </html>

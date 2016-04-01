@@ -4,10 +4,8 @@ import com.google.gson.Gson;
 import dao.userDAO;
 import dao.userDAOImpl;
 import entity.UsersEntity;
-import model.Attribute;
+import model.*;
 import model.Character;
-import model.MainSummary;
-import model.Story;
 import org.hibernate.bytecode.buildtime.spi.Logger;
 import org.hibernate.mapping.Array;
 import org.json.simple.JSONArray;
@@ -25,6 +23,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
+import sun.applet.Main;
 import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpServletRequest;
@@ -147,9 +146,31 @@ public class UserController {
                 foundCharacterList.add(c);
             }
         }
+
+        int SummaryCount = 0;
+
+        MainSummary wholeSummary = story.getSummary(); // get Main Summary Object
+
+        String mainSummaryText = wholeSummary.getFullSummary(); // get whole summary
+
+        List<Summary> summarySection = wholeSummary.getSummaryList(); //list of all summary sections
+
+        List<Summary> foundSummaryList = new ArrayList();
+
+        for(Summary s : summarySection){
+            if(s.getContent().contains(search)){
+                SummaryCount++;
+                foundSummaryList.add(s);
+            }
+        }
+
         model.addAttribute("search",search);
         model.addAttribute("CharacterCount",CharacterCount);
         model.addAttribute("foundCharacterList",foundCharacterList);
+
+        model.addAttribute("SummaryCount",SummaryCount);
+        model.addAttribute("foundSummaryList",foundSummaryList);
+
 
         req.getSession().setAttribute("search",search);
         return "search";
