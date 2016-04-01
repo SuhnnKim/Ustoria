@@ -21,8 +21,6 @@
 	<div id="content">
 		<div id="control-panel">
 			<a class="ctrl-btn pull-left" id="new-character" href="#">New character</a>
-			<a class="ctrl-btn pull-left" id="undo" href="summary.form">Summary</a>
-			<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
 			<input type="hidden" id="uuid" value="${loadCharacter.id}"/>
 			<input type="submit" class="ctrl-btn pull-right" id="save" name="save" value="Save"/>
 		</div>
@@ -259,26 +257,7 @@
 	// after this, need to use jQuery instead of "$" for jquery's function
 	$.noConflict();
 
-	///// for sidebar menu's animation
-	jQuery('#cssmenu li.active').addClass('open').children('ul').show();
-	jQuery('#cssmenu li.has-sub>a').on('click', function(){
-		jQuery(this).removeAttr('href');
-		var element = jQuery(this).parent('li');
-		if (element.hasClass('open')) {
-			element.removeClass('open');
-			element.find('li').removeClass('open');
-			element.find('ul').slideUp(200);
-		}
-		else {
-			element.addClass('open');
-			element.children('ul').slideDown(200);
-			// element.siblings('li').children('ul').slideUp(200);
-			// element.siblings('li').removeClass('open');
-			element.siblings('li').find('li').removeClass('open');
-			// element.siblings('li').find('ul').slideUp(200);
-		}
-	});
-	///////
+
 </script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>

@@ -43,14 +43,22 @@ public class UserController {
     //@RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
 
-
+        model.addAttribute("pageName","Projects");
         return "home";
 
     }
     @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
+        Story story = (Story)req.getSession().getAttribute("story");
 
-
+        MainSummary mainSummary = story.getSummary();
+        req.setAttribute("characterList",story.getCharacterList());
+        req.setAttribute("projectTitle",story.getName());
+        req.setAttribute("summaryList",mainSummary.getSummaryList());
+        model.addAttribute("pageName","Dialog");
+        model.addAttribute("characterList",story.getCharacterList());
+        model.addAttribute("projectTitle",story.getName());
+        model.addAttribute("summaryList",mainSummary.getSummaryList());
         return "dialog";
 
     }
@@ -74,7 +82,7 @@ public class UserController {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
+        model.addAttribute("pageName","Projects");
         return "home";
     }
 
@@ -92,6 +100,8 @@ public class UserController {
 
         model.addAttribute("email",email);
 
+        model.addAttribute("pageName","Projects");
+
         return "home";
 
     }
@@ -102,6 +112,8 @@ public class UserController {
     public ModelAndView Playground(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
+
+        model.addAttribute("pageName","Playground");
 
 //        model.addAttribute("characterList",story.getCharacterList());
       //  MainSummary m = story.getSummary();
@@ -130,6 +142,7 @@ public class UserController {
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",name);
         req.getSession().setAttribute("email",name);
+        model.addAttribute("pageName","Projects");
         return "home";
     }
 

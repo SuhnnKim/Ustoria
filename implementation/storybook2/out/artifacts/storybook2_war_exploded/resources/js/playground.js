@@ -128,11 +128,31 @@ var makeMenuItemSortable = function(){
 };
 
 // mySlySlider is for timelineScrollAnimation
-var mySlySlider;
+var frame  = jQuery('#timeline_wrap');
+var wrap   = frame.parent();
+var mySlySlider = new Sly(frame, {
+  horizontal: 1,
+  itemNav: 'basic',
+  smart: 1,
+  activateOn: 'click',
+  mouseDragging: 0,
+  touchDragging: 1,
+  releaseSwing: 1,
+  startAt: 0,
+  scrollBar: wrap.find('.scrollbar'),
+  scrollBy: 1,
+  // pagesBar: wrap.find('.pages'),
+  activatePageOn: 'click',
+  speed: 300,
+  elasticBounds: 1,
+  easing: 'easeOutExpo',
+  dragHandle: 1,
+  dynamicHandle: 1,
+  clickBar: 1,
+}).init();
 // a function to make timeline scroll behavior nicer
-var timelineScrollAnimation = function(){
+var timelineScrollAnimation = function(mySlySlider){
   var frame  = jQuery('#timeline_wrap');
-  var slidee = frame.children('ul').eq(0);
   var wrap   = frame.parent();
 
   mySlySlider = new Sly(frame, {
@@ -273,10 +293,10 @@ var makeDragDropSort = function(){
         // change the fixed height of scene part along with timeline part toggled
         if(this.hidden){
           jQuery('#timeline_panel').height(20);
-          jQuery('#scene-panel').height(jQuery('#content').height()-120);
+          jQuery('#scene-panel').height(jQuery('#play_wrap').height()-20);
         }else{
-          jQuery('#scene-panel').css('height', jQuery('#content').height() * 0.6);
-          jQuery('#timeline_panel').css('height', jQuery('#content').height()-jQuery('#scene-panel').height()-50);
+          jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
+          jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
         }
       }
     };
@@ -368,19 +388,19 @@ jQuery(window).resize(function () {
   // setting #content's width
   jQuery('#content').css('width', jQuery(window).width() - jQuery('#sidebar').width());
   // setting #content's height
-  jQuery('#content').css('height', jQuery(window).height() - jQuery('#navbar_playgrond').height());
+  jQuery('#content').css('height', jQuery(window).height() - jQuery('#main_nav').height());
 
   jQuery('#content').css('margin-left', jQuery('#sidebar').width());
 
   jQuery('#play_wrap').css('height', (jQuery('#content').height()-50));
 
-  jQuery('#play_wrap').css('border-bottom', 'solid 1px black');
-
-  jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6);
+  jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
 
   jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
 
   jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
+
+  jQuery('#timeline').css('width', jQuery('#timeline_panel').width());
 
   jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
@@ -390,18 +410,18 @@ jQuery(window).resize(function () {
     'left':jQuery('#sidebar').width()-20,
 
   });
-  jQuery('#link-playground').css({
-
-    'bottom': 0,
-    'left':0,
-    'width': jQuery('#sidebar').width(),
-
-  });
-  jQuery('#link-add-category').css({
-
-    'bottom': jQuery('#link-playground').height()*2.5,
-
-  });
+  //jQuery('#link-playground').css({
+  //
+  //  'bottom': 0,
+  //  'left':0,
+  //  'width': jQuery('#sidebar').width(),
+  //
+  //});
+  //jQuery('#link-add-category').css({
+  //
+  //  'bottom': jQuery('#link-playground').height()*2.5,
+  //
+  //});
 });
 
 
@@ -415,7 +435,7 @@ jQuery(function(){
 
   jQuery(window).resize();
 
-  timelineScrollAnimation();
+  timelineScrollAnimation(mySlySlider);
 
   makeTimelineSortable();
 

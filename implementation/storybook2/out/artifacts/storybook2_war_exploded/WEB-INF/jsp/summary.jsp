@@ -17,20 +17,24 @@
 <jsp:include page="nav_top.jsp" />
 
 <jsp:include page="left-navigation.jsp" />
+
 <div class="" id="content"  >
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="save-story" href="#">Save Story</a>
-		<a class="ctrl-btn pull-left" id="undo" href="character.form">Character</a>
-		<a class="ctrl-btn pull-left" id="redo" href="playground.form">PlayGround</a>
 
 		<button class="ctrl-btn pull-right" id="saveText"  data-toggle="modal" data-target="#myModal">Create Section</button>
 	</div>
 
 	<div id="main-panel">
 		<div id="summary-panel" contentEditable="true" data-placeholder="Please Enter your summary here">
-            <c:if test="${not empty summary}">
-                ${summary}
-            </c:if>
+            <c:choose>
+				<c:when test="${not empty summary}">
+					${summary}
+				</c:when>
+				<c:otherwise>
+
+				</c:otherwise>
+			</c:choose>
         </div>
 
 		<div id="summary-section-list">

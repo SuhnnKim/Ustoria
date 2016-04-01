@@ -73,10 +73,6 @@
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="new-scene" href="#" data-toggle="modal" data-target="#myModal">New scene</a>
 		<a class="ctrl-btn pull-left" href="#" data-toggle="modal" data-target="#myEditScenesModal">Delete Scenes</a>
-		<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
-		<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
-		<a class="ctrl-btn pull-left" id="character" href="character.form">Character</a>
-		<a class="ctrl-btn pull-left" id="summary" href="summary.form">Summary</a>
 		<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 	</div>
 	<div id="play_wrap" style="width: inherit;height: inherit;">
@@ -108,10 +104,9 @@
 					</div>
 				</div>
 
-				<div class="frame" id="timeline_wrap" style="overflow: hidden;">
-					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); /*width: 100%;*/">
-						<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-						<li>10</li><li>11</li><li>12</li><li>13</li>
+				<div class="frame" id="timeline_wrap" style="overflow: hidden; width: 100%">
+					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); width: 100%;">
+						<li>0</li><li>1</li>
 					</ul>
 				</div>
 			</div>

@@ -5,52 +5,133 @@
   Time: 10:54 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-    #project-title h3{
+    #project-title h3 {
         text-align: center;
     }
-    #project-title{
-        padding:2% 0;
+
+    .navbar-brand{
+        padding-top: 0 ;
+        padding-bottom: 0;
     }
-    #myNavbar{
-        padding:1% 0;
-        margin:1% 0;
+
+    #main_nav{
+        height: 96px;
+    }
+
+    #main_nav form{
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 96px;
+    }
+    #main_nav form div{
+        margin: 22px 0;
+    }
+
+    #project-title {
+        padding: 2% 0;
+        font-size: 14px;
+    }
+
+    #myNavbar {
+        padding: 1% 0;
+        margin: 1% 0;
+    }
+
+    #navbar-collapse-1 > ul > li > a{
+        height: 96px;
+        line-height: 66px;
     }
 </style>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <%--<div class="navbar-header col-xs-6 col-md-4" >--%>
-            <%--<img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>--%>
+<%--<nav class="navbar navbar-default">--%>
+    <%--<div class="container-fluid">--%>
+        <%--&lt;%&ndash;<div class="navbar-header col-xs-6 col-md-4" >&ndash;%&gt;--%>
+        <%--&lt;%&ndash;<img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<div class="navbar-header col-md-2">--%>
+            <%--<img src="${pageContext.request.contextPath}/resources/img/logo_whole_white.png" alt="Ustoria" height="96">--%>
         <%--</div>--%>
-        <div class="navbar-header col-md-2">
+        <%--<c:if test="projectTitle != null">--%>
+            <%--<div class="col-md-6" id="project-title">--%>
+                <%--<h3>${projectTitle}</h3>--%>
+            <%--</div>--%>
+        <%--</c:if>--%>
+        <%--<!-- <a href="#">My Projects</a> -->--%>
+        <%--<div class="col-md-4" id="myNavbar">--%>
+
+            <%--<ul class="nav navbar-nav navbar-right">--%>
+                <%--<li>Summary</li>--%>
+                <%--<li>Character</li>--%>
+                <%--<li>Dialog</li>--%>
+                <%--<li>Playground</li>--%>
+                <%--<li class="dropdown">--%>
+                    <%--<a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}--%>
+                        <%--<span class="caret"></span></a>--%>
+                    <%--<ul class="dropdown-menu">--%>
+                        <%--<li><a href="#">My Stories</a></li>--%>
+                        <%--<li><a href="#">Profile</a></li>--%>
+                        <%--<li><a href="#">Log Out</a></li>--%>
+                    <%--</ul>--%>
+                <%--</li>--%>
+
+            <%--</ul>--%>
+            <%--<form action="search" method="get">--%>
+                <%--<input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">--%>
+            <%--</form>--%>
+
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</nav>--%>
+
+
+<nav class="navbar navbar-default" role="navigation" id="main_nav">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
             <img src="${pageContext.request.contextPath}/resources/img/logo_whole_white.png" alt="Ustoria" height="96">
-        </div>
-       <div class="col-md-6" id="project-title">
-        <h3>${projectTitle}</h3>
-       </div>
-        <!-- <a href="#">My Projects</a> -->
-        <div class="col-md-4" id="myNavbar">
+        </a>
+    </div>
 
-            <ul class="nav navbar-nav navbar-right" >
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav" id="nav_links">
+            <li <c:if test="${pageName == 'Projects'}">class="active"</c:if> ><a href="home">Projects</a></li>
+            <li <c:if test="${pageName == 'Summary'}">class="active"</c:if> ><a href="summary">Summary</a></li>
+            <li <c:if test="${pageName == 'Character'}">class="active"</c:if> ><a href="character.form">Character</a></li>
+            <li <c:if test="${pageName == 'Dialog'}">class="active"</c:if> ><a href="dialog">Dialog</a></li>
+            <li <c:if test="${pageName == 'Playground'}">class="active"</c:if> ><a href="playground.form">Playground</a></li>
+        </ul>
+        <div class="col-sm-3 col-md-3">
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}
-                        <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">My Stories</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Log Out</a></li>
-                    </ul>
-                </li>
+            <form action="search" method="get" class="navbar-form" role="search">
+                <span id="project-title">${projectTitle}</span>
+                <div class="input-group">
+                    <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">
 
-            </ul>
-            <form action="search" method="get">
-                <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" >
-
+                </div>
             </form>
 
         </div>
-    </div>
+        <ul class="nav navbar-nav navbar-right">
+            <%--<li><h3>${projectTitle}</h3></li>--%>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${email} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Log out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
 </nav>

@@ -43,7 +43,7 @@ public class CharacterController {
         for (int i =0;i<story.getCharacterList().size();i++){
             t += t;
         }
-
+        model.addAttribute("pageName","Character");
         req.setAttribute("characterList",story.getCharacterList());
         return new ModelAndView("character");
 
@@ -252,7 +252,7 @@ public class CharacterController {
             if (list.get(i).getId().equals(id))
                 character = list.get(i);
         }
-
+        model.addAttribute("pageName","Character");
 
         model.addAttribute("loadCharacter",character);
         model.addAttribute("characterList",story.getCharacterList());

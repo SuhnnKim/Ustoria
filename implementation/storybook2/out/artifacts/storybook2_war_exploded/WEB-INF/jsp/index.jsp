@@ -54,11 +54,11 @@
 				<td><input type="password" id="password-login" name="password-login" class="form-control"></td>
 				<td><input type="submit" value="Login" class="btn btn-primary"/></td>
 			</tr>
-			<tr>
-				<td><label><input type="checkbox" name="keep-login" >Keep me logged in</label></td>
-				<td><a href="#">Forgot your password?</a></td>
-				<td></td>
-			</tr>
+			<%--<tr>--%>
+				<%--<td><label><input type="checkbox" name="keep-login" >Keep me logged in</label></td>--%>
+				<%--<td><a href="#">Forgot your password?</a></td>--%>
+				<%--<td></td>--%>
+			<%--</tr>--%>
 		</table>
 	  </form>
   </div>

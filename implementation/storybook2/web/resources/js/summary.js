@@ -135,3 +135,5 @@ jQuery('div[contenteditable]').keydown(function(e) {
         return false;
     }
 });
+
+jQuery('#summary-panel').empty();

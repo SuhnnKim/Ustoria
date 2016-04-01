@@ -27,7 +27,7 @@ public class SummaryController {
 
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
-
+        model.addAttribute("pageName","Summary");
 
         Story story = getStoryFromSession(req);
 
