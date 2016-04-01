@@ -55,6 +55,7 @@ public class UserController {
         req.setAttribute("characterList",story.getCharacterList());
         req.setAttribute("projectTitle",story.getName());
         req.setAttribute("summaryList",mainSummary.getSummaryList());
+
         model.addAttribute("pageName","Dialog");
         model.addAttribute("characterList",story.getCharacterList());
         model.addAttribute("projectTitle",story.getName());

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <html>
 <head>
     <title>Dialog Page</title>
@@ -40,8 +41,18 @@
             <tr>
                 <td class="col-lg-2 col-md-2">
                     <select>
-                        <option>aaa</option>
-                        <option>bbb</option>
+                        <c:choose>
+                            <c:when test="${empty characterList}">
+                                <option>no characters</option>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="character" items="${characterList}">
+                                    <option id=<c:out value="${character.getName()}"/>>
+                                        <c:out value="${character.getName()}"/>
+                                    </option>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </select>
                 </td>
                 <td class="col-lg-4 col-md-4">
@@ -49,8 +60,18 @@
                 </td>
                 <td class="col-lg-2 col-md-2">
                     <select>
-                        <option>aaa</option>
-                        <option>bbb</option>
+                        <c:choose>
+                            <c:when test="${empty characterList}">
+                                <option>no characters</option>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="character" items="${characterList}">
+                                    <option id=<c:out value="${character.getName()}"/>>
+                                        <c:out value="${character.getName()}"/>
+                                    </option>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </select>
                 </td>
                 <td class="col-lg-2 col-md-2">

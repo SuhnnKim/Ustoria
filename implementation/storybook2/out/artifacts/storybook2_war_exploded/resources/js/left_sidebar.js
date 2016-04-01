@@ -4,7 +4,7 @@
 
 jQuery(function(){
 
-    sidebarAnimate();
+
 
     jQuery('#hide-sidebar').click(function(event) {
         jQuery('#content').css('width', jQuery(window).width());
@@ -22,7 +22,6 @@ jQuery(function(){
     });
     jQuery(window).resize();
 
-<<<<<<< HEAD
 var sidebarAnimate = function(){
     // in case click event repeated or mixed up with other click event
     jQuery("#cssmenu li.has-sub>a").off("click");
@@ -44,13 +43,14 @@ var sidebarAnimate = function(){
             element.siblings('li').find('li').removeClass('open');
         }
     });
+
+    sidebarAnimate();
 };
 
-=======
     jQuery('#show-sidebar').css('top', jQuery(window).height() * 0.5);
 
     jQuery('#hide-sidebar').css({
->>>>>>> 983e12cd25a557a87bc6a4d344ca159e66f344d1
+
 
         'top': jQuery(window).height() * 0.5,
         'left':jQuery('#sidebar').width()-20,

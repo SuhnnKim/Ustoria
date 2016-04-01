@@ -8,10 +8,7 @@
 			display: none;
 		}
 	</style>
-	<script>
 
-		$.noConflict();
-	</script>
 	<jsp:include page="head.jsp" />
 </head>
 
