@@ -4,6 +4,7 @@ package controller;
 import com.google.gson.Gson;
 
 import model.Character;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,10 @@ import org.springframework.web.portlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import model.*;
@@ -20,9 +25,9 @@ import model.*;
 @Controller
 public class SummaryController {
 
-   // List<Summary> summaryList = new ArrayList();
 
-    @RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
+
+    /*@RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
     public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
 
         String email = (String)req.getSession().getAttribute("email");
@@ -31,22 +36,22 @@ public class SummaryController {
 
         Story story = getStoryFromSession(req);
 
-        //story.s(projectName);
+
         MainSummary mainSummary = new MainSummary();
         mainSummary = story.getSummary();
-        //req.setAttribute("summaryList",m.getSummaryList());
+
 
         ModelAndView m = new ModelAndView("summary");
 
 
         req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getName());
-        //req.setAttribute("character", );
+        req.setAttribute("projectTitle",story.getTitle());
+
 
         req.setAttribute("summaryList",mainSummary.getSummaryList());
         req.setAttribute("summary",mainSummary.getFullSummary());
         return m;
-    }
+    }*/
 
     /* Saving Summary Section */
     @RequestMapping(value="/AddSummarySection",method= RequestMethod.POST)
@@ -118,14 +123,35 @@ public class SummaryController {
     public @ResponseBody String createStory(HttpServletRequest request,@RequestParam(value = "projectName") String projectName,@RequestParam(value = "projectDesc") String projectDesc){
 
         Story story = getStoryFromSession(request);
+        story.setTitle(projectName);
+        story.setDescription(projectDesc);
+        story.setDate();
 
-        MainSummary m = story.getSummary();
-        story.setTitle(projectDesc);
-        story.setName(projectName);
-       //Summary summary = m.getSummaryByName(summaryText);
         request.getSession().setAttribute("story",story);
-        // String[] ss = summary
-        return "StoryCreated";
+
+        JSONObject storySet = new JSONObject();
+        storySet.put("title", story.getTitle()) ;
+        storySet.put("description", story.getDescription()) ;
+        storySet.put("date", story.getDate()) ;
+
+        JAXBContext jaxbContext = null;
+        try {
+            jaxbContext = JAXBContext.newInstance(Story.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(story, new File("P:/Ustoria/"+story.getTitle()+".xml"));
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+
+
+        Gson gson = new Gson();
+        String storyString = gson.toJson(storySet);
+
+        return storyString;
     }
 
 

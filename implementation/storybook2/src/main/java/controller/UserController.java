@@ -8,6 +8,7 @@ import model.*;
 import model.Character;
 import org.hibernate.bytecode.buildtime.spi.Logger;
 import org.hibernate.mapping.Array;
+import org.hibernate.type.IntegerType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.context.annotation.Role;
@@ -29,9 +30,11 @@ import sun.security.provider.MD5;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.Path;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.*;
 
@@ -39,6 +42,7 @@ import java.util.*;
 @Controller
 public class UserController {
 
+    List<Story> storyList = null;
 
     //@RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
@@ -46,12 +50,10 @@ public class UserController {
 
         MainSummary mainSummary = story.getSummary();
         req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getName());
+        req.setAttribute("projectTitle",story.getTitle());
         req.setAttribute("summaryList",mainSummary.getSummaryList());
 
-        model.addAttribute("characterList",story.getCharacterList());
-        model.addAttribute("projectTitle",story.getName());
-        model.addAttribute("summaryList",mainSummary.getSummaryList());
+
         model.addAttribute("pageName","Projects");
         return "home";
 
@@ -62,33 +64,35 @@ public class UserController {
 
         MainSummary mainSummary = story.getSummary();
         req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getName());
+        req.setAttribute("projectTitle",story.getTitle());
         req.setAttribute("summaryList",mainSummary.getSummaryList());
 
         model.addAttribute("pageName","Dialog");
-        model.addAttribute("characterList",story.getCharacterList());
-        model.addAttribute("projectTitle",story.getName());
-        model.addAttribute("summaryList",mainSummary.getSummaryList());
+
         return "dialog";
 
     }
 
-    @RequestMapping("getXML")
-    public String getXML(HttpServletRequest req,Model model){
+    /**
+     * Saves a particular story and generates XML
+     *
+     * @param req HttpServletRequest which will have a different request and session objects.
+     *
+     * */
 
-        Story storyObject = getStoryFromSession(req);
+    @RequestMapping("getXML/{fileId}")
+    public String getXML(HttpServletRequest req, Model model, @PathVariable int fileId){
+
+       // Story storyObject = getStoryFromSession(req);
+
+        Story storyObject = storyList.get(fileId);
         JAXBContext jaxbContext = null;
         try {
             jaxbContext = JAXBContext.newInstance(Story.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            //Marshal the employees list in console
-            jaxbMarshaller.marshal(storyObject, System.out);
-
-            //Marshal the employees list in file
-            jaxbMarshaller.marshal(storyObject, new File("P:/story.xml"));
+            jaxbMarshaller.marshal(storyObject, new File("P:/Ustoria/"+storyObject.getTitle()+".xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -138,7 +142,7 @@ public class UserController {
 
 
         req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getName());
+        req.setAttribute("projectTitle",story.getTitle());
         //req.setAttribute("character", );
 
         req.setAttribute("summaryList",mainSummary.getSummaryList());
@@ -147,12 +151,43 @@ public class UserController {
     }
 
     @RequestMapping("home")
-    public String Home(HttpServletRequest req, Model model){
+    public String Home(HttpServletRequest req, Model model) throws JAXBException {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",name);
         req.getSession().setAttribute("email",name);
+
+
+        File folder = new File("P:/Ustoria/");
+        File[] listOfFiles = folder.listFiles();
+
+        Story stories=null;
+        storyList= new ArrayList<Story>();
+        int count=0;
+
+        /* Iterating The list of files in folder */
+
+        for (File file : listOfFiles) {
+        /* isFile Check */
+            if (file.isFile()) {
+
+                JAXBContext jaxbContext = JAXBContext.newInstance(Story.class);
+                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+                /* Converting  XML to Story Object */
+                stories = (Story) jaxbUnmarshaller.unmarshal( new File("P:/Ustoria/"+file.getName()));
+
+                stories.setId(count);
+                count++;
+
+
+                storyList.add(stories);
+
+            }
+        }
+
         model.addAttribute("pageName","Projects");
+        model.addAttribute("storyList",storyList);
         return "home";
     }
 
@@ -198,6 +233,45 @@ public class UserController {
         req.getSession().setAttribute("search",search);
         return "search";
     }
+
+
+    @RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
+    public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
+
+        String email = (String)req.getSession().getAttribute("email");
+
+        int storyId = Integer.parseInt(req.getParameter("storyId"));
+        Story story = storyList.get(storyId);
+
+        req.setAttribute("story",story);
+
+        if(story == null) {
+            story = getStoryFromSession(req);
+        }
+        else{
+            HttpSession newSession = req.getSession();
+            newSession.setAttribute("story",story);
+        }
+
+        MainSummary mainSummary = new MainSummary();
+        mainSummary = story.getSummary();
+
+
+        ModelAndView summaryModel = new ModelAndView("summary");
+        model.addAttribute("email",email);
+        model.addAttribute("pageName","Summary");
+
+        req.setAttribute("characterList",story.getCharacterList());
+        req.setAttribute("projectTitle",story.getTitle());
+        req.setAttribute("summaryList",mainSummary.getSummaryList());
+        req.setAttribute("summary",mainSummary.getFullSummary());
+
+        return summaryModel;
+    }
+
+
+
+
 
     public Story getStoryFromSession(HttpServletRequest request){
 

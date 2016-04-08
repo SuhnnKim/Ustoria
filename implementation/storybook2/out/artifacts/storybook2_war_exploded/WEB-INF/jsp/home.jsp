@@ -1,4 +1,5 @@
 <%@ taglib prefix="sping" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,9 +49,9 @@
                 <div class="collapse navbar-collapse" id="myCtrl" style="padding-left: 0;">
                     <ul class="nav navbar-nav navbar-right">
                         <button type="button" class="btn btn-danger">Delete</button>
-                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Create
+                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">
                             New
-                            Project
+                            Story
                         </button>
                     </ul>
                 </div>
@@ -61,11 +62,27 @@
                 <table id="storyList" class="table table-bordered ">
                     <tr>
                         <th id="check-all"></th>
-                        <th>Project Name</th>
+                        <th>Story Name</th>
                         <th>Description</th>
                         <th>Last Modified</th>
                         <th>Actions</th>
                     </tr>
+
+
+                    <c:if test="${not empty storyList}">
+
+                        <c:forEach var="story" items="${storyList}">
+                            <tr>
+                                <td><input type="checkbox"></td>
+                            <td><a href="summary?storyId=${story.getId()}"  style="color:black;">${story.getTitle()}</a></td>
+                            <td>${story.getDescription()}</td>
+                            <td>${story.getDate()}</td>
+                            <td><a href="getXML/${story.getId()}" class="btn btn-primary" title="Generate XML">Download XML </a></td>
+                            </tr>
+                        </c:forEach>
+
+                    </c:if>
+
                 </table>
             </div>
         </div>
@@ -111,17 +128,6 @@
     <script type="text/javascript">
         jQuery("#btnProjectCreate").on("click", function () {
 
-//        var d = new Date();
-//
-//        var finalDate = (d.getDate())+"-"+(d.getMonth() + 1)+"-"+(d.getFullYear());
-//        var projectName = jQuery("#projectName").val();
-//        var title="/Ustoria/summary/"+projectName;
-//        jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-//                "<td><a href='#' id='projectLink' style='color:black;'>"+projectName+"</a></td>" +
-//                "<td>"+jQuery("#description").val()+"</td>" +
-//                "<td>"+finalDate+"</td>" +
-//                "</tr>");
-
 
             jQuery.ajax({
                 type: 'POST',
@@ -131,24 +137,26 @@
                     projectDesc: jQuery('#description').val()
                 },
                 success: function (responseText) {
-                    var d = new Date();
 
-                    var finalDate = (d.getDate()) + "-" + (d.getMonth() + 1) + "-" + (d.getFullYear());
+                    var obj = jQuery.parseJSON(responseText);
+
+
+
                     jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-                            "<td><a href='summary'  style='color:black;'>" + jQuery('#projectName').val() + "</a></td>" +
-                            "<td>" + jQuery('#description').val() + "</td>" +
-                            "<td>" + finalDate + "</td>" +
-                            "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> GET XML </a></td>" +
+                            "<td><a href='summary'  style='color:black;'>" + obj.title+ "</a></td>" +
+                            "<td>" + obj.description + "</td>" +
+                            "<td>" + obj.date + "</td>" +
+                            "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> Download XML </a></td>" +
                             "</tr>");
                     jQuery('#myModal').modal('hide');
 
 
-                    //$('#ajaxGetUserServletResponse').text(responseText);
+
                 }
             });
 
 
-            // jQuery('#myModal').modal('hide');
+
 
         });
 
