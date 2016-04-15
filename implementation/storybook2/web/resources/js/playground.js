@@ -91,15 +91,18 @@ var makeSceneDroppable = function(){
 };
 
 // a function to make scene title draggable instead of the whole scene
-var makeSceneTitleDraggable = function(){
-  jQuery('.scene>.scene-title').draggable({
-    connectToSortable: "#timeline",
-    helper:function(){
-      return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());
-    },
-    revert:"invalid"
-  });
-};
+// var makeSceneTitleDraggable = function(){
+//   jQuery(".panel-heading .scene-title").draggable({
+//     helper: 'clone',
+//     drag: function (event, ui) {
+//       dragdataobjtype = "s";
+//       selectAllObjects(false);
+//     }
+//   });
+// };
+
+
+
 
 // a function to make menu item sortable and draggable
 var makeMenuItemSortable = function(){
@@ -243,7 +246,7 @@ var makeDragDropSort = function(){
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
         makeSceneDroppable();
-        makeSceneTitleDraggable();
+        // makeSceneTitleDraggable();
     });
 
     $scope.removeScene = function(scene){

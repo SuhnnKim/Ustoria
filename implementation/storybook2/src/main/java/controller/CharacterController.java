@@ -5,12 +5,10 @@ import model.Attribute;
 import model.Character;
 import model.MainSummary;
 import model.Story;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
 import sun.applet.Main;
 
@@ -264,6 +262,30 @@ public class CharacterController {
         String name = character.getName();
 
         return "character";
+
+    }
+
+    @RequestMapping(value = "test", method = RequestMethod.POST)
+    @ResponseBody
+    public String test(HttpServletRequest req, @RequestParam(value = "id") String json){
+
+
+        JSONObject jsonObject = new JSONObject(json);
+
+        Iterator it = jsonObject.keys();
+
+        String s = "s";
+        while (it.hasNext()){
+            String key = (String) it.next();
+            Object o = jsonObject.get(key);
+            System.out.println("key: "+ key);
+            System.out.println("O: " + o);
+        }
+
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(s);
+
+        return jsonString;
 
     }
 }

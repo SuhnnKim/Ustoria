@@ -29,11 +29,11 @@
 		<div id="character-panel">
 			<div id="character-form">
 				<div class="row" id="row1">
-					<!-- <img src="#" class="col-sm-3" alt="Image" height="240" width="240"> -->
 					<a href="#" id="pop" class="col-sm-3">
     				<img id="imageresource" src="${pageContext.request.contextPath}/resources/img/noimage.png" alt="Image" height="240" width="220"/>
 					</a>
 
+					<%--The image upload dialog--%>
 					<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
@@ -42,9 +42,20 @@
 				        <h4 class="modal-title" id="myModalLabel">Image Upload</h4>
 				      </div>
 				      <div class="modal-body">
-				        <!-- <img src="" id="imagepreview"> -->
 								<label class="control-label">Select File</label>
-								<input id="input-1" type="file" class="file">
+						  <input id="fileupload" type="file" name="files[]" data-url="upload" multiple>
+
+						  <div id="progress">
+							  <div style="width: 0%;"></div>
+						  </div>
+						  <table id="uploaded-files" class="">
+							  <tr>
+								  <th>File Name</th>
+								  <th>File Size</th>
+								  <th>File Type</th>
+								  <th>Download</th>
+							  </tr>
+						  </table>
 
 				      </div>
 				      <div class="modal-footer">
@@ -239,7 +250,7 @@
 			</div>
 
 			</div>
-
+			<button id="s">sss</button>
 
 		</div>
 
