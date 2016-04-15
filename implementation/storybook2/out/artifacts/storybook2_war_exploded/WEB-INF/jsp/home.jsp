@@ -74,10 +74,10 @@
                         <c:forEach var="story" items="${storyList}">
                             <tr>
                                 <td><input type="checkbox"></td>
-                            <td><a href="summary?storyId=${story.getId()}"  style="color:black;">${story.getTitle()}</a></td>
+                            <td><a href="${pageContext.request.contextPath}/${story.getId()}/summary"  style="color:black;">${story.getTitle()}</a></td>
                             <td>${story.getDescription()}</td>
                             <td>${story.getDate()}</td>
-                            <td><a href="getXML/${story.getId()}" class="btn btn-primary" title="Generate XML">Download XML </a></td>
+                            <td><a href="${pageContext.request.contextPath}/downloadXML/${story.getId()}" class="btn btn-primary" title="Generate XML">Download XML </a></td>
                             </tr>
                         </c:forEach>
 
@@ -143,7 +143,7 @@
 
 
                     jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-                            "<td><a href='summary'  style='color:black;'>" + obj.title+ "</a></td>" +
+                            "<td><a href=obj.id+'/summary'  style='color:black;'>" + obj.title+ "</a></td>" +
                             "<td>" + obj.description + "</td>" +
                             "<td>" + obj.date + "</td>" +
                             "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> Download XML </a></td>" +

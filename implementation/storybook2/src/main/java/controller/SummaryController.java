@@ -18,7 +18,11 @@ import javax.xml.bind.Marshaller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
 import model.*;
+import util.DataSerializer;
+
 /**
  * Created by AshirwadTank on 3/2/2016.
  */
@@ -54,8 +58,8 @@ public class SummaryController {
     }*/
 
     /* Saving Summary Section */
-    @RequestMapping(value="/AddSummarySection",method= RequestMethod.POST)
-    public @ResponseBody String SaveSummarySection(HttpServletRequest request, @RequestParam(value = "summaryName") String summaryName,
+    @RequestMapping(value="{sId}/AddSummarySection",method= RequestMethod.POST)
+    public @ResponseBody String saveSummarySection(HttpServletRequest request, @RequestParam(value = "summaryName") String summaryName,
                        @RequestParam(value = "summaryContent") String summaryContent){
 
   try {
@@ -71,12 +75,14 @@ public class SummaryController {
       newSummary.setName(summaryName);
       newSummary.setContent(summaryContent);
 
+      String summarySectionId =UUID.randomUUID().toString();
+      newSummary.setId(summarySectionId);
 
       summaryList.add(newSummary);
 
-      mainSummary.setSummaryList(summaryList); // set latest summaryList
+      //mainSummary.setSummaryList(summaryList); // set latest summaryList
 
-      story.setSummary(mainSummary); // set main summary object
+      //story.setSummary(mainSummary); // set main summary object
 
       request.getSession().setAttribute("story",story);
 
@@ -90,8 +96,39 @@ public class SummaryController {
   }
         return  null;
     }
+
+    @RequestMapping(value="{sId}/deleteSummarySection",method= RequestMethod.POST)
+    public @ResponseBody String deleteSummarySection(HttpServletRequest request, @RequestParam(value = "summaryId") String summaryId){
+
+        try {
+            Story story = getStoryFromSession(request);
+
+
+
+            MainSummary mainSummary = story.getSummary();
+
+
+            mainSummary.deleteSummarySection(summaryId);
+
+
+           // mainSummary.setSummaryList(summaryList);
+           // request.getSession().setAttribute("story",story);
+
+            Gson gson = new Gson();
+            String jsonString = gson.toJson(mainSummary.getSummaryList());
+            return jsonString;
+
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return  null;
+    }
+
+
+
     /* Saving Main Summary */
-    @RequestMapping(value="/SaveSummary",method=RequestMethod.POST)
+    @RequestMapping(value="{sId}/SaveSummary",method=RequestMethod.POST)
     public @ResponseBody String SaveSummary(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
 
         Story story = getStoryFromSession(request);
@@ -107,7 +144,7 @@ public class SummaryController {
     }
 
 
-    @RequestMapping(value="/getSummarySectionText",method=RequestMethod.POST)
+    @RequestMapping(value="{sId}/getSummarySectionText",method=RequestMethod.POST)
     public @ResponseBody String getSummarySectionText(HttpServletRequest request,@RequestParam(value = "summaryData") String summaryText){
 
         Story story = getStoryFromSession(request);
@@ -115,44 +152,9 @@ public class SummaryController {
         MainSummary m = story.getSummary();
         Summary summary = m.getSummaryByName(summaryText);
 
-       // String[] ss = summary
         return summary.getContent();
     }
 
-    @RequestMapping(value="/CreateStory",method=RequestMethod.POST)
-    public @ResponseBody String createStory(HttpServletRequest request,@RequestParam(value = "projectName") String projectName,@RequestParam(value = "projectDesc") String projectDesc){
-
-        Story story = getStoryFromSession(request);
-        story.setTitle(projectName);
-        story.setDescription(projectDesc);
-        story.setDate();
-
-        request.getSession().setAttribute("story",story);
-
-        JSONObject storySet = new JSONObject();
-        storySet.put("title", story.getTitle()) ;
-        storySet.put("description", story.getDescription()) ;
-        storySet.put("date", story.getDate()) ;
-
-        JAXBContext jaxbContext = null;
-        try {
-            jaxbContext = JAXBContext.newInstance(Story.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(story, new File("P:/Ustoria/"+story.getTitle()+".xml"));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-
-
-
-        Gson gson = new Gson();
-        String storyString = gson.toJson(storySet);
-
-        return storyString;
-    }
 
 
     /* Create or set session object */

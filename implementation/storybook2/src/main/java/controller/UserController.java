@@ -1,48 +1,36 @@
 package controller;
 
 import com.google.gson.Gson;
-import dao.userDAO;
-import dao.userDAOImpl;
-import entity.UsersEntity;
-import model.*;
 import model.Character;
-import org.hibernate.bytecode.buildtime.spi.Logger;
-import org.hibernate.mapping.Array;
-import org.hibernate.type.IntegerType;
-import org.json.simple.JSONArray;
+import model.MainSummary;
+import model.Story;
+import model.Summary;
 import org.json.simple.JSONObject;
-import org.springframework.context.annotation.Role;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.security.authentication.RememberMeAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.portlet.ModelAndView;
-import sun.applet.Main;
-import sun.security.provider.MD5;
+import util.DataSerializer;
 
+import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Path;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.File;
-import java.util.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
 public class UserController {
 
     List<Story> storyList = null;
+
+    private static final int BUFFER_SIZE = 4096;
+
 
     //@RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
@@ -80,24 +68,19 @@ public class UserController {
      *
      * */
 
-    @RequestMapping("getXML/{fileId}")
-    public String getXML(HttpServletRequest req, Model model, @PathVariable int fileId){
+    @RequestMapping(value = "/{sId}/saveStory",method = RequestMethod.GET)
+    public @ResponseBody String getXML(HttpServletRequest req, Model model){
 
-       // Story storyObject = getStoryFromSession(req);
+        Story storyObject = getStoryFromSession(req);
 
-        Story storyObject = storyList.get(fileId);
-        JAXBContext jaxbContext = null;
-        try {
-            jaxbContext = JAXBContext.newInstance(Story.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+       // Story storyObject = storyList.get(fileId);
+        String previousPath = req.getRequestURL().toString();
+        DataSerializer ds = new DataSerializer();
 
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(storyObject, new File("P:/Ustoria/"+storyObject.getTitle()+".xml"));
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("pageName","Projects");
-        return "home";
+        ds.serializeXML(storyObject);
+
+       // req.setAttribute("pageName","Projects");
+        return "saved";
     }
 
    // @RequestMapping("/signup.form")
@@ -122,7 +105,7 @@ public class UserController {
 
 
 
-    @RequestMapping("/playground.form")
+    @RequestMapping("{sId}/playground.form")
     public ModelAndView Playground(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         model.addAttribute("email",email);
@@ -165,32 +148,37 @@ public class UserController {
         storyList= new ArrayList<Story>();
         int count=0;
 
+        DataSerializer ds = new DataSerializer();
         /* Iterating The list of files in folder */
 
         for (File file : listOfFiles) {
         /* isFile Check */
             if (file.isFile()) {
 
-                JAXBContext jaxbContext = JAXBContext.newInstance(Story.class);
-                Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-                /* Converting  XML to Story Object */
-                stories = (Story) jaxbUnmarshaller.unmarshal( new File("P:/Ustoria/"+file.getName()));
+                stories = ds.deSerializeXML(file);
 
                 stories.setId(count);
-                count++;
 
+                count++;
 
                 storyList.add(stories);
 
             }
         }
 
+        req.getSession().setAttribute("storyBook",storyList);
         model.addAttribute("pageName","Projects");
         model.addAttribute("storyList",storyList);
         return "home";
     }
 
+    /**
+     *
+     *
+     * @param req
+     * @param model
+     * @return
+     */
     @RequestMapping("search")
     public String Search(HttpServletRequest req, Model model){
         Story story = getStoryFromSession(req);
@@ -235,15 +223,24 @@ public class UserController {
     }
 
 
-    @RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
-    public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
+    /**
+     *
+     *
+     * @param req
+     * @param model
+     * @param sId the id of the story from the story object . It is a Path Variable
+     * @return redirects to summary page
+     */
+    @RequestMapping(value={"/{sId}/summary.form","/{sId}/summary" }, method=RequestMethod.GET)
+    public String redirectToSummary(HttpServletRequest req, Model model,@PathVariable int sId){
 
         String email = (String)req.getSession().getAttribute("email");
 
-        int storyId = Integer.parseInt(req.getParameter("storyId"));
-        Story story = storyList.get(storyId);
+        List<Story> storyBook = (List<Story>) req.getSession().getAttribute("storyBook");
+        //int storyId = Integer.parseInt(req.getParameter("storyId"));
+        Story story = storyBook.get(sId);
 
-        req.setAttribute("story",story);
+       // req.setAttribute("story",story);
 
         if(story == null) {
             story = getStoryFromSession(req);
@@ -258,18 +255,100 @@ public class UserController {
 
 
         ModelAndView summaryModel = new ModelAndView("summary");
-        model.addAttribute("email",email);
-        model.addAttribute("pageName","Summary");
+        req.setAttribute("email",email);
+        req.setAttribute("pageName","Summary");
 
         req.setAttribute("characterList",story.getCharacterList());
         req.setAttribute("projectTitle",story.getTitle());
         req.setAttribute("summaryList",mainSummary.getSummaryList());
         req.setAttribute("summary",mainSummary.getFullSummary());
 
-        return summaryModel;
+        return "summary";
     }
 
 
+    /**
+     *
+     *
+     *
+     * @param request HttpServletRequest Object
+     * @param response HttpServletResponse Object
+     * @return Redirects to the home page
+     * @throws IOException
+     */
+    @RequestMapping(value="/downloadXML/{sId}",method = RequestMethod.GET)
+    public String downloadFile(HttpServletRequest request, HttpServletResponse response,@PathVariable int sId) throws IOException {
+
+
+        Story myStory = storyList.get(sId);
+
+        String fullPath = "P:/Ustoria/" + myStory.getTitle()+".xml";
+        File downloadFile = new File(fullPath);
+        FileInputStream inputStream = new FileInputStream(downloadFile);
+
+
+        // get MIME type of the file
+        MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
+        String mimeType = mimeTypesMap.getContentType(downloadFile);
+        if (mimeType == null) {
+            // set to binary type if MIME mapping not found
+            mimeType = "application/octet-stream";
+        }
+        System.out.println("MIME type: " + mimeType);
+
+        // set content attributes for the response
+        response.setContentType(mimeType);
+        response.setContentLength((int) downloadFile.length());
+
+        // set headers for the response
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+                downloadFile.getName());
+        response.setHeader(headerKey, headerValue);
+
+        // get output stream of the response
+        OutputStream outStream = response.getOutputStream();
+
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+
+        // write bytes read from the input stream into the output stream
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outStream.close();
+
+
+        return "redirect:/home";
+    }
+
+    @RequestMapping(value="/CreateStory",method=RequestMethod.POST)
+    public @ResponseBody String createStory(HttpServletRequest request,@RequestParam(value = "projectName") String projectName,@RequestParam(value = "projectDesc") String projectDesc){
+
+        Story story = getStoryFromSession(request);
+        story.setTitle(projectName);
+        story.setDescription(projectDesc);
+        story.setDate();
+
+        request.getSession().setAttribute("story",story);
+
+        JSONObject storySet = new JSONObject();
+        storySet.put("title", story.getTitle()) ;
+        storySet.put("description", story.getDescription()) ;
+        storySet.put("date", story.getDate()) ;
+
+        DataSerializer ds = new DataSerializer();
+
+        ds.serializeXML(story);
+
+
+        Gson gson = new Gson();
+        String storyString = gson.toJson(storySet);
+
+        return storyString;
+    }
 
 
 

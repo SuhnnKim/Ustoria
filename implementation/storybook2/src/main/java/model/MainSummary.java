@@ -5,6 +5,7 @@ package model;
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by AshirwadTank on 3/2/2016.
@@ -50,8 +51,21 @@ public class MainSummary {
        }
     }
 
+    public void deleteSummarySection(String summarySectionId){
+
+        for(Summary summary : summaryList) {
+            if (summary.getId() != null) {
+                if (summary.getId().equals(summarySectionId)) {
+                    summaryList.remove(summary);
+
+                    break;
+                }
+            }
+        }
+    }
+
     public Summary getSummaryByName(String name){
-        System.out.println(name);
+      //  System.out.println(name);
         for(int i=0;i< this.summaryList.size();i++){
             if(this.summaryList.get(i).getName().equals(name)){
                 System.out.println(summaryList.get(i).getName());

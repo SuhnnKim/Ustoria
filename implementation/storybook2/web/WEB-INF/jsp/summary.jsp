@@ -32,9 +32,7 @@
 					${summary}
 				</c:when>
 				<c:otherwise>
-					<script>
-						jQuery('#summary-panel').empty();
-					</script>
+
 				</c:otherwise>
 			</c:choose>
         </div>
@@ -43,7 +41,7 @@
 			<c:if test="${not empty summaryList}">
 
 				<c:forEach var="summary" items="${summaryList}">
-					<div id="${summary.getName()}" class="summary-section-wrapper"><button type="button" class="btn btn-info summary-section-button">${summary.getName()}</button><button type="button" class="btn btn-success btn-small"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button type="button" class="btn btn-danger btn-small"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></div>
+					<div id="${summary.getId()}" class="summary-section-wrapper"><button type="button" class="btn btn-info summary-section-button">${summary.getName()}</button><button type="button" class="btn btn-success btn-small"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button><button type="button" class="btn btn-danger btn-small deleteSummary"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></div>
 				</c:forEach>
 
 			</c:if>

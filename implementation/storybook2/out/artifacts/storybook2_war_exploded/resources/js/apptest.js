@@ -184,3 +184,19 @@ jQuery(function(){
 
 
 });
+
+jQuery(function () {
+
+  jQuery('#saveStory').on('click',function(){
+
+    jQuery.ajax({
+      method : "GET",
+      url : 'saveStory',
+      success : function(responseText) {
+       alert("Story Saved");
+      }
+    });
+
+  });
+
+});

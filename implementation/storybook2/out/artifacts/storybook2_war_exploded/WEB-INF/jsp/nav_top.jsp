@@ -45,47 +45,6 @@
     }
 </style>
 
-<%--<nav class="navbar navbar-default">--%>
-    <%--<div class="container-fluid">--%>
-        <%--&lt;%&ndash;<div class="navbar-header col-xs-6 col-md-4" >&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<img src="${pageContext.request.contextPath}/resources/img/logo_white.png" alt="Ustoria" height="50"><span style="font-size: 20px; line-height: 50px; margin-left: 10px">Ustoria</span>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--<div class="navbar-header col-md-2">--%>
-            <%--<img src="${pageContext.request.contextPath}/resources/img/logo_whole_white.png" alt="Ustoria" height="96">--%>
-        <%--</div>--%>
-        <%--<c:if test="projectTitle != null">--%>
-            <%--<div class="col-md-6" id="project-title">--%>
-                <%--<h3>${projectTitle}</h3>--%>
-            <%--</div>--%>
-        <%--</c:if>--%>
-        <%--<!-- <a href="#">My Projects</a> -->--%>
-        <%--<div class="col-md-4" id="myNavbar">--%>
-
-            <%--<ul class="nav navbar-nav navbar-right">--%>
-                <%--<li>Summary</li>--%>
-                <%--<li>Character</li>--%>
-                <%--<li>Dialog</li>--%>
-                <%--<li>Playground</li>--%>
-                <%--<li class="dropdown">--%>
-                    <%--<a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}--%>
-                        <%--<span class="caret"></span></a>--%>
-                    <%--<ul class="dropdown-menu">--%>
-                        <%--<li><a href="#">My Stories</a></li>--%>
-                        <%--<li><a href="#">Profile</a></li>--%>
-                        <%--<li><a href="#">Log Out</a></li>--%>
-                    <%--</ul>--%>
-                <%--</li>--%>
-
-            <%--</ul>--%>
-            <%--<form action="search" method="get">--%>
-                <%--<input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">--%>
-            <%--</form>--%>
-
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</nav>--%>
-
-
 <nav class="navbar navbar-default" role="navigation" id="main_nav">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -103,25 +62,33 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav" id="nav_links">
-            <li <c:if test="${pageName == 'Projects'}">class="active"</c:if> ><a href="home">Projects</a></li>
-            <li <c:if test="${pageName == 'Summary'}">class="active"</c:if> ><a href="summary">Summary</a></li>
-            <li <c:if test="${pageName == 'Character'}">class="active"</c:if> ><a href="character.form">Character</a></li>
-            <li <c:if test="${pageName == 'Dialog'}">class="active"</c:if> ><a href="dialog">Dialog</a></li>
-            <li <c:if test="${pageName == 'Playground'}">class="active"</c:if> ><a href="playground.form">Playground</a></li>
+            <c:choose>
+                <c:when test="${pageName == 'Projects'}">
+                    <li <c:if test="${pageName == 'Projects'}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/home">My Stories</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li <c:if test="${pageName == 'Projects'}">class="active"</c:if> ><a href="${pageContext.request.contextPath}/home">My Stories</a></li>
+                    <li <c:if test="${pageName == 'Summary'}">class="active"</c:if> ><a href="summary">Summary</a></li>
+                    <li <c:if test="${pageName == 'Character'}">class="active"</c:if> ><a href="character.form">Character</a></li>
+                    <li <c:if test="${pageName == 'Dialog'}">class="active"</c:if> ><a href="dialog">Dialog</a></li>
+                    <li <c:if test="${pageName == 'Playground'}">class="active"</c:if> ><a href="playground.form">Playground</a></li>
+                    <li><button type="button" class="btn btn-danger" id="saveStory">Save Story</button></li>
+                </c:otherwise>
+            </c:choose>
         </ul>
         <div class="col-sm-3 col-md-3">
+            <span id="project-title">${projectTitle}</span>
 
-            <form action="search" method="get" class="navbar-form" role="search">
-                <span id="project-title">${projectTitle}</span>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li> <form action="search" method="get" class="navbar-form" role="search">
+
                 <div class="input-group">
                     <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">
 
                 </div>
             </form>
-
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-            <%--<li><h3>${projectTitle}</h3></li>--%>
+            </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">${email} <b class="caret"></b></a>
                 <ul class="dropdown-menu">

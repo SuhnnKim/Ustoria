@@ -23,10 +23,10 @@ import java.util.*;
 @Controller
 public class CharacterController {
 
-    @RequestMapping("character.form")
-    public ModelAndView Character(HttpServletRequest req, Model model){
+    @RequestMapping("/{sId}/character.form")
+    public String Character(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",email);
+        req.setAttribute("email",email);
 
         Story story = (Story)req.getSession().getAttribute("story");
         if (story == null){
@@ -43,9 +43,9 @@ public class CharacterController {
         for (int i =0;i<story.getCharacterList().size();i++){
             t += t;
         }
-        model.addAttribute("pageName","Character");
+        req.setAttribute("pageName","Character");
         req.setAttribute("characterList",story.getCharacterList());
-        return new ModelAndView("character");
+        return "character";
 
     }
 
