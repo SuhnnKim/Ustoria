@@ -1,21 +1,9 @@
-/*#timeline-panel{*/
-    /*border-width: 5px 0 0 0;*/
-    /*border-style: solid;*/
-/*}*/
+#time>#canvasTools{
+    border-width: 5px 0 0 0;
+    border-style: solid;
+}
 
-/*#timeline_panel .panel-heading{*/
-	/*overflow: hidden;*/
-	/*white-space:nowrap;*/
-/*}*/
-/*#timeline div{*/
-    /*float: left;*/
-    /*width: 100px;*/
-    /*height: 100%;*/
-    /*margin: 0 1px 0 0;*/
-    /*padding: 0;*/
-    /*background: #333;*/
-    /*color: #ddd;*/
-    /*text-align: center;*/
-    /*cursor: pointer;*/
-    /*border-radius: 0;*/
-/*}*/
+#time>#canvasTools>button{
+    border-radius: 0px;
+}
+

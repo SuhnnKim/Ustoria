@@ -80,14 +80,25 @@
 		<div id="scene-panel" class="inner">
 			<!-- loop scenes -->
 			<div ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
-				<div id="s" class="panel-heading scene-title">
+				<div class="panel-heading scene-title">
 					{{ scene.title }}
 				</div>
 				<ul class="panel-body drop-panel">
 				</ul>
 			</div>
 		</div>
-		<canvas id="canvas" style="border-width: 5px 0 0 0 ;border-style: solid;"></canvas>
+		<div id="time">
+			<div id="canvasTools" class="btn-group-horizontal">
+				<button class="btn btn-primary" id="line">Connect</button>
+				<button class="btn btn-primary" id="del">Delete</button>
+				<a id="min" href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
+				<a id="max" href="#"><span class="glyphicon glyphicon-chevron-up"></span></a>
+			</div>
+			<div id="timeline">
+				<canvas id="canvas"></canvas>
+			</div>
+		</div>
+
 		<%--<div id="timeline_panel" class="col-sm-6 sp" ng-controller="TimeLineController" style="--%>
 		<%--border-width: 5px 0 0 0;--%>
 		<%--border-style: solid;">--%>

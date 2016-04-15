@@ -40,6 +40,9 @@ var dragdataobjtype;
 var preselectobj;
 
 var canvas = new fabric.Canvas('canvas');
+canvas.backgroundColor = "DADADA";
+
+// canvas.setBackgroundImage("resources/img/canvas.jpeg");
 
 var x = 150, y = 100;
 
@@ -51,7 +54,7 @@ var x = 150, y = 100;
 //     }
 // });
 
-jQuery("#s").draggable({
+jQuery('.scene>.scene-title').draggable({
     helper: 'clone',
     drag: function (event, ui) {
         dragdataobjtype = "s";
@@ -60,6 +63,7 @@ jQuery("#s").draggable({
 });
 
 function setCanvasWidthInit() {
+
     canvas.setWidth(window.innerWidth);
 }
 
@@ -69,18 +73,11 @@ window.addEventListener("resize", function () {
     canvas.setWidth(window.innerWidth);
 });
 
-$("#canvas").resizable({
-    handles: "e,s",
-    resize: function (event, ui) {
-        canvas.setHeight(event.pageY);
-        canvas.renderAll();
-    },
-    alsoResize: "#scene-panel"
-});
 
 
 
 jQuery('#canvas').droppable({
+    activeClass: '.scene>.scene-title',
     drop: function (event, ui) {
         var dropPositionX = event.pageX - jQuery(this).offset().left;
         var dropPositionY = event.pageY - jQuery(this).offset().top;
@@ -1070,9 +1067,9 @@ function dropDragObject(left, top) {
         object.top = top;
 
         if(dragdataobjtype == 'Sources')
-            object.fill = 'yellow';
-        else
             object.fill = 'green';
+        else
+            object.fill = '445CA7';
 
         object.stroke = drawColor;
         object.opacity = currentOpacity;
@@ -1103,10 +1100,11 @@ function dropDragObject(left, top) {
             lockMovementY: true,
             hasRotatingPoint: false
         });
-
+        iText.fill = 'write';
         canvas.add(iText);
         customrect.text = iText;
         iText.shape = customrect;
+
         canvas.bringToFront(iText);
     }
     dragdataobjtype = "";
@@ -1217,10 +1215,7 @@ function closePopup(className) {
     annotpopup[0].style.top = "-500px";
 }
 
-jQuery("#line").click(function() {
-    currentSelection = "line";
-    setCursor("crosshair");
-});
+
 
 var jsonData;
 var test;
@@ -1397,6 +1392,12 @@ function loadcampaign() {
 
 }
 
+jQuery("#line").click(function() {
+    currentSelection = "line";
+    setCursor("crosshair");
+});
+
+
 jQuery("#save").click(function () {
     saveOrgChart();
 });
@@ -1408,5 +1409,17 @@ jQuery("#load").click(function () {
 
 jQuery("#del").click(function() {
     deleteActObj();
+});
+
+jQuery("#max").click(function() {
+    jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.2);
+    jQuery('#time').css('height', jQuery('#play_wrap').height() - jQuery('#scene-panel').height());
+    canvas.setHeight(jQuery("#timeline").width());
+
+});
+jQuery("#min").click(function() {
+    jQuery('#scene-panel').css('height', jQuery('#play_wrap').height()*0.6);
+    jQuery('#time').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
+    canvas.setHeight(jQuery("#timeline").width());
 });
 
