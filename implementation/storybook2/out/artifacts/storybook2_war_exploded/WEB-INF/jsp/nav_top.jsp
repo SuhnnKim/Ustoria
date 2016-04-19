@@ -62,6 +62,28 @@
             <img src="${pageContext.request.contextPath}/resources/img/logo_whole_white.png" alt="Ustoria" height="96">
         </a>
     </div>
+        </div>
+       <div class="col-md-6" id="project-title">
+        <h3>${projectTitle}</h3>
+       </div>
+        <!-- <a href="#">My Projects</a> -->
+        <div class="col-md-4" id="myNavbar">
+
+            <ul class="nav navbar-nav navbar-right" >
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">${email}
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">My Stories</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="/logout">Log Out</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+            <form action="search" method="get">
+                <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search" >
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse-1">

@@ -72,8 +72,9 @@
 		<a class="ctrl-btn pull-left" href="#" data-toggle="modal" data-target="#myEditScenesModal">Delete Scenes</a>
 		<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 	</div>
-	<div id="play_wrap" style="width: inherit;height: inherit;">
-		<div id="scene-panel" >
+
+	<div id="play_wrap" class="col-sm-6 sp editor" style="width: inherit;height: inherit;">
+		<div id="scene-panel" class="inner">
 			<!-- loop scenes -->
 			<div ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
 				<div class="panel-heading scene-title">
@@ -83,23 +84,21 @@
 				</ul>
 			</div>
 		</div>
-
-		<div id="timeline_panel" class="wrap" ng-controller="TimeLineController">
-
-			<div id="timeline_show" class="toggle_timeline toggle_btn" ng-show="timeline.hidden" ng-click="timeline.toggle()">
-				<span class="glyphicon glyphicon-menu-up"></span>
+		<div id="time">
+			<div id="canvasTools" class="btn-group-horizontal">
+				<button class="btn btn-primary" id="line">Connect</button>
+				<button class="btn btn-primary" id="del">Delete</button>
+				<a id="min" href="#"><span class="glyphicon glyphicon-chevron-down"></span></a>
+				<a id="max" href="#"><span class="glyphicon glyphicon-chevron-up"></span></a>
 			</div>
-
-			<div id="timeline_hide" class="toggle_timeline toggle_btn" ng-show="!timeline.hidden" ng-click="timeline.toggle()">
-				<span class="glyphicon glyphicon-menu-down"></span>
+			<div id="timeline">
+				<canvas id="canvas"></canvas>
 			</div>
+		</div>
 
-			<div id="timeline_wrapper">
-				<div class="scrollbar">
-					<div class="handle">
-						<div class="mousearea"></div>
-					</div>
-				</div>
+		<%--<div id="timeline_panel" class="col-sm-6 sp" ng-controller="TimeLineController" style="--%>
+		<%--border-width: 5px 0 0 0;--%>
+		<%--border-style: solid;">--%>
 
 				<div class="frame" id="timeline_wrap" style="overflow: hidden; width: 100%">
 					<ul id="timeline" class="clearfix" style="transform: translateZ(0px) translateX(-99999999px); width: 100%;">
@@ -114,6 +113,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/all1.4.2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customline.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customrect.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
@@ -128,5 +130,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/timeLineJS.js"></script>
 </body>
 </html>

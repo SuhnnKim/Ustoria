@@ -1,12 +1,9 @@
 package entity;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by liuwei on 2016-02-16.
+ * Created by liuwei on 2016-03-25.
  */
 @Entity
 @Table(name = "Users", schema = "Capstone", catalog = "")
@@ -15,9 +12,10 @@ public class UsersEntity {
     private String email;
     private String password;
     private byte enabled;
+    private int id;
+    private Integer role;
 
-
-    @Id
+    @Basic
     @Column(name = "UserName", nullable = false, length = 50)
     public String getUserName() {
         return userName;
@@ -57,6 +55,26 @@ public class UsersEntity {
         this.enabled = enabled;
     }
 
+    @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "role", nullable = true)
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,9 +83,11 @@ public class UsersEntity {
         UsersEntity that = (UsersEntity) o;
 
         if (enabled != that.enabled) return false;
+        if (id != that.id) return false;
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
+        if (role != null ? !role.equals(that.role) : that.role != null) return false;
 
         return true;
     }
@@ -78,6 +98,8 @@ public class UsersEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (int) enabled;
+        result = 31 * result + id;
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 }

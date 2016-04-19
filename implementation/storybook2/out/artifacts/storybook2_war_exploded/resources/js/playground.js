@@ -91,15 +91,27 @@ var makeSceneDroppable = function(){
 };
 
 // a function to make scene title draggable instead of the whole scene
+
 var makeSceneTitleDraggable = function(){
   jQuery('.scene>.scene-title').draggable({
-    connectToSortable: "#timeline",
-    helper:function(){
-      return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());
-    },
-    revert:"invalid"
+    helper: "clone",
+    drag: function (event, ui) {
+      dragdataobjtype = jQuery(this).text().trim();
+      selectAllObjects(false);
+    }
   });
+
+  // jQuery('.scene>.scene-title').draggable({
+  //   connectToSortable: "#timeline",
+  //   helper:function(){
+  //     return jQuery("<div class='scene_title_helper'></div>").append(jQuery(this).text());
+  //   },
+  //   revert:"invalid"
+  // });
 };
+
+
+
 
 // a function to make menu item sortable and draggable
 var makeMenuItemSortable = function(){
@@ -381,7 +393,7 @@ var sidebarAnimate = function(){
 
 
 
-jQuery(window).resize(function () {
+jQuery(window).resize(function (event) {
 
   // setting #sidebar's width
   jQuery('#sidebar').css('width', 150);
@@ -394,11 +406,20 @@ jQuery(window).resize(function () {
 
   jQuery('#play_wrap').css('height', (jQuery('#content').height()-50));
 
+<<<<<<< .merge_file_pJRUQ4
   jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
+=======
+  jQuery('#play_wrap').css('border-bottom', 'solid 1px black');
 
-  jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
+  jQuery('#scene-panel').css('height', jQuery('#play_wrap').height()*0.6);
+>>>>>>> .merge_file_YcwI9B
 
-  jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
+  jQuery('#time').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height())
+
+  // jQuery('#time>#timeline').css('width',jQuery('#play_wrap').width());
+  // jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
+  //
+  // jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
 
   jQuery('#timeline').css('width', jQuery('#timeline_panel').width());
 
@@ -427,19 +448,30 @@ jQuery(window).resize(function () {
 
 
 
-jQuery(function(){
+//jQuery(function(){
 
   // initialize the width of #content and #timeline
-  jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
-  jQuery('#timeline').width(jQuery('#content').width());
+  // jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
+  // jQuery('#timeline').width(jQuery('#content').width());
 
-  jQuery(window).resize();
+  // jQuery(window).resize();
+
+  // timelineScrollAnimation();
+
+  // makeTimelineSortable();
 
   timelineScrollAnimation(mySlySlider);
+  // jsplumbCustomizedBinding();
 
-  makeTimelineSortable();
+  // makeDragDropSort();
+//});
 
-  jsplumbCustomizedBinding();
+// jQuery("#scene-panel").resizable({
+//   handles: "e,s",
+//   resize: function (event, ui) {
+//     canvas.setHeight(jQuery('#play_wrap').height()-pageY);
+//     canvas.renderAll();
+//   },
+//   alsoResize: "#canvas"
+// });
 
-  makeDragDropSort();
-});

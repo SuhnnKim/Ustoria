@@ -8,8 +8,5 @@
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <mapping class="entity.UsersEntity"/>
     <mapping class="entity.PersistentLoginsEntity"/>
-    <mapping class="entity.UserRolesEntity"/>
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>

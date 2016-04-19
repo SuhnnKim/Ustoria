@@ -6,6 +6,12 @@ import model.MainSummary;
 import model.Story;
 import model.Summary;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +37,11 @@ public class UserController {
 
     private static final int BUFFER_SIZE = 4096;
 
+    @Autowired
+    private userDAO userDAO;
+    ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("hibernate-config.xml");
 
-    //@RequestMapping("login")
+    @RequestMapping("login")
     public String Login(HttpServletRequest req, Model model){
         Story story = (Story)req.getSession().getAttribute("story");
 
@@ -76,15 +85,24 @@ public class UserController {
         ds.serializeXML(storyObject);
 
         return "saved";
+        return "index";
     }
 
-   // @RequestMapping("/signup.form")
+
+    @RequestMapping("dialog")
+    public String Dialog(HttpServletRequest req, Model model){
+        return "dialog";
+    }
+
+    @RequestMapping("/signup.form")
     public String SignUp(HttpServletRequest req, Model model){
 
 
         String fname = req.getParameter("fname");
 
         String lname = req.getParameter("lname");
+
+        String name = fname + " " + lname;
 
         String email = req.getParameter("email-signup");
 
@@ -93,6 +111,16 @@ public class UserController {
         model.addAttribute("email",email);
 
         model.addAttribute("pageName","Projects");
+        userDAO userDAO = context.getBean(userDAO.class);
+
+        UsersEntity user = new UsersEntity();
+        user.setUserName(name);
+        user.setEmail(email);
+        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+        String encoderPassword = encoder.encodePassword(password,null);
+        user.setPassword(encoderPassword);
+
+        userDAO.save(user);
 
         return "home";
 
@@ -138,6 +166,7 @@ public class UserController {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         String email = (String)req.getSession().getAttribute("email");
         req.setAttribute("email",name);
+        model.addAttribute("email",name);
         req.getSession().setAttribute("email",name);
 
 
@@ -369,7 +398,6 @@ public class UserController {
         }
         return story;
     }
-
 
 
 

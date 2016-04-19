@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/searchbar.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/character-panel.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/summary.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
 
 
 

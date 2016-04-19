@@ -179,5 +179,117 @@ jQuery(".del").on("click", function() {
 });
 
 
+jQuery("#fileupload").fileupload({
+  dataType: 'json',
+  done: function (e,data) {
+    jQuery("tr:has(td)").remove();
+    jQuery.each(data.result, function (index, file) {
+      jQuery("#uploaded-files").append(
+          jQuery("<tr>")
+              .append(jQuery('<td/>').text(file.fileName))
+              .append(jQuery('<td/>').text(file.fileSize))
+              .append(jQuery('<td/>').text(file.fileType))
+              .append(jQuery('<td/>').html("<a href='get/"+index+"'>Click</a>"))
+      )
+    });
+  },
+
+  progressall: function (e, data) {
+    var progress = parseInt(data.loaded / data.total * 100, 10);
+    jQuery('#progress .bar').css(
+        'width',
+        progress + '%'
+    );
+  },
+
+  dropZone: jQuery('#dropzone')
+
+});
+
+
+jQuery("#s").click(function () {
+  var test = {
+    "result": [{
+      "sources": [{
+        "id": "1",
+        "name": "Source 1",
+        "label": "Web Form",
+        "con": "1"
+      }, {
+        "id": "2",
+        "name": "Source 2",
+        "label": "Edition Email",
+        "con": "1"
+      }, {
+        "id": "3",
+        "name": "Source 3",
+        "label": "Inbound Phone",
+        "con": "1"
+      }]
+    }, {
+      "campaign": [{
+        "id": "1",
+        "name": "sample campaign",
+        "label": "Campaign",
+
+      }]
+    }, {
+      "targets": [{
+        "id": "1",
+        "name": "target1",
+        "label": "Web Page"
+      }]
+    }, {
+      "editions": [{
+        "id": "1",
+        "name": "edition1",
+        "label": "Kick Off",
+        "level": "1",
+        "tcon": "1",
+        "scon": "3"
+      }, {
+        "id": "2",
+        "name": "edition 2",
+        "label": "Not Opend 1",
+        "level": "1",
+        "tcon": null,
+        "scon": null
+      }, {
+        "id": "3",
+        "name": "Edition 2",
+        "label": "Not Opened 2",
+        "level": "1",
+        "tcon": null,
+        "scon": null
+      }, {
+        "id": "4",
+        "name": "Edition 5",
+        "label": "Clicked 1",
+        "level": "2",
+        "tcon": null,
+        "scon": null
+      }]
+    }]
+  }
+
+  var q = JSON.stringify(test);
+
+  jQuery.ajax({
+    method: "POST",
+    url: 'test',
+    data: {
+      id: q,
+    },
+    dataType: 'JSONObject',
+    success: function (data) {
+      alert("Good!");
+    },
+    error: function (data) {
+      alert("error!");
+    }
+  });
+});
+
+
 
 

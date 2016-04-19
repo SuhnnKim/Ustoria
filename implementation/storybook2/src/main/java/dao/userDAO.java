@@ -13,10 +13,13 @@ public interface userDAO {
 
     public List<UsersEntity> list();
 
-    //public void update(UsersEntity user);
+    public UsersEntity getUserByEmail(String email);
 
-    //public void delete(UsersEntity user);
-    public UsersEntity getUser(String username);
+    public void delete(int id);
+
+    public void Update(UsersEntity user);
+
+    public UsersEntity findBy(int id);
 
 
 }

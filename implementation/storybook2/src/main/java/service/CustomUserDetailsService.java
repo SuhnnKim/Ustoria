@@ -41,14 +41,18 @@ public class CustomUserDetailsService implements UserDetailsService{
         UserDetails userDetails = null;
 
         //Find the user by username
-        userDAO userDAO = context.getBean(userDAO.class);
+        userDAO = context.getBean(userDAO.class);
+        UsersEntity user = userDAO.getUserByEmail(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("Cannot find the Email: " + username);
+        }
 
 
         //User class is subclass of UserDetails
         //not null username, not null password, enable,
         //accountNonExpired, credentialsNonExpired, accountNonLocked, authorities
         //This is the authority user information, the username and password should be match
-        userDetails = new User("admin@admin.com","admin",true,true,true,true,getAuthorities(1));
+        userDetails = new User(user.getEmail(),user.getPassword(),true,true,true,true,getAuthorities(user.getRole()));
 
         return userDetails;
     }
