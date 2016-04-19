@@ -46,7 +46,7 @@ public class UserController {
         return "home";
 
     }
-    @RequestMapping("dialog")
+    @RequestMapping("/{sId}/dialog")
     public String Dialog(HttpServletRequest req, Model model){
         Story story = (Story)req.getSession().getAttribute("story");
 
@@ -57,7 +57,7 @@ public class UserController {
 
         model.addAttribute("pageName","Dialog");
 
-        return "dialog";
+        return "new_dialog";
 
     }
 
@@ -69,17 +69,12 @@ public class UserController {
      * */
 
     @RequestMapping(value = "/{sId}/saveStory",method = RequestMethod.GET)
-    public @ResponseBody String getXML(HttpServletRequest req, Model model){
+    public @ResponseBody String getXML(HttpServletRequest req){
 
         Story storyObject = getStoryFromSession(req);
-
-       // Story storyObject = storyList.get(fileId);
-        String previousPath = req.getRequestURL().toString();
         DataSerializer ds = new DataSerializer();
-
         ds.serializeXML(storyObject);
 
-       // req.setAttribute("pageName","Projects");
         return "saved";
     }
 
@@ -104,40 +99,45 @@ public class UserController {
     }
 
 
-
+    /**
+     * Redirects to Playground Page where you can add and connects Scenes
+     * @param req Request Attribute
+     * @return Playground jsp page
+     */
     @RequestMapping("{sId}/playground.form")
-    public ModelAndView Playground(HttpServletRequest req, Model model){
+    public String Playground(HttpServletRequest req){
         String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",email);
+        req.setAttribute("email",email);
 
-        model.addAttribute("pageName","Playground");
-
-//        model.addAttribute("characterList",story.getCharacterList());
-      //  MainSummary m = story.getSummary();
-       // model.addAttribute("summaryList",m.getSummaryList());
+        req.setAttribute("pageName","Playground");
 
         Story story = getStoryFromSession(req);
         MainSummary mainSummary = new MainSummary();
         mainSummary = story.getSummary();
-        //req.setAttribute("summaryList",m.getSummaryList());
-
-        ModelAndView m = new ModelAndView("playground");
-
 
         req.setAttribute("characterList",story.getCharacterList());
         req.setAttribute("projectTitle",story.getTitle());
-        //req.setAttribute("character", );
+
 
         req.setAttribute("summaryList",mainSummary.getSummaryList());
 
-        return m;
+        return "playground";
     }
 
+    /**
+     * It is the home page of user after Login. It will contain all the list of stories he has created uptil now.
+     * All the de-serialization is done using JAXB
+     * @param req Contains the request attribute
+     * @return Home Jsp Page
+     * @throws JAXBException
+     */
+
     @RequestMapping("home")
-    public String Home(HttpServletRequest req, Model model) throws JAXBException {
+    public String Home(HttpServletRequest req) throws JAXBException {
+
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",name);
+        req.setAttribute("email",name);
         req.getSession().setAttribute("email",name);
 
 
@@ -167,8 +167,8 @@ public class UserController {
         }
 
         req.getSession().setAttribute("storyBook",storyList);
-        model.addAttribute("pageName","Projects");
-        model.addAttribute("storyList",storyList);
+        req.setAttribute("pageName","Projects");
+        req.setAttribute("storyList",storyList);
         return "home";
     }
 
@@ -327,21 +327,25 @@ public class UserController {
     @RequestMapping(value="/CreateStory",method=RequestMethod.POST)
     public @ResponseBody String createStory(HttpServletRequest request,@RequestParam(value = "projectName") String projectName,@RequestParam(value = "projectDesc") String projectDesc){
 
-        Story story = getStoryFromSession(request);
-        story.setTitle(projectName);
-        story.setDescription(projectDesc);
-        story.setDate();
+        Story newStory = new Story();
+        newStory.setTitle(projectName);
+        newStory.setDescription(projectDesc);
+        newStory.setDate();
 
-        request.getSession().setAttribute("story",story);
+        //request.getSession().setAttribute("story",story);
 
+        storyList.add(newStory);
+
+        int storyArrayId = storyList.lastIndexOf(newStory);
         JSONObject storySet = new JSONObject();
-        storySet.put("title", story.getTitle()) ;
-        storySet.put("description", story.getDescription()) ;
-        storySet.put("date", story.getDate()) ;
+        storySet.put("title", newStory.getTitle()) ;
+        storySet.put("description", newStory.getDescription()) ;
+        storySet.put("date", newStory.getDate()) ;
+        storySet.put("storyArrayid",storyArrayId);
 
         DataSerializer ds = new DataSerializer();
 
-        ds.serializeXML(story);
+        ds.serializeXML(newStory);
 
 
         Gson gson = new Gson();

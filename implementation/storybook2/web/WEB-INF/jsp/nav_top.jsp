@@ -30,13 +30,17 @@
     }
 
     #project-title {
-        padding: 2% 0;
-        font-size: 14px;
+        margin: 15% 0;
+        font-size: 25px;
     }
 
     #myNavbar {
         padding: 1% 0;
         margin: 1% 0;
+    }
+
+    #saveStory{
+        margin:30% 0;
     }
 
     #navbar-collapse-1 > ul > li > a{
@@ -76,8 +80,8 @@
                 </c:otherwise>
             </c:choose>
         </ul>
-        <div class="col-sm-3 col-md-3">
-            <span id="project-title">${projectTitle}</span>
+        <div class="col-sm-2 col-md-2">
+            <p id="project-title">${projectTitle}</p>
 
         </div>
         <ul class="nav navbar-nav navbar-right">

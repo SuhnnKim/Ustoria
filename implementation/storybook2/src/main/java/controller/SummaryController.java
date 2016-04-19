@@ -30,33 +30,6 @@ import util.DataSerializer;
 public class SummaryController {
 
 
-
-    /*@RequestMapping(value={"/summary.form","/summary" }, method=RequestMethod.GET)
-    public ModelAndView redirectToSummary(HttpServletRequest req, Model model){
-
-        String email = (String)req.getSession().getAttribute("email");
-        model.addAttribute("email",email);
-        model.addAttribute("pageName","Summary");
-
-        Story story = getStoryFromSession(req);
-
-
-        MainSummary mainSummary = new MainSummary();
-        mainSummary = story.getSummary();
-
-
-        ModelAndView m = new ModelAndView("summary");
-
-
-        req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getTitle());
-
-
-        req.setAttribute("summaryList",mainSummary.getSummaryList());
-        req.setAttribute("summary",mainSummary.getFullSummary());
-        return m;
-    }*/
-
     /* Saving Summary Section */
     @RequestMapping(value="{sId}/AddSummarySection",method= RequestMethod.POST)
     public @ResponseBody String saveSummarySection(HttpServletRequest request, @RequestParam(value = "summaryName") String summaryName,

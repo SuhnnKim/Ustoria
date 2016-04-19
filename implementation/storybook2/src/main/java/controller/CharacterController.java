@@ -49,7 +49,7 @@ public class CharacterController {
 
     }
 
-    @RequestMapping("selectCharacter")
+    @RequestMapping("{sId}/selectCharacter")
     @ResponseBody
     public String selectCharacter(HttpServletRequest req, Model model,
                             @RequestParam(value = "id") String uuid){
@@ -80,7 +80,7 @@ public class CharacterController {
 
     }
 
-    @RequestMapping(value = "saveCharacter", method = RequestMethod.POST)
+    @RequestMapping(value = "{sId}/saveCharacter", method = RequestMethod.POST)
     @ResponseBody
     public String SaveCharacter(HttpServletRequest req, Model model,
                                 @RequestParam(value = "id") String uuid,
@@ -216,7 +216,7 @@ public class CharacterController {
         return jsonString;
     }
 
-    @RequestMapping("newCharacter")
+    @RequestMapping("{sId}/newCharacter")
     @ResponseBody
     public String NewCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
@@ -240,7 +240,7 @@ public class CharacterController {
         return jsonString;
     }
 
-    @RequestMapping("loadCharacter")
+    @RequestMapping("{sId}/loadCharacter")
     public String loadCharacter(HttpServletRequest req, Model model){
 
         String id = req.getParameter("id");

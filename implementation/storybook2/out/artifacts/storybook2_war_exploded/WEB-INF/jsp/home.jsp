@@ -77,7 +77,9 @@
                             <td><a href="${pageContext.request.contextPath}/${story.getId()}/summary"  style="color:black;">${story.getTitle()}</a></td>
                             <td>${story.getDescription()}</td>
                             <td>${story.getDate()}</td>
-                            <td><a href="${pageContext.request.contextPath}/downloadXML/${story.getId()}" class="btn btn-primary" title="Generate XML">Download XML </a></td>
+                            <td><a href="${pageContext.request.contextPath}/downloadXML/${story.getId()}" class="btn btn-primary" title="Generate XML">Download XML </a>
+                                <a href='${pageContext.request.contextPath}/getXMLWoxFormat/${story.getId()}' class='btn btn-primary' title='WOX XML'> WOX XML </a>
+                            </td>
                             </tr>
                         </c:forEach>
 
@@ -140,26 +142,22 @@
 
                     var obj = jQuery.parseJSON(responseText);
 
+                    var id = obj.storyArrayid+"/summary";
 
 
                     jQuery("#storyList").append("<tr><td><input type='checkbox'></td>" +
-                            "<td><a href=obj.id+'/summary'  style='color:black;'>" + obj.title+ "</a></td>" +
+                            "<td><a href='"+ id +"' style='color:black;'>" + obj.title+ "</a></td>" +
                             "<td>" + obj.description + "</td>" +
                             "<td>" + obj.date + "</td>" +
-                            "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> Download XML </a></td>" +
-                            "</tr>");
+                            "<td><a href='getXML' class='btn btn-primary' title='Generate XML'> Download XML </a>" +
+                            "<a href='getXMLWoxFormat' class='btn btn-primary' title='WOX XML'> WOX XML </a> </td>" +
+                            "</tr>")
                     jQuery('#myModal').modal('hide');
-
-
 
                 }
             });
 
-
-
-
         });
-
 
     </script>
 
