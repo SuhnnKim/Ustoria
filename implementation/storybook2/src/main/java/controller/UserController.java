@@ -1,6 +1,7 @@
 package controller;
 
 import com.google.gson.Gson;
+import entity.UsersEntity;
 import model.Character;
 import model.MainSummary;
 import model.Story;
@@ -28,6 +29,7 @@ import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import dao.userDAO;
 
 
 @Controller
@@ -85,14 +87,14 @@ public class UserController {
         ds.serializeXML(storyObject);
 
         return "saved";
-        return "index";
+//        return "index";
     }
 
 
-    @RequestMapping("dialog")
-    public String Dialog(HttpServletRequest req, Model model){
-        return "dialog";
-    }
+//    @RequestMapping("dialog")
+//    public String Dialog(HttpServletRequest req, Model model){
+//        return "dialog";
+//    }
 
     @RequestMapping("/signup.form")
     public String SignUp(HttpServletRequest req, Model model){
@@ -161,7 +163,7 @@ public class UserController {
      */
 
     @RequestMapping("home")
-    public String Home(HttpServletRequest req) throws JAXBException {
+    public String Home(HttpServletRequest req, Model model) throws JAXBException {
 
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         String email = (String)req.getSession().getAttribute("email");
