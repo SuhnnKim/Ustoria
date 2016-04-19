@@ -47,6 +47,12 @@ public class UserController {
     public String Login(HttpServletRequest req, Model model){
         Story story = (Story)req.getSession().getAttribute("story");
 
+        if (story == null){
+            Story s = new Story();
+            req.getSession().setAttribute("story",s);
+
+        }
+        story = (Story)req.getSession().getAttribute("story");
         MainSummary mainSummary = story.getSummary();
         req.setAttribute("characterList",story.getCharacterList());
         req.setAttribute("projectTitle",story.getTitle());
@@ -54,7 +60,7 @@ public class UserController {
 
 
         model.addAttribute("pageName","Projects");
-        return "home";
+        return "index";
 
     }
     @RequestMapping("/{sId}/dialog")
@@ -172,7 +178,7 @@ public class UserController {
         req.getSession().setAttribute("email",name);
 
 
-        File folder = new File("P:/Ustoria/");
+        File folder = new File("/Users/liuwei/Desktop/Temp/");
         File[] listOfFiles = folder.listFiles();
 
         Story stories=null;
@@ -313,7 +319,7 @@ public class UserController {
 
         Story myStory = storyList.get(sId);
 
-        String fullPath = "P:/Ustoria/" + myStory.getTitle()+".xml";
+        String fullPath = "/Users/liuwei/Desktop/Temp/" + myStory.getTitle()+".xml";
         File downloadFile = new File(fullPath);
         FileInputStream inputStream = new FileInputStream(downloadFile);
 

@@ -23,7 +23,7 @@ public class DataSerializer {
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(myStory, new File("P:/Ustoria/" + myStory.getTitle() + ".xml"));
+            jaxbMarshaller.marshal(myStory, new File("/Users/liuwei/Desktop/Temp/" + myStory.getTitle() + ".xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -33,13 +33,13 @@ public class DataSerializer {
     public void serializeXMLWithWox(Story myStory) {
 
 
-        Easy.save(myStory,"P:/Ustoria/"+myStory.getTitle()+".xml");
+        Easy.save(myStory,"/Users/liuwei/Desktop/Test/"+myStory.getTitle()+".xml");
     }
 
 
     public Story deserializeXMLWithWox(File myFile){
 
-        Story myStory = (Story) Easy.load("P:/Ustoria/"+myFile.getName());
+        Story myStory = (Story) Easy.load("/Users/liuwei/Desktop/Temp/"+myFile.getName());
         return  myStory;
     }
 
@@ -48,7 +48,7 @@ public class DataSerializer {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Story.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Story myStory = (Story) jaxbUnmarshaller.unmarshal(new File("P:/Ustoria/" + myFile.getName()));
+            Story myStory = (Story) jaxbUnmarshaller.unmarshal(new File("/Users/liuwei/Desktop/Temp/" + myFile.getName()));
 
             return myStory;
         } catch (JAXBException e) {

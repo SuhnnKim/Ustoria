@@ -142,81 +142,81 @@ var makeMenuItemSortable = function(){
 // mySlySlider is for timelineScrollAnimation
 var frame  = jQuery('#timeline_wrap');
 var wrap   = frame.parent();
-var mySlySlider = new Sly(frame, {
-  horizontal: 1,
-  itemNav: 'basic',
-  smart: 1,
-  activateOn: 'click',
-  mouseDragging: 0,
-  touchDragging: 1,
-  releaseSwing: 1,
-  startAt: 0,
-  scrollBar: wrap.find('.scrollbar'),
-  scrollBy: 1,
-  // pagesBar: wrap.find('.pages'),
-  activatePageOn: 'click',
-  speed: 300,
-  elasticBounds: 1,
-  easing: 'easeOutExpo',
-  dragHandle: 1,
-  dynamicHandle: 1,
-  clickBar: 1,
-}).init();
+// var mySlySlider = new Sly(frame, {
+//   horizontal: 1,
+//   itemNav: 'basic',
+//   smart: 1,
+//   activateOn: 'click',
+//   mouseDragging: 0,
+//   touchDragging: 1,
+//   releaseSwing: 1,
+//   startAt: 0,
+//   scrollBar: wrap.find('.scrollbar'),
+//   scrollBy: 1,
+//   // pagesBar: wrap.find('.pages'),
+//   activatePageOn: 'click',
+//   speed: 300,
+//   elasticBounds: 1,
+//   easing: 'easeOutExpo',
+//   dragHandle: 1,
+//   dynamicHandle: 1,
+//   clickBar: 1,
+// }).init();
 // a function to make timeline scroll behavior nicer
-var timelineScrollAnimation = function(mySlySlider){
-  var frame  = jQuery('#timeline_wrap');
-  var wrap   = frame.parent();
+// var timelineScrollAnimation = function(mySlySlider){
+//   var frame  = jQuery('#timeline_wrap');
+//   var wrap   = frame.parent();
+//
+//   mySlySlider = new Sly(frame, {
+//     horizontal: 1,
+//     itemNav: 'basic',
+//     smart: 1,
+//     activateOn: 'click',
+//     mouseDragging: 0,
+//     touchDragging: 1,
+//     releaseSwing: 1,
+//     startAt: 0,
+//     scrollBar: wrap.find('.scrollbar'),
+//     scrollBy: 1,
+//     // pagesBar: wrap.find('.pages'),
+//     activatePageOn: 'click',
+//     speed: 300,
+//     elasticBounds: 1,
+//     easing: 'easeOutExpo',
+//     dragHandle: 1,
+//     dynamicHandle: 1,
+//     clickBar: 1,
+//   }).init();
+// };
 
-  mySlySlider = new Sly(frame, {
-    horizontal: 1,
-    itemNav: 'basic',
-    smart: 1,
-    activateOn: 'click',
-    mouseDragging: 0,
-    touchDragging: 1,
-    releaseSwing: 1,
-    startAt: 0,
-    scrollBar: wrap.find('.scrollbar'),
-    scrollBy: 1,
-    // pagesBar: wrap.find('.pages'),
-    activatePageOn: 'click',
-    speed: 300,
-    elasticBounds: 1,
-    easing: 'easeOutExpo',
-    dragHandle: 1,
-    dynamicHandle: 1,
-    clickBar: 1,
-  }).init();
-};
-
-var makeTimelineSortable = function(){
-
-  var removeIntent = false;
-
-  jQuery("#timeline").sortable({
-    opacity: 0.5,
-
-    over: function (event, ui) {
-
-      removeIntent = false;
-    },
-    out: function () {
-      removeIntent = true;
-    },
-    beforeStop: function (event, ui) {
-      // remove the item dragged out of timeline
-      if(removeIntent == true){
-        ui.item.remove();
-        // reload the timeline slider since item was removed
-        mySlySlider.reload();
-      }
-    },
-    update: function (event, ui) {
-      // reload the timeline slider since item was added
-      mySlySlider.reload();
-    },
-  });
-};
+// var makeTimelineSortable = function(){
+//
+//   var removeIntent = false;
+//
+//   jQuery("#timeline").sortable({
+//     opacity: 0.5,
+//
+//     over: function (event, ui) {
+//
+//       removeIntent = false;
+//     },
+//     out: function () {
+//       removeIntent = true;
+//     },
+//     beforeStop: function (event, ui) {
+//       // remove the item dragged out of timeline
+//       if(removeIntent == true){
+//         ui.item.remove();
+//         // reload the timeline slider since item was removed
+//         mySlySlider.reload();
+//       }
+//     },
+//     update: function (event, ui) {
+//       // reload the timeline slider since item was added
+//       mySlySlider.reload();
+//     },
+//   });
+// };
 
 var jsplumbCustomizedBinding = function(){
   // delete the connector of items inside of scenes
