@@ -31,7 +31,7 @@ public class FileUploadController {
      * @param response : HttpServletResponse auto passed
      * @return LinkedList<FileMeta> as json format
      ****************************************************/
-    @RequestMapping(value="upload", method = RequestMethod.POST)
+    @RequestMapping(value="{sId}/upload", method = RequestMethod.POST)
     public @ResponseBody
     LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
 
@@ -80,7 +80,7 @@ public class FileUploadController {
      * @param value : value from the URL
      * @return void
      ****************************************************/
-    @RequestMapping(value = "get/{value}", method = RequestMethod.GET)
+    @RequestMapping(value = "{sId}/get/{value}", method = RequestMethod.GET)
     public void get(HttpServletResponse response,@PathVariable String value){
         FileMeta getFile = files.get(Integer.parseInt(value));
         try {
