@@ -64,14 +64,15 @@ public class UserController {
 
     }
     @RequestMapping("/{sId}/dialog")
+//    @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
-        Story story = (Story)req.getSession().getAttribute("story");
-
-        MainSummary mainSummary = story.getSummary();
-        req.setAttribute("characterList",story.getCharacterList());
-        req.setAttribute("projectTitle",story.getTitle());
-        req.setAttribute("summaryList",mainSummary.getSummaryList());
-
+//        Story story = (Story)req.getSession().getAttribute("story");
+//
+//        MainSummary mainSummary = story.getSummary();
+//        req.setAttribute("characterList",story.getCharacterList());
+//        req.setAttribute("projectTitle",story.getTitle());
+//        req.setAttribute("summaryList",mainSummary.getSummaryList());
+//
         model.addAttribute("pageName","Dialog");
 
         return "new_dialog";

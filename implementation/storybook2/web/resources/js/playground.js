@@ -383,16 +383,6 @@ var sidebarAnimate = function(){
     }
   });
 
-
-
-  // no need to use tooltip already since we have titles for scenes
-  //jQuery(document).ready(function(){
-  //  jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();
-  //});
-
-
-
-
 jQuery(window).resize(function (event) {
 
   // setting #sidebar's width
@@ -428,47 +418,4 @@ jQuery(window).resize(function (event) {
     'left':jQuery('#sidebar').width()-20,
 
   });
-  //jQuery('#link-playground').css({
-  //
-  //  'bottom': 0,
-  //  'left':0,
-  //  'width': jQuery('#sidebar').width(),
-  //
-  //});
-  //jQuery('#link-add-category').css({
-  //
-  //  'bottom': jQuery('#link-playground').height()*2.5,
-  //
-  //});
 });
-
-
-
-
-//jQuery(function(){
-
-  // initialize the width of #content and #timeline
-  // jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
-  // jQuery('#timeline').width(jQuery('#content').width());
-
-  // jQuery(window).resize();
-
-  // timelineScrollAnimation();
-
-  // makeTimelineSortable();
-
-  timelineScrollAnimation(mySlySlider);
-  // jsplumbCustomizedBinding();
-
-  // makeDragDropSort();
-//});
-
-// jQuery("#scene-panel").resizable({
-//   handles: "e,s",
-//   resize: function (event, ui) {
-//     canvas.setHeight(jQuery('#play_wrap').height()-pageY);
-//     canvas.renderAll();
-//   },
-//   alsoResize: "#canvas"
-// });
-
