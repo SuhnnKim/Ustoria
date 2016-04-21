@@ -102,6 +102,11 @@
             text-align: center;
             z-index: 999;
         }
+        .labelText{
+            position: absolute;
+            left:100px;
+            padding-top:3px;
+        }
     </style>
 </head>
 <body style="background: none;">
@@ -118,7 +123,11 @@
             Option
         </div>
         <div class="zooming_buttons" style="clear: both;">
+<<<<<<< HEAD
             <span>Zooming:</span>
+=======
+            <p class="labelText">Zooming</p>
+>>>>>>> 2274558687dabd0a5458136b721bafe6b0acc4e4
             <button id="zoomIn"><span class="glyphicon glyphicon-zoom-in"></span></button>
             <button id="zoomOut"><span class="glyphicon glyphicon-zoom-out"></span></button>
         </div>
@@ -134,15 +143,21 @@
         <%--<td><button id="toRight" class="myButton"><span class="glyphicon glyphicon-triangle-right"></span></button></td>--%>
         <%--</tr>--%>
         <%--</table>--%>
-        <span>Connection Mode:</span>
-        <div class="MyCheckbox">
-            <input type="checkbox" value="None" id="connect" name="check">
-            <label for="connect"></label>
+        <div class="checkbox_wrap">
+            <p class="labelText">Connection Mode</p>
+            <div class="MyCheckbox">
+                <input type="checkbox" value="None" id="connect" name="check">
+                <label for="connect"></label>
+            </div>
+
         </div>
-        <span>Panning Mode:</span>
-        <div class="MyCheckbox">
-            <input type="checkbox" value="None" id="move" name="check">
-            <label for="move"></label>
+        <div class="checkbox_wrap">
+            <p class="labelText">Panning Mode</p>
+            <div class="MyCheckbox">
+                <input type="checkbox" value="None" id="move" name="check">
+                <label for="move"></label>
+            </div>
+
         </div>
 
         <p>
@@ -165,7 +180,7 @@
             </c:forEach>
         </select>
         <p>Please enter the dialog/question</p>
-        <textarea id="content" cols="30"></textarea>
+        <textarea id="content" cols="24" rows="3" ></textarea>
     </div>
     <div id="canvas_wrap" class="col-lg-9 col-md-9">
         <canvas id="dialog_canvas" width="800" height="500"></canvas>
@@ -553,8 +568,10 @@
                         });
                         p.speaker.set({
                             'left': p.left,
-                            'top': p.top - p.height / 2,
+                            'top': p.top - p.height * p.scaleY / 2,
                         });
+
+                        console.log(p.height);
                     }
 
 
