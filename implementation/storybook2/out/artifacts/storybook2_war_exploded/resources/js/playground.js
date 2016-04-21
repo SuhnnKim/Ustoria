@@ -39,7 +39,7 @@ var dropped_item_counter = 0;
 // a function to make scene body droppable
 var makeSceneDroppable = function(){
   jQuery( ".panel-body" ).droppable({
-    accept: ".menu_item",
+    accept: ".draggable .menu_item",
     tolerance: 'fit',
     drop: function(event, ui) {
 
@@ -89,6 +89,9 @@ var makeSceneDroppable = function(){
     }
   });
 };
+
+
+
 
 // a function to make scene title draggable instead of the whole scene
 

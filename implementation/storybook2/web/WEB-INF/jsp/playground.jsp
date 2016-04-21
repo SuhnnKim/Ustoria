@@ -126,6 +126,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/static.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
 

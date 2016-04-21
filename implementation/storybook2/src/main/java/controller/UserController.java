@@ -191,17 +191,20 @@ public class UserController {
 
         for (File file : listOfFiles) {
         /* isFile Check */
-            if (file.isFile()) {
+            if (!file.isHidden()){
+                if (file.isFile()) {
 
-                stories = ds.deSerializeXML(file);
+                    stories = ds.deSerializeXML(file);
 
-                stories.setId(count);
+                    stories.setId(count);
 
-                count++;
+                    count++;
 
-                storyList.add(stories);
+                    storyList.add(stories);
 
+                }
             }
+
         }
 
         req.getSession().setAttribute("storyBook",storyList);

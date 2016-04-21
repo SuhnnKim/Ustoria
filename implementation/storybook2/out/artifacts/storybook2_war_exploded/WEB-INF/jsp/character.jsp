@@ -218,7 +218,7 @@
 														<input type='hidden' name='relaAtt' id='roleAtt' value='<c:out value="${attributeList.name.toString()}"/>'/>
 													</td>
 													<td>
-														<img class='del' src='/storybook/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
+														<img class='del' src='${pageContext.request.contextPath}/resources/img/ic_highlight_off_black_48dp_2x.png' height='30' width='30' />
 													</td>
 												</tr>
 											</c:forEach>
