@@ -445,7 +445,7 @@ jQuery(function(){
 
   // timelineScrollAnimation(mySlySlider);
 
-  makeTimelineSortable();
+  // makeTimelineSortable();
 
   jsplumbCustomizedBinding();
 

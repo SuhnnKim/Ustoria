@@ -106,10 +106,12 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/all1.4.2.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customline.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customrect.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jsPlumb-2.0.7.js"></script>
@@ -117,11 +119,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
-
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/timeLineJS.js"></script>
 </body>
