@@ -90,11 +90,7 @@ var makeSceneDroppable = function(){
   });
 };
 
-
-
-
 // a function to make scene title draggable instead of the whole scene
-
 var makeSceneTitleDraggable = function(){
   jQuery('.scene>.scene-title').draggable({
     helper: "clone",
@@ -112,9 +108,6 @@ var makeSceneTitleDraggable = function(){
   //   revert:"invalid"
   // });
 };
-
-
-
 
 // a function to make menu item sortable and draggable
 var makeMenuItemSortable = function(){
@@ -165,7 +158,7 @@ var wrap   = frame.parent();
 //   dynamicHandle: 1,
 //   clickBar: 1,
 // }).init();
-//a function to make timeline scroll behavior nicer
+// a function to make timeline scroll behavior nicer
 var timelineScrollAnimation = function(mySlySlider){
   var frame  = jQuery('#timeline_wrap');
   var wrap   = frame.parent();
@@ -265,84 +258,84 @@ var makeDragDropSort = function(){
 };
 
 
-  // the square brackets is for dependency injection
-  var app = angular.module('playground', [ ]);
+// the square brackets is for dependency injection
+var app = angular.module('playground', [ ]);
 
-  var scenes = [];
+var scenes = [];
 
-  app.controller('scenePanelController', function($scope){
+app.controller('scenePanelController', function($scope){
 
-    $scope.id_counter = 2;
-    $scope.scenes = scenes;
-  	$scope.scenes.push({title: 'scene1', id: 'scene1'});
+  $scope.id_counter = 2;
+  $scope.scenes = scenes;
+  $scope.scenes.push({title: 'scene1', id: 'scene1'});
 
-    $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        makeSceneDroppable();
-        makeSceneTitleDraggable();
-    });
-
-    $scope.removeScene = function(scene){
-      var index = $scope.scenes.indexOf(scene);
-      var n = index + 1;
-      console.log("deleted"+n);
-      //var myNode = document.getElementById("scene" + n);
-      //while (myNode.firstChild) {
-      //  myNode.removeChild(myNode.firstChild);
-      //  console.log("deleted")
-      //}
-      jQuery('#scene' + n).empty();
-      $scope.scenes.splice(index, 1);
-    };
-
+  $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+    makeSceneDroppable();
+    makeSceneTitleDraggable();
   });
 
-  // toggle controller for timeline part
-  app.controller('TimeLineController', function($scope){
-    $scope.timeline = {
-      hidden: false,
-      toggle: function() {
-        this.hidden = !this.hidden;
-        timeline_wrapper.hidden = !timeline_wrapper.hidden;
-        timeline_hide.hidden = !timeline_hide.hidden;
+  $scope.removeScene = function(scene){
+    var index = $scope.scenes.indexOf(scene);
+    var n = index + 1;
+    console.log("deleted"+n);
+    //var myNode = document.getElementById("scene" + n);
+    //while (myNode.firstChild) {
+    //  myNode.removeChild(myNode.firstChild);
+    //  console.log("deleted")
+    //}
+    jQuery('#scene' + n).empty();
+    $scope.scenes.splice(index, 1);
+  };
 
-        // change the fixed height of scene part along with timeline part toggled
-        if(this.hidden){
-          jQuery('#timeline_panel').height(20);
-          jQuery('#scene-panel').height(jQuery('#play_wrap').height()-20);
-        }else{
-          jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
-          jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
-        }
+});
+
+// toggle controller for timeline part
+app.controller('TimeLineController', function($scope){
+  $scope.timeline = {
+    hidden: false,
+    toggle: function() {
+      this.hidden = !this.hidden;
+      timeline_wrapper.hidden = !timeline_wrapper.hidden;
+      timeline_hide.hidden = !timeline_hide.hidden;
+
+      // change the fixed height of scene part along with timeline part toggled
+      if(this.hidden){
+        jQuery('#timeline_panel').height(20);
+        jQuery('#scene-panel').height(jQuery('#play_wrap').height()-20);
+      }else{
+        jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
+        jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
       }
-    };
-  });
+    }
+  };
+});
 
-  // add scene controller for adding scene dynamically
-  app.controller('addSceneController', function($scope){
+// add scene controller for adding scene dynamically
+app.controller('addSceneController', function($scope){
 
-    var id_counter = 2;
-    $scope.addNew = function($title) {
+  var id_counter = 2;
+  $scope.addNew = function($title) {
 
-      // validate the title is not empty string
-      if($title === ""){
-        $scope.error_message = "Please type in your new scene's title.";
-        jQuery("#new_scene_title").focus();
-        return;
-      }
-
-      // push the new scene item to scenes array
-      scenes.push({title: $title, id: "scene"+id_counter});
-
-      // hide the modal manually since the default action of bootstrap is removed
-      jQuery("#myModal").modal("hide");
-      id_counter ++;
-      $scope.title = '';
+    // validate the title is not empty string
+    if($title === ""){
+      $scope.error_message = "Please type in your new scene's title.";
+      jQuery("#new_scene_title").focus();
+      return;
     }
 
-  });
+    // push the new scene item to scenes array
+    scenes.push({title: $title, id: "scene"+id_counter});
+
+    // hide the modal manually since the default action of bootstrap is removed
+    jQuery("#myModal").modal("hide");
+    id_counter ++;
+    $scope.title = '';
+  }
+
+});
 
 
-  // enable sidebar menu item toggle animation
+// enable sidebar menu item toggle animation
 var sidebarAnimate = function(){
   // in case click event repeated or mixed up with other click event
   jQuery("#cssmenu li.has-sub>a").off("click");
@@ -368,25 +361,35 @@ var sidebarAnimate = function(){
 
 
 
-  
 
-  // callback function for np-repeat
-  // bind the ngRepeatFinished event with noFinishRender directive
-  // reference from http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
-  app.directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last) {
-                $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
-                });
-            }
-        }
+
+// callback function for np-repeat
+// bind the ngRepeatFinished event with noFinishRender directive
+// reference from http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
+app.directive('onFinishRender', function ($timeout) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      if (scope.$last) {
+        $timeout(function () {
+          scope.$emit('ngRepeatFinished');
+        });
+      }
     }
-  });
+  }
+});
 
-jQuery(window).resize(function (event) {
+
+
+// no need to use tooltip already since we have titles for scenes
+//jQuery(document).ready(function(){
+//  jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();
+//});
+
+
+
+
+jQuery(window).resize(function () {
 
   // setting #sidebar's width
   jQuery('#sidebar').css('width', 150);
@@ -400,16 +403,10 @@ jQuery(window).resize(function (event) {
   jQuery('#play_wrap').css('height', (jQuery('#content').height()-50));
 
   jQuery('#scene-panel').css('height', jQuery('#play_wrap').height() * 0.6 + 10);
-  jQuery('#play_wrap').css('border-bottom', 'solid 1px black');
 
-  jQuery('#scene-panel').css('height', jQuery('#play_wrap').height()*0.6);
+  jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
 
-  jQuery('#time').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height())
-
-  // jQuery('#time>#timeline').css('width',jQuery('#play_wrap').width());
-  // jQuery('#timeline_panel').css('height', jQuery('#play_wrap').height()-jQuery('#scene-panel').height());
-  //
-  // jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
+  jQuery('#timeline_wrapper').css('height', jQuery('#timeline_panel').height());
 
   jQuery('#timeline').css('width', jQuery('#timeline_panel').width());
 
@@ -421,17 +418,32 @@ jQuery(window).resize(function (event) {
     'left':jQuery('#sidebar').width()-20,
 
   });
+  //jQuery('#link-playground').css({
+  //
+  //  'bottom': 0,
+  //  'left':0,
+  //  'width': jQuery('#sidebar').width(),
+  //
+  //});
+  //jQuery('#link-add-category').css({
+  //
+  //  'bottom': jQuery('#link-playground').height()*2.5,
+  //
+  //});
 });
+
+
+
 
 jQuery(function(){
 
   // initialize the width of #content and #timeline
   jQuery('#content').css('width', jQuery(window).width()-jQuery('#sidebar').width());
-  // jQuery('#timeline').width(jQuery('#content').width());
+  jQuery('#timeline').width(jQuery('#content').width());
 
   jQuery(window).resize();
 
-  // resizetimelineScrollAnimation(mySlySlider);
+  // timelineScrollAnimation(mySlySlider);
 
   makeTimelineSortable();
 

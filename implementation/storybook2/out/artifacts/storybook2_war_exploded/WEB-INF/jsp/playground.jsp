@@ -8,6 +8,7 @@
 			display: none;
 		}
 	</style>
+
 	<jsp:include page="head.jsp" />
 </head>
 
@@ -69,15 +70,10 @@
 	<div id="control-panel">
 		<a class="ctrl-btn pull-left" id="new-scene" href="#" data-toggle="modal" data-target="#myModal">New scene</a>
 		<a class="ctrl-btn pull-left" href="#" data-toggle="modal" data-target="#myEditScenesModal">Delete Scenes</a>
-		<a class="ctrl-btn pull-left" id="undo" href="#">Undo</a>
-		<a class="ctrl-btn pull-left" id="redo" href="#">Redo</a>
-		<a class="ctrl-btn pull-left" id="character" href="character.form">Character</a>
-		<a class="ctrl-btn pull-left" id="summary" href="summary.form">Summary</a>
 		<a class="ctrl-btn pull-right" id="save" href="#">Save</a>
 	</div>
-
-	<div id="play_wrap" class="col-sm-6 sp editor" style="width: inherit;height: inherit;">
-		<div id="scene-panel" class="inner">
+	<div id="play_wrap" style="width: inherit;height: inherit;">
+		<div id="scene-panel" >
 			<!-- loop scenes -->
 			<div ng-repeat="scene in scenes" class="scene panel" data-toggle="tooltip" title="{{scene.title}}" id="{{scene.id}}" on-finish-render="ngRepeatFinished">
 				<div class="panel-heading scene-title">
@@ -110,12 +106,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jquery-ui-1.10.4.custom.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/bootstrap.js"></script>
-
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/all1.4.2.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customline.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/customrect.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.iframe-transport.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/library/jquery.fileupload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/library/jquery.highlight-5.closure.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/angular.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/jsPlumb-2.0.7.js"></script>
@@ -123,12 +117,11 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/library/sly.min.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/global.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/apptest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/summary.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/character.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/static.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/playground.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/left_sidebar.js"></script>
+
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/timeLineJS.js"></script>
 </body>

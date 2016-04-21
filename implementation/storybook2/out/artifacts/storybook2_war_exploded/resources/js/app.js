@@ -1,23 +1,23 @@
 (function(){
 
-	var app = angular.module('playground', [ ]);
+  var app = angular.module('playground', [ ]);
 
   var scenes = [];
 
-	app.controller('scenePanelController', function($scope){
+  app.controller('scenePanelController', function($scope){
 
     $scope.id_counter = 2;
     $scope.scenes = scenes;
-  	$scope.scenes.push({title: 'scene1', id: 'scene1'});
+    $scope.scenes.push({title: 'scene1', id: 'scene1'});
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        makeSceneDroppable();
-        makeSceneTitleDraggable();
+      makeSceneDroppable();
+      makeSceneTitleDraggable();
     });
 
     $scope.removeScene = function(scene){
-        var index = $scope.scenes.indexOf(scene);
-        $scope.scenes.splice(index, 1);
+      var index = $scope.scenes.indexOf(scene);
+      $scope.scenes.splice(index, 1);
     };
 
   });
@@ -69,7 +69,7 @@
 
 
   // enable sidebar menu item toggle animation
-  var sidebarAnimate = function(){    
+  var sidebarAnimate = function(){
     // in case click event repeated or mixed up with other click event
     jQuery("#cssmenu li.has-sub>a").off("click");
     // rebind the click event
@@ -94,21 +94,21 @@
 
 
 
-  
+
 
   // callback function for np-repeat
   // bind the ngRepeatFinished event with noFinishRender directive
   // reference from http://stackoverflow.com/questions/15207788/calling-a-function-when-ng-repeat-has-finished
   app.directive('onFinishRender', function ($timeout) {
     return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last) {
-                $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
-                });
-            }
+      restrict: 'A',
+      link: function (scope, element, attr) {
+        if (scope.$last) {
+          $timeout(function () {
+            scope.$emit('ngRepeatFinished');
+          });
         }
+      }
     }
   });
 
@@ -133,7 +133,7 @@
     $scope.menuSubItems = [];
 
     $scope.addMenuItem = function(newMenuItem){
-      
+
       if(newMenuItem.name === undefined || newMenuItem.name === ''){
         $scope.missingNewMenuItemError = "Category needs a name";
         return;
@@ -146,7 +146,7 @@
       jQuery("#addCategoryModal").modal("hide");
       newMenuItem.name = null;
       $scope.menuSubItems = [];
-      
+
       return;
     };
 
@@ -177,8 +177,8 @@
 
 
   jQuery(document).ready(function(){
-    jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();   
-	});
+    jQuery('#timeline_panel [data-toggle="tooltip"]').tooltip();
+  });
 
 })();
 
@@ -231,10 +231,10 @@ jQuery(window).resize(function () {
 
 
 
-jQuery(function(){ 
+jQuery(function(){
 
   jQuery(window).resize();
-  
+
   jQuery('#hide-sidebar').click(function(event) {
     jQuery('#content').css('width', jQuery(window).width());
     jQuery('#content').css('margin-left', 0);
@@ -248,6 +248,6 @@ jQuery(function(){
   jQuery("#link-add-category").hover(function(ev){
     jQuery("#link-add-category").stop().animate({width: ev.type=="mouseenter" ? 135 : 40}, 700, 'swing');
   });
-  
+
 
 });

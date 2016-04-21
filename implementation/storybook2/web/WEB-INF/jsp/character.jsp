@@ -248,7 +248,6 @@
 			</div>
 
 			</div>
-			<button id="s">sss</button>
 
 		</div>
 
