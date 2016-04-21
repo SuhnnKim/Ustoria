@@ -123,11 +123,10 @@
             Option
         </div>
         <div class="zooming_buttons" style="clear: both;">
-<<<<<<< HEAD
+
             <span>Zooming:</span>
-=======
+
             <p class="labelText">Zooming</p>
->>>>>>> 2274558687dabd0a5458136b721bafe6b0acc4e4
             <button id="zoomIn"><span class="glyphicon glyphicon-zoom-in"></span></button>
             <button id="zoomOut"><span class="glyphicon glyphicon-zoom-out"></span></button>
         </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2016 at 11:38 PM
+-- Generation Time: Apr 21, 2016 at 10:50 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,15 +47,16 @@ CREATE TABLE IF NOT EXISTS `Users` (
   `enabled` tinyint(4) NOT NULL DEFAULT '1',
 `id` int(11) NOT NULL,
   `role` int(11) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Users`
 --
 
 INSERT INTO `Users` (`UserName`, `Email`, `Password`, `enabled`, `id`, `role`) VALUES
-('admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 1, 1, 1),
-('user', 'user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 1, 2, 0);
+('admin', 'admin@ustoria.ca', '21232f297a57a5a743894a0e4a801fc3', 1, 1, 1),
+('user', 'user@user.com', 'ee11cbb19052e40b07aac0ca060c23ee', 1, 2, 0),
+('Zhipeng Zeng', 'zhipeng.kevin@gmail.com', '268bc2da4c59adea299b108aa03e4ac4', 0, 6, 0);
 
 --
 -- Indexes for dumped tables
@@ -81,7 +82,7 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
