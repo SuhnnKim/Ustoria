@@ -21,7 +21,7 @@ import java.util.*;
 @Controller
 public class CharacterController {
 
-    @RequestMapping("/{sId}/character.form")
+    @RequestMapping(value = {"/{sId}/character.form","character.form"})
     public String Character(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");
         req.setAttribute("email",email);
@@ -47,7 +47,7 @@ public class CharacterController {
 
     }
 
-    @RequestMapping("{sId}/selectCharacter")
+    @RequestMapping(value = {"{sId}/selectCharacter","selectCharacter"})
     @ResponseBody
     public String selectCharacter(HttpServletRequest req, Model model,
                             @RequestParam(value = "id") String uuid){
@@ -78,7 +78,7 @@ public class CharacterController {
 
     }
 
-    @RequestMapping(value = "{sId}/saveCharacter", method = RequestMethod.POST)
+    @RequestMapping(value = {"{sId}/saveCharacter","saveCharacter"}, method = RequestMethod.POST)
     @ResponseBody
     public String SaveCharacter(HttpServletRequest req, Model model,
                                 @RequestParam(value = "id") String uuid,
@@ -216,7 +216,7 @@ public class CharacterController {
         return jsonString;
     }
 
-    @RequestMapping("{sId}/newCharacter")
+    @RequestMapping(value = {"{sId}/newCharacter","newCharacter"})
     @ResponseBody
     public String NewCharacter(HttpServletRequest req, Model model){
         String email = (String)req.getSession().getAttribute("email");

@@ -63,18 +63,18 @@ public class UserController {
         return "index";
 
     }
-    @RequestMapping("/{sId}/dialog")
+    @RequestMapping(value = {"/{sId}/dialog","/dialog"})
 //    @RequestMapping("dialog")
     public String Dialog(HttpServletRequest req, Model model){
-//        Story story = (Story)req.getSession().getAttribute("story");
-//
-//        MainSummary mainSummary = story.getSummary();
-//        req.setAttribute("characterList",story.getCharacterList());
+        Story story = (Story)req.getSession().getAttribute("story");
+
+        MainSummary mainSummary = story.getSummary();
+        req.setAttribute("characterList",story.getCharacterList());
 //        req.setAttribute("projectTitle",story.getTitle());
 //        req.setAttribute("summaryList",mainSummary.getSummaryList());
 //
         model.addAttribute("pageName","Dialog");
-
+        model.addAttribute("list",story.getCharacterList());
         return "new_dialog";
 
     }
@@ -128,7 +128,7 @@ public class UserController {
         Md5PasswordEncoder encoder = new Md5PasswordEncoder();
         String encoderPassword = encoder.encodePassword(password,null);
         user.setPassword(encoderPassword);
-
+        user.setRole(0);
         userDAO.save(user);
 
         return "home";
@@ -141,7 +141,7 @@ public class UserController {
      * @param req Request Attribute
      * @return Playground jsp page
      */
-    @RequestMapping("{sId}/playground.form")
+    @RequestMapping(value = {"{sId}/playground.form","/playground.form"})
     public String Playground(HttpServletRequest req){
         String email = (String)req.getSession().getAttribute("email");
         req.setAttribute("email",email);
@@ -220,10 +220,11 @@ public class UserController {
      * @param model
      * @return
      */
-    @RequestMapping("search")
-    public String Search(HttpServletRequest req, Model model){
+    @RequestMapping(value = {"/{sId}/search","/search"},method=RequestMethod.GET)
+    public String Search(HttpServletRequest req,@PathVariable int sId){
         Story story = getStoryFromSession(req);
 
+        System.out.println("inside search");
         String search = req.getParameter("search");
         int CharacterCount = 0;
         List<Character> foundCharacterList = new ArrayList<Character>();
@@ -251,12 +252,13 @@ public class UserController {
             }
         }
 
-        model.addAttribute("search",search);
-        model.addAttribute("CharacterCount",CharacterCount);
-        model.addAttribute("foundCharacterList",foundCharacterList);
+        req.setAttribute("search",search);
+        req.setAttribute("CharacterCount",CharacterCount);
+        req.setAttribute("foundCharacterList",foundCharacterList);
 
-        model.addAttribute("SummaryCount",SummaryCount);
-        model.addAttribute("foundSummaryList",foundSummaryList);
+        req.setAttribute("SummaryCount",SummaryCount);
+        req.setAttribute("foundSummaryList",foundSummaryList);
+        req.setAttribute("storyId",sId);
 
 
         req.getSession().setAttribute("search",search);
@@ -272,7 +274,7 @@ public class UserController {
      * @param sId the id of the story from the story object . It is a Path Variable
      * @return redirects to summary page
      */
-    @RequestMapping(value={"/{sId}/summary.form","/{sId}/summary" }, method=RequestMethod.GET)
+    @RequestMapping(value={"/{sId}/summary.form","/{sId}/summary","/summary" }, method=RequestMethod.GET)
     public String redirectToSummary(HttpServletRequest req, Model model,@PathVariable int sId){
 
         String email = (String)req.getSession().getAttribute("email");
@@ -303,6 +305,8 @@ public class UserController {
         req.setAttribute("projectTitle",story.getTitle());
         req.setAttribute("summaryList",mainSummary.getSummaryList());
         req.setAttribute("summary",mainSummary.getFullSummary());
+
+        req.getSession().setAttribute("storyId",sId);
 
         return "summary";
     }

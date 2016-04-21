@@ -85,7 +85,7 @@
 
         </div>
         <ul class="nav navbar-nav navbar-right">
-            <li> <form action="search" method="get" class="navbar-form" role="search">
+            <li> <form action="/${storyId}/search" method="get" class="navbar-form" role="search">
 
                 <div class="input-group">
                     <input class="navbar-right" id="searchbar" type="search" name="search" placeholder="search">
@@ -100,7 +100,7 @@
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
                     <li class="divider"></li>
-                    <li><a href="#">Log out</a></li>
+                    <li><a href="/logout">Log out</a></li>
                 </ul>
             </li>
         </ul>

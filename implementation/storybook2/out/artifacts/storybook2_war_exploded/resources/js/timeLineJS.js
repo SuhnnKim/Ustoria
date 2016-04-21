@@ -40,7 +40,7 @@ var dragdataobjtype;
 var preselectobj;
 
 var canvas = new fabric.Canvas('canvas');
-canvas.backgroundColor = "DADADA";
+canvas.backgroundColor = "#DADADA";
 
 // canvas.setBackgroundImage("resources/img/canvas.jpeg");
 
@@ -1069,7 +1069,7 @@ function dropDragObject(left, top) {
         if(dragdataobjtype == 'Sources')
             object.fill = 'green';
         else
-            object.fill = '445CA7';
+            object.fill = '#445CA7';
 
         object.stroke = drawColor;
         object.opacity = currentOpacity;
